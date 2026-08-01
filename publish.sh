@@ -14,5 +14,8 @@ if git diff --cached --quiet; then
 fi
 
 git commit -q -m "${1:-Yeni yazı}"
+
+# Bu arada başka bir çalışma gönderim yapmış olabilir; önce birleştir.
+git pull -q --rebase origin main || { echo "BIRLESTIRME_HATASI"; exit 1; }
 git push -q origin main
 echo "YAYIMLANDI"
