@@ -186,14 +186,25 @@
   .prose strong { font-weight: 700; }
 
   .afoot {
-    margin-top: 2.5rem; padding-top: 1.2rem;
+    margin-top: 2.6rem; padding-top: 1.3rem;
     border-top: 1px solid var(--border);
-    display: flex; flex-wrap: wrap; gap: .3rem; align-items: center;
+    display: flex; flex-wrap: wrap; gap: .45rem; align-items: center;
   }
   .afoot .lbl {
-    font-size: .7rem; color: var(--muted); margin-right: .2rem;
+    font-size: .72rem; color: var(--muted); margin-right: .25rem;
     font-family: -apple-system, system-ui, sans-serif;
   }
+  /* Yazı sonundaki etiketler arşive giriş kapısı — rahat basılabilir olmalı */
+  .afoot .tmini {
+    font-size: .84rem;
+    padding: .36rem .85rem;
+    line-height: 1.25;
+    border: 1px solid transparent;
+    transition: border-color .12s, transform .08s;
+  }
+  .afoot .tmini:hover { border-color: #9dc47f; }
+  .afoot .tmini.sp:hover { border-color: #d4a830; }
+  .afoot .tmini:active { transform: scale(.96); }
 
   .nav-pair { display: flex; gap: .5rem; margin-top: 1.6rem; flex-wrap: wrap; }
   .navbtn {
@@ -241,6 +252,16 @@
     .rcontent {
       padding: 1.8rem 1.15rem calc(4rem + env(safe-area-inset-bottom, 0px));
     }
+
+    /* dokunmatik hedefler */
+    .afoot { gap: .5rem; }
+    .afoot .tmini { font-size: .9rem; padding: .46rem 1rem; }
+    .tfc { font-size: .78rem; padding: .34rem .7rem; }
+    .tag-filter { gap: .35rem; }
+    .aitem-tags { gap: .28rem; margin-top: .38rem; }
+    .aitem .tmini { font-size: .7rem; padding: .2rem .55rem; }
+    .htag { font-size: .84rem; padding: .38rem .85rem; }
+    .home-tags { gap: .4rem; }
     .home { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
     .prose { font-size: 1.02rem; line-height: 1.85; }
     .atitle { font-size: 1.4rem; }
