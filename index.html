@@ -43,38 +43,55 @@
   /* ─ HEADER ────────────────────────────────────── */
   header {
     background: #2a2520;
-    color: #e8e2d5;
-    padding: .7rem 1.25rem;
+    color: #efe9dc;
+    padding: .55rem 1.1rem;
     display: flex;
     align-items: center;
-    gap: .75rem;
+    gap: .6rem;
     flex-shrink: 0;
+    border-bottom: 1px solid rgba(0,0,0,.25);
+    box-shadow: 0 1px 6px rgba(0,0,0,.12);
   }
-  .brand { display: flex; align-items: baseline; gap: .55rem; min-width: 0; }
-  .brand h1 { font-size: 1rem; font-weight: 700; white-space: nowrap; }
+
+  /* marka = ana sayfa bağlantısı */
+  .brand {
+    display: flex; align-items: baseline; gap: .5rem;
+    min-width: 0; background: none; border: 0; padding: .15rem .3rem;
+    margin-left: -.3rem; border-radius: var(--r);
+    color: inherit; cursor: pointer; font-family: Georgia, serif;
+    transition: background .12s;
+  }
+  .brand:hover { background: rgba(255,255,255,.07); }
+  .brand:active { background: rgba(255,255,255,.12); }
+  .brand .paw { font-size: .95rem; line-height: 1; }
+  .brand .bname { font-size: 1rem; font-weight: 700; white-space: nowrap; letter-spacing: .01em; }
   .brand .sub {
-    font-size: .68rem; opacity: .45; white-space: nowrap;
+    font-size: .68rem; opacity: .5; white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis;
     font-family: -apple-system, system-ui, sans-serif;
+    padding-left: .3rem; border-left: 1px solid rgba(255,255,255,.18);
   }
+
+  .hactions { margin-left: auto; display: flex; align-items: center; gap: .4rem; }
   .count {
-    margin-left: auto; font-size: .68rem; opacity: .5;
-    font-family: -apple-system, system-ui, sans-serif; white-space: nowrap;
+    font-size: .68rem; opacity: .45; white-space: nowrap; margin-right: .2rem;
+    font-family: -apple-system, system-ui, sans-serif;
   }
-  .menu-btn.rnd {
-    display: flex; align-items: center; gap: .35rem;
-    margin-left: .5rem; font-size: .8rem;
+
+  .hbtn {
+    display: inline-flex; align-items: center; gap: .35rem;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.14);
+    color: #efe9dc; border-radius: var(--r);
+    padding: .32rem .6rem; font-size: .85rem; line-height: 1;
+    cursor: pointer; white-space: nowrap;
+    transition: background .12s, border-color .12s;
   }
-  .menu-btn.rnd:hover { background: rgba(255,255,255,.2); }
-  .rnd-lbl { font-family: -apple-system, system-ui, sans-serif; font-size: .72rem; }
-  @media (max-width: 560px) { .rnd-lbl { display: none; } }
-  .menu-btn {
-    display: none;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.15);
-    color: #e8e2d5; border-radius: var(--r);
-    padding: .3rem .6rem; font-size: .95rem; cursor: pointer; line-height: 1;
-  }
+  .hbtn:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.24); }
+  .hbtn .hlbl { font-family: -apple-system, system-ui, sans-serif; font-size: .72rem; }
+  .hbtn.menu-btn { display: none; }
+  #home-btn { display: none; }
+  #home-btn.show { display: inline-flex; }
 
   /* ─ LAYOUT ────────────────────────────────────── */
   .body { flex: 1; display: flex; overflow: hidden; position: relative; }
@@ -203,9 +220,11 @@
   .scrim.show { display: block; }
 
   @media (max-width: 780px) {
-    .menu-btn { display: block; }
+    .hbtn.menu-btn { display: inline-flex; }
     .brand .sub { display: none; }
     .count { display: none; }
+    .hbtn .hlbl { display: none; }
+    header { padding: .55rem .8rem; gap: .45rem; }
     .sidebar {
       position: absolute; inset: 0 auto 0 0; z-index: 50;
       width: 84%; max-width: 320px;
@@ -310,13 +329,23 @@
 <body>
 
 <header>
-  <button class="menu-btn" id="menu-btn" aria-label="Menü">☰</button>
-  <div class="brand">
-    <h1>🐾 Köpek Arşivi</h1>
+  <button class="hbtn menu-btn" id="menu-btn" aria-label="Menü">☰</button>
+
+  <button class="brand" data-home="1" title="Ana sayfaya dön">
+    <span class="paw">🐾</span>
+    <span class="bname">Köpek Arşivi</span>
     <span class="sub">köpekler ve insanlık tarihi üzerine yazılar</span>
+  </button>
+
+  <div class="hactions">
+    <span class="count" id="count"></span>
+    <button class="hbtn" id="home-btn" data-home="1" title="Ana sayfaya dön">
+      <span aria-hidden="true">←</span><span class="hlbl">Ana sayfa</span>
+    </button>
+    <button class="hbtn" id="rnd-btn" title="Rastgele bir yazı aç (R)">
+      <span aria-hidden="true">✦</span><span class="hlbl">Rastgele</span>
+    </button>
   </div>
-  <span class="count" id="count"></span>
-  <button class="menu-btn rnd" id="rnd-btn" title="Rastgele bir yazı aç (R)" aria-label="Rastgele yazı">✦<span class="rnd-lbl">Rastgele</span></button>
 </header>
 
 <div class="body">
@@ -610,9 +639,29 @@ function openArticle(slug, push) {
   renderArticle(slug);
   closeSidebar();
   setProgress(0);
+  updateHeader();
   // seçili yazıyı listede görünür kıl
   const on = document.querySelector('.aitem.on');
   if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest' });
+}
+
+function goHome() {
+  activeSlug = null;
+  location.hash = '';
+  renderList();
+  renderIntro();
+  updateHeader();
+  setProgress(0);
+  const r = document.getElementById('reader');
+  if (r) r.scrollTop = 0;
+  document.title = 'Köpek Arşivi — Köpekler ve insanlık tarihi üzerine yazılar';
+  closeSidebar();
+}
+
+// "Ana sayfa" düğmesi yalnızca bir yazı açıkken görünür
+function updateHeader() {
+  const b = document.getElementById('home-btn');
+  if (b) b.classList[activeSlug ? 'add' : 'remove']('show');
 }
 
 function randomArticle() {
@@ -668,6 +717,8 @@ function handleHash() {
     activeSlug = null;
     renderList();
     renderIntro();
+    updateHeader();
+    setProgress(0);
     document.title = 'Köpek Arşivi — Köpekler ve insanlık tarihi üzerine yazılar';
     return;
   }
@@ -676,6 +727,7 @@ function handleHash() {
 
 // ─── Events (delegated) ──────────────────────────────────────
 document.addEventListener('click', e => {
+  if (e.target.closest('[data-home]')) { goHome(); return; }
   if (e.target.closest('[data-tagtoggle]')) { tagsExpanded = !tagsExpanded; renderTags(); return; }
   if (e.target.closest('[data-clear]')) { clearTag(); return; }
 
@@ -705,6 +757,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'ArrowLeft')  { step(-1); e.preventDefault(); }
   else if (e.key === 'Escape')     { closeSidebar(); }
   else if (e.key === 'r' || e.key === 'R') { randomArticle(); }
+  else if (e.key === 'h' || e.key === 'H') { goHome(); }
 });
 
 document.getElementById('menu-btn').addEventListener('click', openSidebar);
