@@ -227,6 +227,30 @@
   }
   .navbtn .ttl { display: block; font-size: .8rem; font-weight: 600; line-height: 1.3; }
 
+  /* ─ YAZI SONU DAVETİ ──────────────────────────── */
+  .endnote {
+    margin-top: 1.8rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    align-items: center; gap: .5rem;
+  }
+  .morebtn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--accent-l); border: 1px solid #e0b898;
+    color: var(--accent); border-radius: 99px;
+    padding: .55rem 1.4rem; min-height: 44px;
+    font-size: .88rem; cursor: pointer;
+    font-family: -apple-system, system-ui, sans-serif;
+    transition: background .12s, transform .08s;
+  }
+  .morebtn:hover { background: #f0dbcf; }
+  .morebtn:active { transform: scale(.97); }
+  .endnote .hint {
+    font-size: .68rem; color: var(--muted);
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  @media (max-width: 780px) { .endnote .hint { display: none; } }
+
   /* ─ INTRO / EMPTY ─────────────────────────────── */
   .intro {
     flex: 1; display: flex; flex-direction: column;
@@ -661,6 +685,12 @@ function renderArticle(slug) {
             '<span class="dir">Daha eski →</span><span class="ttl">' + esc(next.title) + '</span></button>' : '') +
           '</div>'
         : '') +
+      '<div class="endnote">' +
+        '<button class="morebtn" data-random="1">✦ ' +
+          (rastgeleGeldi ? 'Bir tane daha' : 'Rastgele bir yazı') +
+        '</button>' +
+        '<span class="hint">ya da R tuşu</span>' +
+      '</div>' +
     '</div>';
 
   reader.scrollTop = 0;
@@ -668,7 +698,10 @@ function renderArticle(slug) {
 }
 
 // ─── Navigation ──────────────────────────────────────────────
-function openArticle(slug, push) {
+let rastgeleGeldi = false;
+
+function openArticle(slug, push, rastgele) {
+  rastgeleGeldi = !!rastgele;
   activeSlug = slug;
   if (push !== false) location.hash = slug ? '/' + slug : '';
   renderList();
@@ -715,7 +748,7 @@ function randomArticle() {
   const list = filtered().filter(a => a.slug !== activeSlug);
   const pool = list.length ? list : ARTICLES;
   if (!pool.length) return;
-  openArticle(pool[Math.floor(Math.random() * pool.length)].slug);
+  openArticle(pool[Math.floor(Math.random() * pool.length)].slug, true, true);
 }
 
 // ── okuma ilerlemesi ────────────────────────────────────────
