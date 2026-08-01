@@ -1,0 +1,9 @@
+# Statik site — derleme adımı yok, dosyalar olduğu gibi yayımlanır.
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/articles.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

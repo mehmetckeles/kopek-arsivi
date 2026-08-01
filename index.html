@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Köpek Arşivi — Köpekler ve insanlık tarihi üzerine yazılar</title>
+<meta name="description" content="Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine düzenli olarak yayımlanan Türkçe yazılar. Evcilleştirmeden mitolojiye, savaşlardan bilime.">
+<meta property="og:title" content="Köpek Arşivi">
+<meta property="og:description" content="Köpekler ve insanlık tarihi üzerine Türkçe yazılar.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+<style>
+  :root {
+    color-scheme: light;
+    --bg:        #e8e2d5;
+    --surface:   #ede7d8;
+    --surface2:  #f5f0e6;
+    --border:    #cac3ae;
+    --text:      #2a2520;
+    --muted:     #8c8272;
+    --accent:    #c4613f;
+    --accent-l:  #f5e8e0;
+    --tag-bg:    #d5e6c5;
+    --tag-tx:    #355228;
+    --tag-sp-bg: #f5e0a0;
+    --tag-sp-tx: #6b4800;
+    --r: 7px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─ HEADER ────────────────────────────────────── */
+  header {
+    background: #2a2520;
+    color: #e8e2d5;
+    padding: .7rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    flex-shrink: 0;
+  }
+  .brand { display: flex; align-items: baseline; gap: .55rem; min-width: 0; }
+  .brand h1 { font-size: 1rem; font-weight: 700; white-space: nowrap; }
+  .brand .sub {
+    font-size: .68rem; opacity: .45; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  .count {
+    margin-left: auto; font-size: .68rem; opacity: .5;
+    font-family: -apple-system, system-ui, sans-serif; white-space: nowrap;
+  }
+  .menu-btn {
+    display: none;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    color: #e8e2d5; border-radius: var(--r);
+    padding: .3rem .6rem; font-size: .95rem; cursor: pointer; line-height: 1;
+  }
+
+  /* ─ LAYOUT ────────────────────────────────────── */
+  .body { flex: 1; display: flex; overflow: hidden; position: relative; }
+
+  /* ─ SIDEBAR ───────────────────────────────────── */
+  .sidebar {
+    width: 280px; flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .sidebar-top {
+    padding: .65rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: .4rem;
+  }
+  .search {
+    width: 100%; padding: .4rem .65rem;
+    border: 1px solid var(--border); border-radius: var(--r);
+    background: var(--surface2); font-size: .82rem;
+    color: var(--text); font-family: Georgia, serif; outline: none;
+  }
+  .search:focus { border-color: var(--accent); }
+  .tag-filter { display: flex; flex-wrap: wrap; gap: .22rem; max-height: 8.5rem; overflow-y: auto; }
+  .tfc {
+    padding: .18rem .48rem; border-radius: 99px;
+    font-size: .67rem; cursor: pointer;
+    background: var(--border); color: var(--muted);
+    font-family: -apple-system, system-ui, sans-serif;
+    border: 1px solid transparent; user-select: none; transition: all .12s;
+  }
+  .tfc:hover { background: var(--tag-bg); color: var(--tag-tx); }
+  .tfc.on { background: var(--tag-bg); color: var(--tag-tx); font-weight: 600; border-color: #b8d4a0; }
+  .tfc.sp:hover { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
+  .tfc.sp.on { background: var(--tag-sp-bg); color: var(--tag-sp-tx); border-color: #d4a830; }
+  .tfc.clear { background: var(--accent-l); color: var(--accent); border-color: #e0b898; }
+
+  .alist { flex: 1; overflow-y: auto; }
+  .aitem {
+    padding: .62rem .8rem; cursor: pointer;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid var(--border);
+    transition: background .12s;
+  }
+  .aitem:last-child { border-bottom: none; }
+  .aitem:hover { background: var(--bg); }
+  .aitem.on { border-left-color: var(--accent); background: var(--accent-l); }
+  .aitem-title { font-size: .82rem; font-weight: 600; line-height: 1.35; }
+  .aitem-meta {
+    font-size: .67rem; color: var(--muted); margin-top: .2rem;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  .aitem-tags { display: flex; flex-wrap: wrap; gap: .18rem; margin-top: .28rem; }
+  .tmini {
+    padding: .12rem .4rem; border-radius: 99px; font-size: .61rem;
+    background: var(--tag-bg); color: var(--tag-tx); cursor: pointer;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  .tmini.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
+  .empty-list { padding: 1.1rem; font-size: .78rem; color: var(--muted); text-align: center; }
+
+  /* ─ READER ────────────────────────────────────── */
+  .reader { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+  .rcontent { max-width: 700px; margin: 0 auto; padding: 3rem 2rem 4rem; width: 100%; }
+
+  .atitle { font-size: 1.7rem; font-weight: 700; line-height: 1.25; margin-bottom: .55rem; }
+  .ameta {
+    font-size: .72rem; color: var(--muted); margin-bottom: 1.4rem;
+    font-family: -apple-system, system-ui, sans-serif;
+    display: flex; flex-wrap: wrap; gap: .3rem; align-items: center;
+  }
+  .ameta .dot { opacity: .5; }
+
+  .prose { line-height: 1.9; font-size: 1.06rem; }
+  .prose h2 { font-size: 1.14rem; font-weight: 700; margin-top: 2rem; margin-bottom: .5rem; }
+  .prose h3 { font-size: .99rem; font-weight: 700; margin-top: 1.3rem; margin-bottom: .35rem; }
+  .prose p { margin-bottom: 1.05rem; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .prose em { font-style: italic; }
+  .prose strong { font-weight: 700; }
+
+  .afoot {
+    margin-top: 2.5rem; padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: .3rem; align-items: center;
+  }
+  .afoot .lbl {
+    font-size: .7rem; color: var(--muted); margin-right: .2rem;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+
+  .nav-pair { display: flex; gap: .5rem; margin-top: 1.6rem; flex-wrap: wrap; }
+  .navbtn {
+    flex: 1; min-width: 180px;
+    border: 1px solid var(--border); border-radius: var(--r);
+    background: var(--surface2); padding: .6rem .8rem;
+    cursor: pointer; text-align: left; font-family: Georgia, serif;
+    color: var(--text); transition: background .12s;
+  }
+  .navbtn:hover { background: var(--surface); }
+  .navbtn .dir {
+    display: block; font-size: .65rem; color: var(--muted);
+    font-family: -apple-system, system-ui, sans-serif; margin-bottom: .15rem;
+  }
+  .navbtn .ttl { font-size: .8rem; font-weight: 600; line-height: 1.3; }
+
+  /* ─ INTRO / EMPTY ─────────────────────────────── */
+  .intro {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem; padding: 2rem; text-align: center;
+  }
+  .intro .emo { font-size: 3.4rem; }
+  .intro h2 { font-size: 1.2rem; }
+  .intro p { font-size: .9rem; line-height: 1.75; color: var(--muted); max-width: 380px; }
+
+  /* ─ MOBILE ────────────────────────────────────── */
+  .scrim { display: none; position: absolute; inset: 0; background: rgba(30,24,18,.45); z-index: 40; }
+  .scrim.show { display: block; }
+
+  @media (max-width: 780px) {
+    .menu-btn { display: block; }
+    .brand .sub { display: none; }
+    .count { display: none; }
+    .sidebar {
+      position: absolute; inset: 0 auto 0 0; z-index: 50;
+      width: 84%; max-width: 320px;
+      transform: translateX(-102%);
+      transition: transform .22s ease;
+      box-shadow: 4px 0 24px rgba(0,0,0,.18);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .rcontent { padding: 1.8rem 1.15rem 3rem; }
+    .prose { font-size: 1.02rem; line-height: 1.85; }
+    .atitle { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <button class="menu-btn" id="menu-btn" aria-label="Menü">☰</button>
+  <div class="brand">
+    <h1>🐾 Köpek Arşivi</h1>
+    <span class="sub">köpekler ve insanlık tarihi üzerine yazılar</span>
+  </div>
+  <span class="count" id="count"></span>
+</header>
+
+<div class="body">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <input class="search" id="search" type="text" placeholder="Yazılarda ara…" autocomplete="off">
+      <div class="tag-filter" id="tag-filter"></div>
+    </div>
+    <div class="alist" id="alist"></div>
+  </aside>
+
+  <div class="scrim" id="scrim"></div>
+
+  <main class="reader" id="reader"></main>
+</div>
+
+<script>
+// ─── State ───────────────────────────────────────────────────
+let ARTICLES   = [];
+let activeSlug = null;
+let activeTag  = null;
+let query      = '';
+
+// ─── Helpers ─────────────────────────────────────────────────
+const isSpecific = t => t.startsWith('@');
+const displayTag = t => t.replace(/^@/, '');
+const tagCls = (base, t) => isSpecific(t) ? base + ' sp' : base;
+
+// Turkish needs transliteration *before* toLowerCase: "İ" lowercases to
+// "i" + a combining dot (U+0307), which would otherwise become a hyphen.
+const TR_MAP = {
+  'ç':'c','Ç':'c','ğ':'g','Ğ':'g','ı':'i','İ':'i',
+  'ö':'o','Ö':'o','ş':'s','Ş':'s','ü':'u','Ü':'u',
+  'â':'a','Â':'a','î':'i','Î':'i','û':'u','Û':'u'
+};
+function slugify(s) {
+  const full = String(s)
+    .replace(/[çÇğĞıİöÖşŞüÜâÂîÎûÛ]/g, c => TR_MAP[c] || c)
+    .toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')   // drop leftover accents
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  if (full.length <= 70) return full;
+  // trim to 70 chars, but drop a half-word if the cut landed inside one
+  const cut = full.slice(0, 70);
+  return (full[70] === '-' ? cut : cut.replace(/-[^-]*$/, '')).replace(/-+$/, '');
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtDate(iso) {
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('tr-TR', { day:'numeric', month:'long', year:'numeric' });
+}
+
+function readMin(md) { return Math.max(1, Math.ceil(md.split(/\s+/).length / 200)); }
+
+// ─── Markdown ────────────────────────────────────────────────
+function mdToHtml(md) {
+  const span = s => esc(s)
+    .replace(/\*\*(.+?)\*\*/g, (_,t) => '<strong>' + t + '</strong>')
+    .replace(/\*(.+?)\*/g,     (_,t) => '<em>' + t + '</em>');
+  const out = []; let para = [];
+  const flush = () => { if (para.length) { out.push('<p>' + span(para.join(' ')) + '</p>'); para = []; } };
+  for (const raw of md.split('\n')) {
+    const l = raw.trimEnd();
+    if      (/^###\s/.test(l)) { flush(); out.push('<h3>' + span(l.slice(4)) + '</h3>'); }
+    else if (/^##\s/.test(l))  { flush(); out.push('<h2>' + span(l.slice(3)) + '</h2>'); }
+    else if (/^#\s/.test(l))   { flush(); out.push('<h2>' + span(l.slice(2)) + '</h2>'); }
+    else if (/^---+$/.test(l)) { flush(); out.push('<hr>'); }
+    else if (!l.trim())        { flush(); }
+    else                       { para.push(l.trim()); }
+  }
+  flush();
+  return out.join('\n');
+}
+
+// Body without the leading H1 — the title is rendered separately
+function bodyWithoutTitle(md) {
+  return md.replace(/^#\s+.+\n?/, '').trimStart();
+}
+
+// ─── Data ────────────────────────────────────────────────────
+function allTags() {
+  const counts = new Map();
+  ARTICLES.forEach(a => (a.tags || []).forEach(t => counts.set(t, (counts.get(t) || 0) + 1)));
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr'))
+    .map(e => e[0]);
+}
+
+function filtered() {
+  let list = ARTICLES;
+  if (activeTag) list = list.filter(a => (a.tags || []).includes(activeTag));
+  if (query) {
+    const q = query.toLowerCase();
+    list = list.filter(a =>
+      a.title.toLowerCase().includes(q) || a.content.toLowerCase().includes(q));
+  }
+  return list;
+}
+
+// ─── Render: sidebar ─────────────────────────────────────────
+function renderTags() {
+  const tags = allTags();
+  const clear = activeTag ? '<span class="tfc clear" data-clear="1">× Tümü</span>' : '';
+  document.getElementById('tag-filter').innerHTML = clear + tags.map(t =>
+    '<span class="' + tagCls('tfc', t) + (activeTag === t ? ' on' : '') +
+    '" data-tag="' + esc(t) + '">' + esc(displayTag(t)) + '</span>'
+  ).join('');
+}
+
+function renderList() {
+  const list = filtered();
+  const el = document.getElementById('alist');
+  if (!list.length) {
+    el.innerHTML = '<div class="empty-list">Yazı bulunamadı.</div>';
+    return;
+  }
+  el.innerHTML = list.map(a =>
+    '<article class="aitem' + (activeSlug === a.slug ? ' on' : '') + '" data-slug="' + esc(a.slug) + '">' +
+      '<div class="aitem-title">' + esc(a.title) + '</div>' +
+      '<div class="aitem-meta">' + fmtDate(a.date) + ' · ' + readMin(a.content) + ' dk okuma</div>' +
+      ((a.tags || []).length
+        ? '<div class="aitem-tags">' + a.tags.map(t =>
+            '<span class="' + tagCls('tmini', t) + '" data-tag="' + esc(t) + '">' +
+            esc(displayTag(t)) + '</span>').join('') + '</div>'
+        : '') +
+    '</article>').join('');
+}
+
+function renderCount() {
+  document.getElementById('count').textContent =
+    ARTICLES.length ? ARTICLES.length + ' yazı' : '';
+}
+
+// ─── Render: reader ──────────────────────────────────────────
+function renderIntro() {
+  const reader = document.getElementById('reader');
+  if (!ARTICLES.length) {
+    reader.innerHTML =
+      '<div class="intro"><div class="emo">🐕</div>' +
+      '<h2>Arşiv hazırlanıyor</h2>' +
+      '<p>Henüz yayımlanmış bir yazı yok. Kısa süre içinde burada olacaklar.</p></div>';
+    return;
+  }
+  const latest = ARTICLES[0];
+  reader.innerHTML =
+    '<div class="intro"><div class="emo">🐾</div>' +
+    '<h2>Köpek Arşivi</h2>' +
+    '<p>Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine yazılar. ' +
+    'Evcilleştirmeden mitolojiye, savaşlardan bilime — düzenli olarak yenileri ekleniyor.</p>' +
+    '<button class="navbtn" style="max-width:340px;flex:none" data-slug="' + esc(latest.slug) + '">' +
+      '<span class="dir">En son yazı</span>' +
+      '<span class="ttl">' + esc(latest.title) + '</span>' +
+    '</button></div>';
+}
+
+function renderArticle(slug) {
+  const a = ARTICLES.find(x => x.slug === slug);
+  const reader = document.getElementById('reader');
+  if (!a) { renderIntro(); return; }
+
+  const list = filtered();
+  const i    = list.findIndex(x => x.slug === slug);
+  const prev = i > 0 ? list[i - 1] : null;                            // newer
+  const next = (i >= 0 && i < list.length - 1) ? list[i + 1] : null;  // older
+
+  reader.innerHTML =
+    '<div class="rcontent">' +
+      '<h1 class="atitle">' + esc(a.title) + '</h1>' +
+      '<div class="ameta"><span>' + fmtDate(a.date) + '</span>' +
+        '<span class="dot">·</span><span>' + readMin(a.content) + ' dakika okuma</span></div>' +
+      '<div class="prose">' + mdToHtml(bodyWithoutTitle(a.content)) + '</div>' +
+      ((a.tags || []).length
+        ? '<div class="afoot"><span class="lbl">Etiketler:</span>' +
+          a.tags.map(t => '<span class="' + tagCls('tmini', t) + '" data-tag="' + esc(t) + '">' +
+            esc(displayTag(t)) + '</span>').join('') + '</div>'
+        : '') +
+      ((prev || next)
+        ? '<div class="nav-pair">' +
+          (prev ? '<button class="navbtn" data-slug="' + esc(prev.slug) + '">' +
+            '<span class="dir">← Daha yeni</span><span class="ttl">' + esc(prev.title) + '</span></button>' : '') +
+          (next ? '<button class="navbtn" data-slug="' + esc(next.slug) + '">' +
+            '<span class="dir">Daha eski →</span><span class="ttl">' + esc(next.title) + '</span></button>' : '') +
+          '</div>'
+        : '') +
+    '</div>';
+
+  reader.scrollTop = 0;
+  document.title = a.title + ' — Köpek Arşivi';
+}
+
+// ─── Navigation ──────────────────────────────────────────────
+function openArticle(slug, push) {
+  activeSlug = slug;
+  if (push !== false) location.hash = slug ? '/' + slug : '';
+  renderList();
+  renderArticle(slug);
+  closeSidebar();
+}
+
+function setTag(t) {
+  activeTag = (activeTag === t) ? null : t;
+  renderTags();
+  renderList();
+}
+
+function clearTag() { activeTag = null; renderTags(); renderList(); }
+
+function openSidebar() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('scrim').classList.add('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('scrim').classList.remove('show');
+}
+
+function handleHash() {
+  const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  if (!h) {
+    activeSlug = null;
+    renderList();
+    renderIntro();
+    document.title = 'Köpek Arşivi — Köpekler ve insanlık tarihi üzerine yazılar';
+    return;
+  }
+  openArticle(h, false);
+}
+
+// ─── Events (delegated) ──────────────────────────────────────
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-clear]')) { clearTag(); return; }
+
+  const tagEl = e.target.closest('[data-tag]');
+  if (tagEl) { e.stopPropagation(); setTag(tagEl.dataset.tag); return; }
+
+  const slugEl = e.target.closest('[data-slug]');
+  if (slugEl) { openArticle(slugEl.dataset.slug); return; }
+});
+
+document.getElementById('search').addEventListener('input', e => {
+  query = e.target.value.trim();
+  renderList();
+});
+
+document.getElementById('menu-btn').addEventListener('click', openSidebar);
+document.getElementById('scrim').addEventListener('click', closeSidebar);
+window.addEventListener('hashchange', handleHash);
+
+// ─── Boot ────────────────────────────────────────────────────
+fetch('articles.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
+  .then(data => {
+    ARTICLES = (Array.isArray(data) ? data : (data.articles || []))
+      .filter(a => a && a.title && a.content)
+      .map(a => Object.assign({}, a, { slug: a.slug || slugify(a.title) }))
+      .sort((x, y) => new Date(y.date) - new Date(x.date));
+
+    const seen = new Set();
+    ARTICLES.forEach(a => {
+      let base = a.slug || 'yazi', s = base, n = 2;
+      while (seen.has(s)) s = base + '-' + n++;
+      a.slug = s; seen.add(s);
+    });
+
+    renderCount();
+    renderTags();
+    renderList();
+    handleHash();
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById('reader').innerHTML =
+      '<div class="intro"><div class="emo">🐕</div>' +
+      '<h2>Yazılar yüklenemedi</h2>' +
+      '<p>Arşiv dosyasına ulaşılamadı. Sayfayı yenilemeyi deneyebilirsin.</p></div>';
+  });
+</script>
+</body>
+</html>
