@@ -1,38 +1,36 @@
-# Tapınağın Kapısındaki Köpek: Hititler Bir Hayvanı Neden Hem Kovdu Hem Kutsadı
+# Kapıdaki Bekçi: Pompeii'nin Köpekleri ve Roma Kentinde Bir Hayvanın Toplumsal Yeri
 
-Hattuša'nın tapınak görevlilerine yazılan talimat metinleri, üslubu bugün bile insanın tüylerini diken diken edecek kadar serttir. Mutfak personeline seslenen bölümlerden biri açıkça uyarır: bir domuz ya da bir köpek tanrının ekmeğine veya kabına yaklaşırsa ve görevli buna göz yumarsa, ceza ölümdür. Gerekçe teolojiktir — tanrı o ekmeği yemez, o kaptan içmez. Hayvanın değdiği şey artık sunulamaz.
+1824'te Pompeii'de kazı yapan işçiler, dar bir sokağa açılan evin giriş koridorunda mozaik bir zemin buldular. Siyah beyaz taşlardan yapılmış, tasması kırmızı, dişleri görünen, boynundaki zincir gerilmiş bir köpek. Altında iki kelime: CAVE CANEM. Köpeğe dikkat.
 
-Aynı arşivlerde, aynı çivi yazısıyla, bambaşka bir sahne kayıtlıdır: hasta bir adamın bedeninin üzerinde baştan ayağa gezdirilen bir köpek yavrusu. Yavru, hastalığı üstüne alsın diye oradadır. Tapınaktan kovulan hayvan, hastanın başucuna çağrılmıştır. Bu çelişki bir tutarsızlık değil; Hitit dininin işleyiş mantığının ta kendisidir.
+Bugün Trajik Şair Evi diye bilinen bu yapının eşiğindeki uyarı, arkeolojinin en çok çoğaltılan görüntülerinden biri oldu. Ama asıl ilginç olan mozaiğin kendisi değil, ne anlattığı: MS 79'da Vezüv patladığında Roma kentinde köpek, sadece bir hayvan değil, evin cephesine kazınacak kadar kurumsallaşmış bir güvenlik düzeneğiydi.
 
-## Kirliliği Taşıyan Yavru
+## Şaka mı, tehdit mi
 
-Boğazköy'de 1906'dan itibaren gün yüzüne çıkarılan tabletlerin büyük bölümü edebiyat ya da tarih değil, ritüel talimatıdır: kim ne yapacak, hangi sırayla, kaç kez. Bu metinlerde köpek yavrusu — çivi yazısında Sumerce işaretle UR.TUR — düzenli olarak karşımıza çıkar. Görevi hemen her seferinde aynıdır: taşımak.
+Petronius'un *Satyricon*'unda, zengin azatlı Trimalchio'nun evine girmeye çalışan anlatıcı Encolpius, koridorda kocaman bir köpek görüp korkuyla geri sıçrar ve az kalsın düşer. Köpek gerçek değildir — duvara boyanmıştır ve altında yine o yazı vardır. Sahne komiktir, ama komikliği tam da klişenin herkesçe bilinmesinden gelir. Birinci yüzyıl Romalısı için kapıdaki köpek imgesi o kadar tanıdıktı ki, edebiyat onunla dalga geçebiliyordu.
 
-Hitit düşüncesinde kirlilik ahlaki bir leke değil, yer değiştirebilen fiziksel bir maddedir. Bir eve, bir orduya, bir bedene yapışır; ancak başka bir taşıyıcıya aktarılarak sökülebilir. Yavru bu iş için idealdir. Küçüktür, taşınabilir, ucuzdur ve — en önemlisi — zaten sınırdadır. Ne tam yabani ne tam evcil, ne kutsal ne sıradan. Kirliliği emmesi beklenen bir sünger.
+Bu tür uyarıların hukuki bir işlevi de olabilirdi. Roma hukukunda hayvanının verdiği zarardan sahibi sorumluydu; kapıya asılmış bir ikaz, sorumluluğu ziyaretçiye kaydırmanın bilinen bir yoluydu. Mozaik hem övünme hem sigorta poliçesiydi.
 
-Ritüel bittiğinde taşıyıcı elden çıkarılır. Bazı metinlerde uzağa götürülür, bazılarında öldürülür. Hastanın iyileşmesi, hayvanın gitmesine bağlıdır.
+## Kül altında kalan
 
-## İkiye Bölünen Ordu
+Pompeii'nin köpekleri yalnızca resimlerde kalmadı. 1860'larda Giuseppe Fiorelli, kül tabakasında çürüyen bedenlerden geriye kalan boşluklara alçı dökme yöntemini geliştirdi; böylece iki bin yıl önce ölmüş canlıların pozları geri geldi. 1870'lerde Vesonius Primus'un evinde bulunan alçı döküm, bunların en rahatsız edicilerindendir: sırtüstü kıvrılmış, bacakları havada, boynunda madeni süslemeli bir tasma taşıyan bir köpek. Ev sahipleri kaçarken hayvanı çözmemişlerdi.
 
-Hitit ritüellerinin en çarpıcısı bireysel değil kolektiftir. Yenilgiden dönen, salgına yakalanan ya da yeminini bozan bir ordunun arındırılması gerekir. Metinlerde tarif edilen yöntem şudur: kurbanlar ikiye bölünür, yarımları bir geçidin iki yanına konur ve bütün ordu bu geçitten yürüyerek geçer. Kurbanlar arasında bir köpek yavrusu da vardır.
+O tasma önemli bir ayrıntı. İşlemeli, pahalı, bir yatırımın işareti. Aynı evde hem korunan hem terk edilen bir varlık — Roma'nın hayvanla kurduğu ilişkinin çelişkisini tek bir kalıpta özetliyor.
 
-Buradaki mantık cezalandırmak değil, ayırmaktır. Ordu bir kapıdan geçerek eski, kirlenmiş halini geride bırakır. Köpek yavrusu o kapının direklerinden biridir. Aynı motif Anadolu dışında da yankılanır — İbrahim'in bölünmüş hayvanlar arasından geçen ateş sahnesi, Tevrat'ta benzer bir eşik mantığını korur. Ortak fikir, geçişin bir hayvanın bedeni üzerinden gerçekleşmesidir.
+## Kırda başka, kentte başka
 
-## Kanun Ne Diyordu
+Romalı tarım yazarları köpeği ciddiye alırlardı. Columella, *De Re Rustica*'da çoban köpeğinin beyaz olmasını önerir: gece sürüye kurt daldığında çoban hangisinin köpeği olduğunu şaşırmasın. Avlu bekçisinin ise koyu renkli olmasını ister; gündüz korkutucu görünsün, gece görünmesin diye. Bu, hayvanı işlevine göre seçmeye alışkın bir zihniyettir — estetik değil, kullanım tarifi.
 
-Aynı toplum, köpeğe hukukta somut bir fiyat biçmişti. Hitit kanunları çoban köpeğinden av köpeğine kadar farklı türleri ayrı ayrı sayar ve öldürene tazminat yükler. Yani köpek, ekonomik olarak korunan bir maldı. Ritüelde harcanabilir olması, gündelik hayatta değersiz olduğu anlamına gelmiyordu.
+Varro da bir yüzyıl önce, çiftlik köpeğinin nasıl seçileceğini, ne yedirileceğini, hangi yaşta alınacağını kalem kalem yazmıştı. Köpek, tıpkı öküz ya da asma gibi, tarım el kitabının bir maddesiydi.
 
-İkisi arasındaki köprü büyük ihtimalle köpeğin gerçek yaşam biçimidir. Tunç Çağı Anadolu'sunda köpek hem sürüyü koruyan hem şehrin çöpünü, leşini, dışkısını temizleyen hayvandı. Ölüyle ve atıkla temas eden bir varlık, doğal olarak "kirliliği tanıyan" varlıktır. Onu tapınaktan uzak tutan sebeple, hasta yatağına çağıran sebep aynıdır.
+Kentte durum değişiyordu. Roma'da bulunan bir mezar taşı, Galya'da doğmuş, Margarita — yani İnci — adlı bir köpeğin ağzından yazılmıştır: sahiplerinin kucağında uyuduğunu, yatağını paylaştığını, doğum sırasında öldüğünü anlatır. Aynı yüzyılda, aynı imparatorlukta, biri kapıya zincirlenmiş bir alarm, diğeri yatağa alınmış bir yoldaştır.
 
-## Komşudaki Karşılık
+## Eşikteki hayvan
 
-Bu ikircik Anadolu'ya özgü değildi. Mezopotamya'da şifa tanrıçası Gula'nın simgesi köpekti ve Isin'deki tapınağı yakınında arkeologlar özenle gömülmüş çok sayıda köpek iskeleti buldu. Orada köpek, hastalığı taşıyan değil, iyileştiren tarafta duruyordu.
+Cave canem mozaiğinin nerede durduğu tesadüf değil: tam eşikte, sokakla ev arasındaki geçiş noktasında. Köpek Roma evinde de zihninde de tam oraya aitti — içeride ama tam içeride değil, aileden ama insan değil. Yabancıyı savuşturacak kadar dışarıya dönük, evi tanıyacak kadar içeriye ait.
 
-İki bölge arasındaki bu ton farkı, köpeğin sembolik konumunun ne kadar oynak olduğunu gösterir. Aynı hayvan, birkaç yüz kilometre ötede tanrıçanın refakatçisi, burada arınmanın kurbanıdır.
+Pompeii'de kapı mozaiğinden başka köpek izleri de var: duvar resimlerinde av sahneleri, sofra altında bekleyen tasvirler, sokak köşelerinde eşelenen figürler. Kentin köpeği tek bir rol oynamıyordu. Bekçiydi, avcıydı, artık toplayıcısıydı, bazen de sadece orada duran bir canlıydı.
 
-## Kapanış
-
-Hitit tabletlerini okurken insanı asıl düşündüren şey ritüellerin tuhaflığı değil, mantığın soğukkanlılığıdır. Köpeği kirli ilan eden de, onu şifanın aracı yapan da aynı gözlemdir: bu hayvan bizim değmeyeceğimiz şeylere değiyor. Üç bin beş yüz yıl sonra, kanser hücrelerinin kokusunu ayırt eden köpekler üzerine yapılan çalışmalar aslında aynı gözlemin modern hâlidir. Köpeği bizim için değerli kılan şey hep aynı oldu: bizim algılayamadığımız dünyaya erişimi. Hititler bunu kirlilik diye adlandırdı, biz koku eşiği diyoruz. Değişen, adlandırma.
+Vezüv külü bu düzenlemeyi olduğu gibi dondurdu. Sokak kapısında taştan bir köpek, avluda alçıya dönüşmüş gerçek bir köpek, ikisinin arasında kaçarken çözmeyi akıl edemeyen ya da vakit bulamayan insanlar. İki bin yıl sonra ziyaretçiler önce mozaiğin fotoğrafını çekiyor, sonra alçı dökümün önünde susuyor. Uyarı hâlâ yerinde duruyor, ama kimin kimden korunması gerektiği artık pek belli değil.
 
 ---
-**Etiket önerileri:** tarih, din, arkeoloji, @gula
+**Etiket önerileri:** tarih, arkeoloji, kültür, @margarita
