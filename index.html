@@ -29,6 +29,10 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* Belge kendisi asla kaymamalı; kaydırma yalnızca iç panellerde olur.
+     Aksi halde başlık ekranın dışına çıkabiliyor. */
+  html { height: 100%; overflow: hidden; }
+
   body {
     font-family: Georgia, 'Times New Roman', serif;
     background: var(--bg);
@@ -672,9 +676,7 @@ function openArticle(slug, push) {
   closeSidebar();
   setProgress(0);
   updateHeader();
-  // seçili yazıyı listede görünür kıl
-  const on = document.querySelector('.aitem.on');
-  if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest' });
+  revealActive();
 }
 
 function goHome() {
@@ -694,6 +696,19 @@ function goHome() {
 function updateHeader() {
   const b = document.getElementById('home-btn');
   if (b) b.classList[activeSlug ? 'add' : 'remove']('show');
+}
+
+// Seçili yazıyı listede görünür kılar.
+// scrollIntoView kullanılmaz: mobilde kenar çubuğu ekran dışındayken
+// tarayıcı sayfanın tamamını kaydırıp başlığı görünmez yapıyordu.
+function revealActive() {
+  const list = document.getElementById('alist');
+  const on   = list && list.querySelector('.aitem.on');
+  if (!list || !on) return;
+  const ust  = on.offsetTop;
+  const alt  = ust + on.offsetHeight;
+  if (ust < list.scrollTop) list.scrollTop = ust;
+  else if (alt > list.scrollTop + list.clientHeight) list.scrollTop = alt - list.clientHeight;
 }
 
 function randomArticle() {
