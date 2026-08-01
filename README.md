@@ -1,7 +1,6 @@
 # Tarihten Köpekler
 
-Köpekler ve köpek-insan tarihi üzerine Türkçe yazılar.
-Yayında: https://tarihten-kopekler.netlify.app
+Köpek ve insanlık tarihi üzerine Türkçe yazılar.
 
 ## Yapı
 
@@ -9,8 +8,10 @@ Yayında: https://tarihten-kopekler.netlify.app
 |---|---|
 | `index.html` | Sitenin tamamı. Tek dosya, bağımlılık yok. |
 | `articles.json` | Yazılar. Her sabah otomatik güncellenir. |
-| `build.py` | Markdown dosyalarından `articles.json` üretir. |
-| `netlify.toml` | Yayın ayarları. |
+| `add_article.py` | Bir markdown yazısını `articles.json`'a ekler. |
+| `publish.sh` | Değişiklikleri işleyip gönderir. |
+| `build.py` | Markdown klasöründen `articles.json` üretir (toplu kurulum için). |
+| `.nojekyll` | GitHub Pages'in Jekyll işlemesini atlaması için. |
 
-Bu depoya yapılan her gönderim Netlify tarafından otomatik yayımlanır.
+Bu depoya yapılan her gönderim otomatik yayımlanır.
 Yazılar Cowork'te zamanlanmış bir görevle üretilir ve buraya gönderilir.
