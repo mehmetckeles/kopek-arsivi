@@ -33,7 +33,8 @@
     font-family: Georgia, 'Times New Roman', serif;
     background: var(--bg);
     color: var(--text);
-    height: 100vh;
+    height: 100vh;   /* eski tarayıcılar için */
+    height: 100dvh;  /* mobilde adres çubuğu açılıp kapandıkça uyum sağlar */
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -135,7 +136,7 @@
   .tfc.more:hover { border-color: var(--accent); color: var(--accent); }
   .tfc.clear { background: var(--accent-l); color: var(--accent); border-color: #e0b898; }
 
-  .alist { flex: 1; overflow-y: auto; }
+  .alist { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .aitem {
     padding: .62rem .8rem; cursor: pointer;
     border-left: 3px solid transparent;
@@ -160,7 +161,11 @@
   .empty-list { padding: 1.1rem; font-size: .78rem; color: var(--muted); text-align: center; }
 
   /* ─ READER ────────────────────────────────────── */
-  .reader { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+  .reader {
+    flex: 1; overflow-y: auto; display: flex; flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
   .rcontent { max-width: 700px; margin: 0 auto; padding: 3rem 2rem 4rem; width: 100%; }
 
   .atitle { font-size: 1.7rem; font-weight: 700; line-height: 1.25; margin-bottom: .55rem; }
@@ -233,7 +238,10 @@
       box-shadow: 4px 0 24px rgba(0,0,0,.18);
     }
     .sidebar.open { transform: translateX(0); }
-    .rcontent { padding: 1.8rem 1.15rem 3rem; }
+    .rcontent {
+      padding: 1.8rem 1.15rem calc(4rem + env(safe-area-inset-bottom, 0px));
+    }
+    .home { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
     .prose { font-size: 1.02rem; line-height: 1.85; }
     .atitle { font-size: 1.4rem; }
   }
