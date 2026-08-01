@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Köpek Arşivi — Köpekler ve insanlık tarihi üzerine yazılar</title>
-<meta name="description" content="Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine düzenli olarak yayımlanan Türkçe yazılar. Evcilleştirmeden mitolojiye, savaşlardan bilime.">
-<meta property="og:title" content="Köpek Arşivi">
-<meta property="og:description" content="Köpekler ve insanlık tarihi üzerine Türkçe yazılar.">
+<title>Tarihten Köpekler — Köpek ve insanlık tarihi üzerine yazılar</title>
+<meta name="description" content="Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine düzenli yayımlanan Türkçe yazılar. Evcilleştirmeden mitolojiye, savaşlardan bilime — tarihin içinden köpekler.">
+<meta property="og:title" content="Tarihten Köpekler">
+<meta property="og:description" content="Köpek ve insanlık tarihi üzerine Türkçe yazılar.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
 <style>
@@ -333,8 +333,8 @@
 
   <button class="brand" data-home="1" title="Ana sayfaya dön">
     <span class="paw">🐾</span>
-    <span class="bname">Köpek Arşivi</span>
-    <span class="sub">köpekler ve insanlık tarihi üzerine yazılar</span>
+    <span class="bname">Tarihten Köpekler</span>
+    <span class="sub">köpek ve insanlık tarihi üzerine yazılar</span>
   </button>
 
   <div class="hactions">
@@ -541,7 +541,7 @@ function renderIntro() {
     '<div class="home">' +
       '<div class="home-head">' +
         '<span class="emo">🐾</span>' +
-        '<h2>Köpek Arşivi</h2>' +
+        '<h2>Tarihten Köpekler</h2>' +
         '<p>Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine yazılar. ' +
         'Evcilleştirmeden mitolojiye, savaşlardan bilime — her sabah bir yenisi ekleniyor.</p>' +
       '</div>' +
@@ -628,7 +628,7 @@ function renderArticle(slug) {
     '</div>';
 
   reader.scrollTop = 0;
-  document.title = a.title + ' — Köpek Arşivi';
+  document.title = a.title + ' — Tarihten Köpekler';
 }
 
 // ─── Navigation ──────────────────────────────────────────────
@@ -654,7 +654,7 @@ function goHome() {
   setProgress(0);
   const r = document.getElementById('reader');
   if (r) r.scrollTop = 0;
-  document.title = 'Köpek Arşivi — Köpekler ve insanlık tarihi üzerine yazılar';
+  document.title = 'Tarihten Köpekler — Köpek ve insanlık tarihi üzerine yazılar';
   closeSidebar();
 }
 
@@ -719,7 +719,7 @@ function handleHash() {
     renderIntro();
     updateHeader();
     setProgress(0);
-    document.title = 'Köpek Arşivi — Köpekler ve insanlık tarihi üzerine yazılar';
+    document.title = 'Tarihten Köpekler — Köpek ve insanlık tarihi üzerine yazılar';
     return;
   }
   openArticle(h, false);

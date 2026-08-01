@@ -1,7 +1,7 @@
-# Köpek Arşivi
+# Tarihten Köpekler
 
 Köpekler ve köpek-insan tarihi üzerine Türkçe yazılar.
-Yayında: https://kopek-arsivi.netlify.app
+Yayında: https://tarihten-kopekler.netlify.app
 
 ## Yapı
 
