@@ -580,6 +580,8 @@ function excerpt(md, n) {
 }
 
 function renderIntro() {
+  const kaydiran = document.getElementById('reader');
+  if (kaydiran) kaydiran.scrollTop = 0;
   const body = document.getElementById('reader-body');
   if (!ARTICLES.length) {
     body.innerHTML =
@@ -693,7 +695,10 @@ function renderArticle(slug) {
       '</div>' +
     '</div>';
 
-  reader.scrollTop = 0;
+  // Kaydıran öğe #reader; #reader-body yalnızca içerik kabı.
+  const kaydiran = document.getElementById('reader');
+  if (kaydiran) kaydiran.scrollTop = 0;
+  setProgress(0);
   document.title = a.title + ' — Tarihten Köpekler';
 }
 
