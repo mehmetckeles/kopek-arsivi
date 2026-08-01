@@ -61,6 +61,7 @@
     margin-left: auto; font-size: .68rem; opacity: .5;
     font-family: -apple-system, system-ui, sans-serif; white-space: nowrap;
   }
+  .menu-btn.rnd { display: block; margin-left: .5rem; }
   .menu-btn {
     display: none;
     background: rgba(255,255,255,.1);
@@ -205,6 +206,91 @@
     .prose { font-size: 1.02rem; line-height: 1.85; }
     .atitle { font-size: 1.4rem; }
   }
+
+  /* ─ OKUMA İLERLEMESİ ──────────────────────────── */
+  .progress {
+    position: sticky; top: 0; left: 0; height: 2px; width: 100%;
+    background: transparent; z-index: 30; flex-shrink: 0;
+  }
+  .progress span {
+    display: block; height: 100%; width: 0;
+    background: var(--accent); transition: width .1s linear;
+  }
+
+  /* ─ GİRİŞ EKRANI ──────────────────────────────── */
+  .home { max-width: 640px; margin: 0 auto; padding: 3rem 2rem 4rem; width: 100%; }
+  .home-head { text-align: center; margin-bottom: 2.4rem; }
+  .home-head .emo { font-size: 3rem; display: block; margin-bottom: .5rem; }
+  .home-head h2 { font-size: 1.35rem; margin-bottom: .5rem; }
+  .home-head p { font-size: .9rem; line-height: 1.75; color: var(--muted); }
+
+  .sec-lbl {
+    font-size: .68rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .07em; color: var(--muted); margin-bottom: .6rem;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  .home-sec { margin-bottom: 2rem; }
+
+  .feat {
+    display: block; width: 100%; text-align: left; cursor: pointer;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--r); padding: 1rem 1.15rem;
+    font-family: Georgia, serif; color: var(--text);
+    transition: background .12s;
+  }
+  .feat:hover { background: var(--surface); }
+  .feat .ft { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin-bottom: .35rem; }
+  .feat .fm {
+    font-size: .68rem; color: var(--muted); margin-bottom: .5rem;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  .feat .fx { font-size: .85rem; line-height: 1.6; color: var(--muted); }
+
+  .home-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+  .htag {
+    padding: .26rem .6rem; border-radius: 99px; font-size: .74rem; cursor: pointer;
+    background: var(--tag-bg); color: var(--tag-tx);
+    font-family: -apple-system, system-ui, sans-serif;
+    border: 1px solid transparent; transition: all .12s;
+  }
+  .htag:hover { border-color: #b8d4a0; }
+  .htag.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
+  .htag.sp:hover { border-color: #d4a830; }
+  .htag .n { opacity: .55; font-size: .68rem; margin-left: .15rem; }
+
+  .home-foot {
+    display: flex; gap: .5rem; flex-wrap: wrap;
+    padding-top: 1.4rem; border-top: 1px solid var(--border);
+  }
+  .lbtn {
+    padding: .45rem .9rem; border-radius: var(--r);
+    border: 1px solid var(--border); background: var(--surface2);
+    color: var(--text); font-size: .8rem; cursor: pointer;
+    font-family: -apple-system, system-ui, sans-serif; transition: background .12s;
+  }
+  .lbtn:hover { background: var(--surface); }
+
+  /* ─ İLGİLİ YAZILAR ────────────────────────────── */
+  .rel { margin-top: 2.2rem; }
+  .rel-list { display: flex; flex-direction: column; gap: .4rem; }
+  .relbtn {
+    text-align: left; cursor: pointer; width: 100%;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--r); padding: .55rem .8rem;
+    font-family: Georgia, serif; color: var(--text); transition: background .12s;
+  }
+  .relbtn:hover { background: var(--surface); }
+  .relbtn .rt { font-size: .84rem; font-weight: 600; line-height: 1.3; }
+  .relbtn .rw {
+    font-size: .66rem; color: var(--muted); margin-top: .2rem;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+
+  @media (max-width: 780px) {
+    .home { padding: 2rem 1.15rem 3rem; }
+  }
+  #reader-body { flex: 1; display: flex; flex-direction: column; }
 </style>
 </head>
 <body>
@@ -216,6 +302,7 @@
     <span class="sub">köpekler ve insanlık tarihi üzerine yazılar</span>
   </div>
   <span class="count" id="count"></span>
+  <button class="menu-btn rnd" id="rnd-btn" title="Rastgele yazı" aria-label="Rastgele yazı">✦</button>
 </header>
 
 <div class="body">
@@ -229,7 +316,10 @@
 
   <div class="scrim" id="scrim"></div>
 
-  <main class="reader" id="reader"></main>
+  <main class="reader" id="reader">
+    <div class="progress"><span id="progress-bar"></span></div>
+    <div id="reader-body"></div>
+  </main>
 </div>
 
 <script>
@@ -359,30 +449,83 @@ function renderCount() {
 }
 
 // ─── Render: reader ──────────────────────────────────────────
+function excerpt(md, n) {
+  const t = bodyWithoutTitle(md)
+    .split('\n').filter(l => l.trim() && !l.startsWith('#') && !/^---+$/.test(l))
+    .join(' ').replace(/[*_`]/g, '');
+  return t.length > n ? t.slice(0, n).replace(/\s+\S*$/, '') + '…' : t;
+}
+
 function renderIntro() {
-  const reader = document.getElementById('reader');
+  const body = document.getElementById('reader-body');
   if (!ARTICLES.length) {
-    reader.innerHTML =
+    body.innerHTML =
       '<div class="intro"><div class="emo">🐕</div>' +
       '<h2>Arşiv hazırlanıyor</h2>' +
       '<p>Henüz yayımlanmış bir yazı yok. Kısa süre içinde burada olacaklar.</p></div>';
     return;
   }
+
   const latest = ARTICLES[0];
-  reader.innerHTML =
-    '<div class="intro"><div class="emo">🐾</div>' +
-    '<h2>Köpek Arşivi</h2>' +
-    '<p>Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine yazılar. ' +
-    'Evcilleştirmeden mitolojiye, savaşlardan bilime — düzenli olarak yenileri ekleniyor.</p>' +
-    '<button class="navbtn" style="max-width:340px;flex:none" data-slug="' + esc(latest.slug) + '">' +
-      '<span class="dir">En son yazı</span>' +
-      '<span class="ttl">' + esc(latest.title) + '</span>' +
-    '</button></div>';
+  const counts = new Map();
+  ARTICLES.forEach(a => (a.tags || []).forEach(t => counts.set(t, (counts.get(t) || 0) + 1)));
+  const topTags = [...counts.entries()]
+    .filter(e => e[1] > 1)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr'))
+    .slice(0, 12);
+
+  body.innerHTML =
+    '<div class="home">' +
+      '<div class="home-head">' +
+        '<span class="emo">🐾</span>' +
+        '<h2>Köpek Arşivi</h2>' +
+        '<p>Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine yazılar. ' +
+        'Evcilleştirmeden mitolojiye, savaşlardan bilime — her sabah bir yenisi ekleniyor.</p>' +
+      '</div>' +
+
+      '<div class="home-sec">' +
+        '<div class="sec-lbl">En son yazı</div>' +
+        '<button class="feat" data-slug="' + esc(latest.slug) + '">' +
+          '<span class="ft">' + esc(latest.title) + '</span>' +
+          '<span class="fm">' + fmtDate(latest.date) + ' · ' + readMin(latest.content) + ' dk okuma</span>' +
+          '<span class="fx">' + esc(excerpt(latest.content, 180)) + '</span>' +
+        '</button>' +
+      '</div>' +
+
+      (topTags.length ? '<div class="home-sec">' +
+        '<div class="sec-lbl">Konuya göre</div>' +
+        '<div class="home-tags">' + topTags.map(([t, n]) =>
+          '<span class="' + tagCls('htag', t) + '" data-tag="' + esc(t) + '">' +
+          esc(displayTag(t)) + '<span class="n">' + n + '</span></span>').join('') +
+        '</div></div>' : '') +
+
+      '<div class="home-foot">' +
+        '<button class="lbtn" data-random="1">✦ Rastgele bir yazı</button>' +
+        '<button class="lbtn" data-slug="' + esc(ARTICLES[ARTICLES.length - 1].slug) + '">↓ En eski yazı</button>' +
+      '</div>' +
+    '</div>';
+}
+
+// Ortak etikete göre ilgili yazılar; özel isim (@) eşleşmesi daha ağır sayılır
+function related(a, n) {
+  const mine = new Set(a.tags || []);
+  if (!mine.size) return [];
+  return ARTICLES
+    .filter(x => x.slug !== a.slug)
+    .map(x => {
+      let score = 0;
+      (x.tags || []).forEach(t => { if (mine.has(t)) score += isSpecific(t) ? 3 : 1; });
+      return { x, score };
+    })
+    .filter(r => r.score > 0)
+    .sort((p, q) => q.score - p.score || new Date(q.x.date) - new Date(p.x.date))
+    .slice(0, n)
+    .map(r => r.x);
 }
 
 function renderArticle(slug) {
   const a = ARTICLES.find(x => x.slug === slug);
-  const reader = document.getElementById('reader');
+  const reader = document.getElementById('reader-body');
   if (!a) { renderIntro(); return; }
 
   const list = filtered();
@@ -401,6 +544,16 @@ function renderArticle(slug) {
           a.tags.map(t => '<span class="' + tagCls('tmini', t) + '" data-tag="' + esc(t) + '">' +
             esc(displayTag(t)) + '</span>').join('') + '</div>'
         : '') +
+      (function(){
+        const r = related(a, 3);
+        return r.length
+          ? '<div class="rel"><div class="sec-lbl">İlgili yazılar</div><div class="rel-list">' +
+            r.map(x => '<button class="relbtn" data-slug="' + esc(x.slug) + '">' +
+              '<span class="rt">' + esc(x.title) + '</span>' +
+              '<span class="rw">' + fmtDate(x.date) + ' · ' + readMin(x.content) + ' dk</span>' +
+              '</button>').join('') + '</div></div>'
+          : '';
+      })() +
       ((prev || next)
         ? '<div class="nav-pair">' +
           (prev ? '<button class="navbtn" data-slug="' + esc(prev.slug) + '">' +
@@ -422,6 +575,40 @@ function openArticle(slug, push) {
   renderList();
   renderArticle(slug);
   closeSidebar();
+  setProgress(0);
+  // seçili yazıyı listede görünür kıl
+  const on = document.querySelector('.aitem.on');
+  if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest' });
+}
+
+function randomArticle() {
+  const list = filtered().filter(a => a.slug !== activeSlug);
+  const pool = list.length ? list : ARTICLES;
+  if (!pool.length) return;
+  openArticle(pool[Math.floor(Math.random() * pool.length)].slug);
+}
+
+// ── okuma ilerlemesi ────────────────────────────────────────
+function setProgress(v) {
+  const b = document.getElementById('progress-bar');
+  if (b) b.style.width = (v * 100) + '%';
+}
+
+function updateProgress() {
+  const r = document.getElementById('reader');
+  if (!r) return;
+  if (!activeSlug) { setProgress(0); return; }
+  const max = r.scrollHeight - r.clientHeight;
+  setProgress(max > 40 ? Math.min(1, r.scrollTop / max) : 0);
+}
+
+// ── komşu yazıya geç ────────────────────────────────────────
+function step(dir) {
+  const list = filtered();
+  const i = list.findIndex(x => x.slug === activeSlug);
+  if (i < 0) { if (list.length) openArticle(list[0].slug); return; }
+  const j = i + dir;
+  if (j >= 0 && j < list.length) openArticle(list[j].slug);
 }
 
 function setTag(t) {
@@ -469,6 +656,22 @@ document.getElementById('search').addEventListener('input', e => {
   renderList();
 });
 
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-random]')) randomArticle();
+});
+
+document.getElementById('rnd-btn').addEventListener('click', randomArticle);
+document.getElementById('reader').addEventListener('scroll', updateProgress, { passive: true });
+
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea')) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === 'ArrowRight')      { step(1);  e.preventDefault(); }
+  else if (e.key === 'ArrowLeft')  { step(-1); e.preventDefault(); }
+  else if (e.key === 'Escape')     { closeSidebar(); }
+  else if (e.key === 'r' || e.key === 'R') { randomArticle(); }
+});
+
 document.getElementById('menu-btn').addEventListener('click', openSidebar);
 document.getElementById('scrim').addEventListener('click', closeSidebar);
 window.addEventListener('hashchange', handleHash);
@@ -496,7 +699,7 @@ fetch('articles.json', { cache: 'no-cache' })
   })
   .catch(err => {
     console.error(err);
-    document.getElementById('reader').innerHTML =
+    document.getElementById('reader-body').innerHTML =
       '<div class="intro"><div class="emo">🐕</div>' +
       '<h2>Yazılar yüklenemedi</h2>' +
       '<p>Arşiv dosyasına ulaşılamadı. Sayfayı yenilemeyi deneyebilirsin.</p></div>';
