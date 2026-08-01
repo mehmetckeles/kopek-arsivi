@@ -109,6 +109,8 @@
     display: flex; flex-direction: column; overflow: hidden;
   }
   .sidebar-top {
+    flex-shrink: 0;
+    max-height: 60%;
     padding: .7rem .65rem .75rem;
     background: var(--surface2);
     border-bottom: 1px solid #bdb49c;
@@ -123,7 +125,11 @@
     color: var(--text); font-family: Georgia, serif; outline: none;
   }
   .search:focus { border-color: var(--accent); }
-  .tag-filter { display: flex; flex-wrap: wrap; gap: .25rem; }
+  .tag-filter {
+    display: flex; flex-wrap: wrap; gap: .25rem;
+    max-height: 42vh; overflow-y: auto;
+    -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  }
   .tfc {
     display: inline-flex; align-items: center;
     padding: .2rem .5rem; border-radius: 99px;
@@ -145,7 +151,9 @@
   .tfc.clear { background: var(--accent-l); color: var(--accent); border-color: #e0b898; }
 
   .alist {
-    flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    flex: 1; min-height: 0;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     background: var(--surface);
   }
   .aitem {
@@ -196,7 +204,7 @@
 
   /* ─ READER ────────────────────────────────────── */
   .reader {
-    flex: 1; overflow-y: auto; display: flex; flex-direction: column;
+    flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }

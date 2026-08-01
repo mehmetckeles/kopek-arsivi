@@ -1,0 +1,5 @@
+# Görevin ürettiği geçici taslaklar depoya girmemeli
+yeni*.md
+makale*.md
+*.tmp
+.DS_Store
