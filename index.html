@@ -816,10 +816,21 @@ function step(dir) {
   if (j >= 0 && j < list.length) openArticle(list[j].slug);
 }
 
+// Dar ekranda liste kapalı çekmecede durduğu için filtrenin sonucu
+// görünmez kalıyordu. Etiket seçildiğinde çekmeceyi açıp sonucu gösteriyoruz.
+const darEkran = () => window.matchMedia('(max-width: 780px)').matches;
+
 function setTag(t) {
-  activeTag = (activeTag === t) ? null : t;
+  const aciliyor = activeTag !== t;      // aynı etikete tekrar basmak filtreyi kaldırır
+  activeTag = aciliyor ? t : null;
   renderTags();
   renderList();
+
+  if (aciliyor && darEkran()) {
+    openSidebar();
+    const list = document.getElementById('alist');
+    if (list) list.scrollTop = 0;
+  }
 }
 
 function clearTag() { activeTag = null; renderTags(); renderList(); }
