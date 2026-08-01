@@ -150,7 +150,29 @@
   }
   .aitem:last-child { border-bottom: none; }
   .aitem:hover { background: var(--bg); }
-  .aitem.on { border-left-color: var(--accent); background: var(--accent-l); }
+
+  /* Okunmakta olan yazı — renge değil, yazıya dayalı ayrım */
+  .aitem.on {
+    border-left-width: 4px;
+    border-left-color: var(--accent);
+    background: var(--accent-l);
+  }
+  .aitem.on .aitem-title { color: var(--accent-h); }
+  .aitem.on .aitem-meta  { color: #a3765e; }
+
+  .nowlbl { display: none; }
+  .aitem.on .nowlbl {
+    display: flex; align-items: center; gap: .3rem;
+    font-size: .58rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .09em;
+    color: var(--accent); margin-bottom: .3rem;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  .nowlbl::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+
   .aitem-title { font-size: .82rem; font-weight: 600; line-height: 1.35; }
   .aitem-meta {
     font-size: .67rem; color: var(--muted); margin-top: .2rem;
@@ -556,6 +578,7 @@ function renderList() {
   }
   el.innerHTML = list.map(a =>
     '<article class="aitem' + (activeSlug === a.slug ? ' on' : '') + '" data-slug="' + esc(a.slug) + '">' +
+      '<span class="nowlbl">Şu an okuyorsun</span>' +
       '<div class="aitem-title">' + esc(a.title) + '</div>' +
       '<div class="aitem-meta">' + fmtDate(a.date) + ' · ' + readMin(a.content) + ' dk okuma</div>' +
       ((a.tags || []).length
