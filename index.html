@@ -61,7 +61,13 @@
     margin-left: auto; font-size: .68rem; opacity: .5;
     font-family: -apple-system, system-ui, sans-serif; white-space: nowrap;
   }
-  .menu-btn.rnd { display: block; margin-left: .5rem; }
+  .menu-btn.rnd {
+    display: flex; align-items: center; gap: .35rem;
+    margin-left: .5rem; font-size: .8rem;
+  }
+  .menu-btn.rnd:hover { background: rgba(255,255,255,.2); }
+  .rnd-lbl { font-family: -apple-system, system-ui, sans-serif; font-size: .72rem; }
+  @media (max-width: 560px) { .rnd-lbl { display: none; } }
   .menu-btn {
     display: none;
     background: rgba(255,255,255,.1);
@@ -92,18 +98,24 @@
     color: var(--text); font-family: Georgia, serif; outline: none;
   }
   .search:focus { border-color: var(--accent); }
-  .tag-filter { display: flex; flex-wrap: wrap; gap: .22rem; max-height: 8.5rem; overflow-y: auto; }
+  .tag-filter { display: flex; flex-wrap: wrap; gap: .25rem; }
   .tfc {
-    padding: .18rem .48rem; border-radius: 99px;
+    padding: .2rem .5rem; border-radius: 99px;
     font-size: .67rem; cursor: pointer;
-    background: var(--border); color: var(--muted);
+    background: var(--tag-bg); color: var(--tag-tx); opacity: .72;
     font-family: -apple-system, system-ui, sans-serif;
-    border: 1px solid transparent; user-select: none; transition: all .12s;
+    border: 1px solid transparent; user-select: none;
+    transition: opacity .12s, border-color .12s;
   }
-  .tfc:hover { background: var(--tag-bg); color: var(--tag-tx); }
-  .tfc.on { background: var(--tag-bg); color: var(--tag-tx); font-weight: 600; border-color: #b8d4a0; }
-  .tfc.sp:hover { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
-  .tfc.sp.on { background: var(--tag-sp-bg); color: var(--tag-sp-tx); border-color: #d4a830; }
+  .tfc.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
+  .tfc:hover { opacity: 1; }
+  .tfc.on { opacity: 1; font-weight: 600; border-color: #9dc47f; }
+  .tfc.sp.on { border-color: #d4a830; }
+  .tfc.more {
+    background: transparent; color: var(--muted);
+    border: 1px dashed var(--border); opacity: 1;
+  }
+  .tfc.more:hover { border-color: var(--accent); color: var(--accent); }
   .tfc.clear { background: var(--accent-l); color: var(--accent); border-color: #e0b898; }
 
   .alist { flex: 1; overflow-y: auto; }
@@ -174,7 +186,7 @@
     display: block; font-size: .65rem; color: var(--muted);
     font-family: -apple-system, system-ui, sans-serif; margin-bottom: .15rem;
   }
-  .navbtn .ttl { font-size: .8rem; font-weight: 600; line-height: 1.3; }
+  .navbtn .ttl { display: block; font-size: .8rem; font-weight: 600; line-height: 1.3; }
 
   /* ─ INTRO / EMPTY ─────────────────────────────── */
   .intro {
@@ -240,12 +252,12 @@
     transition: background .12s;
   }
   .feat:hover { background: var(--surface); }
-  .feat .ft { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin-bottom: .35rem; }
+  .feat .ft { display: block; font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin-bottom: .35rem; }
   .feat .fm {
-    font-size: .68rem; color: var(--muted); margin-bottom: .5rem;
+    display: block; font-size: .68rem; color: var(--muted); margin-bottom: .5rem;
     font-family: -apple-system, system-ui, sans-serif;
   }
-  .feat .fx { font-size: .85rem; line-height: 1.6; color: var(--muted); }
+  .feat .fx { display: block; font-size: .85rem; line-height: 1.6; color: var(--muted); }
 
   .home-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
   .htag {
@@ -281,11 +293,13 @@
     font-family: Georgia, serif; color: var(--text); transition: background .12s;
   }
   .relbtn:hover { background: var(--surface); }
-  .relbtn .rt { font-size: .84rem; font-weight: 600; line-height: 1.3; }
+  .relbtn .rt { display: block; font-size: .84rem; font-weight: 600; line-height: 1.35; }
   .relbtn .rw {
-    font-size: .66rem; color: var(--muted); margin-top: .2rem;
+    display: block; font-size: .66rem; color: var(--muted); margin-top: .25rem;
     font-family: -apple-system, system-ui, sans-serif;
   }
+  .rel-list { gap: .45rem; }
+  .relbtn { padding: .6rem .85rem; }
 
   @media (max-width: 780px) {
     .home { padding: 2rem 1.15rem 3rem; }
@@ -302,7 +316,7 @@
     <span class="sub">köpekler ve insanlık tarihi üzerine yazılar</span>
   </div>
   <span class="count" id="count"></span>
-  <button class="menu-btn rnd" id="rnd-btn" title="Rastgele yazı" aria-label="Rastgele yazı">✦</button>
+  <button class="menu-btn rnd" id="rnd-btn" title="Rastgele bir yazı aç (R)" aria-label="Rastgele yazı">✦<span class="rnd-lbl">Rastgele</span></button>
 </header>
 
 <div class="body">
@@ -415,13 +429,33 @@ function filtered() {
 }
 
 // ─── Render: sidebar ─────────────────────────────────────────
+const TAG_LIMIT = 16;
+let tagsExpanded = false;
+
 function renderTags() {
   const tags = allTags();
   const clear = activeTag ? '<span class="tfc clear" data-clear="1">× Tümü</span>' : '';
-  document.getElementById('tag-filter').innerHTML = clear + tags.map(t =>
+
+  // Seçili etiket kısaltılmış listede yoksa yine de görünsün
+  let shown = tags;
+  let hidden = 0;
+  if (!tagsExpanded && tags.length > TAG_LIMIT) {
+    shown = tags.slice(0, TAG_LIMIT);
+    if (activeTag && !shown.includes(activeTag)) shown = shown.concat(activeTag);
+    hidden = tags.length - shown.length;
+  }
+
+  const chips = shown.map(t =>
     '<span class="' + tagCls('tfc', t) + (activeTag === t ? ' on' : '') +
     '" data-tag="' + esc(t) + '">' + esc(displayTag(t)) + '</span>'
   ).join('');
+
+  const toggle = tags.length > TAG_LIMIT
+    ? '<span class="tfc more" data-tagtoggle="1">' +
+      (tagsExpanded ? '− daha az' : '+ ' + hidden + ' etiket') + '</span>'
+    : '';
+
+  document.getElementById('tag-filter').innerHTML = clear + chips + toggle;
 }
 
 function renderList() {
@@ -642,6 +676,7 @@ function handleHash() {
 
 // ─── Events (delegated) ──────────────────────────────────────
 document.addEventListener('click', e => {
+  if (e.target.closest('[data-tagtoggle]')) { tagsExpanded = !tagsExpanded; renderTags(); return; }
   if (e.target.closest('[data-clear]')) { clearTag(); return; }
 
   const tagEl = e.target.closest('[data-tag]');
