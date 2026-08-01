@@ -319,6 +319,9 @@
       padding: 1.8rem 1.15rem calc(4rem + env(safe-area-inset-bottom, 0px));
     }
 
+    .sidebar-top { max-height: 48%; }
+    .tag-filter { max-height: 32vh; }
+
     /* Dokunmatik hedefler — parmakla rahat basılabilecek yükseklikte */
     .afoot { gap: .5rem; }
     .afoot .tmini { font-size: .88rem; padding: 0 1rem; min-height: 42px; }
@@ -554,12 +557,18 @@ function filtered() {
 }
 
 // ─── Render: sidebar ─────────────────────────────────────────
-const TAG_LIMIT = 16;
+// Dar ekran ölçütü — hem etiket sayısı hem çekmece davranışı için
+const darEkran = () => window.matchMedia('(max-width: 780px)').matches;
+
 let tagsExpanded = false;
+
+// Dar ekranda panel yeri kısıtlı; daha az etiketle başla.
+const tagLimit = () => (darEkran() ? 10 : 16);
 
 function renderTags() {
   const tags = allTags();
   const clear = activeTag ? '<span class="tfc clear" data-clear="1">× Tümü</span>' : '';
+  const TAG_LIMIT = tagLimit();
 
   // Seçili etiket kısaltılmış listede yoksa yine de görünsün
   let shown = tags;
@@ -575,7 +584,7 @@ function renderTags() {
     '" data-tag="' + esc(t) + '">' + esc(displayTag(t)) + '</span>'
   ).join('');
 
-  const toggle = tags.length > TAG_LIMIT
+  const toggle = tags.length > TAG_LIMIT || tagsExpanded
     ? '<span class="tfc more" data-tagtoggle="1">' +
       (tagsExpanded ? '− daha az' : '+ ' + hidden + ' etiket') + '</span>'
     : '';
@@ -816,13 +825,14 @@ function step(dir) {
   if (j >= 0 && j < list.length) openArticle(list[j].slug);
 }
 
-// Dar ekranda liste kapalı çekmecede durduğu için filtrenin sonucu
-// görünmez kalıyordu. Etiket seçildiğinde çekmeceyi açıp sonucu gösteriyoruz.
-const darEkran = () => window.matchMedia('(max-width: 780px)').matches;
-
 function setTag(t) {
   const aciliyor = activeTag !== t;      // aynı etikete tekrar basmak filtreyi kaldırır
   activeTag = aciliyor ? t : null;
+
+  // Seçim yapıldıysa etiket listesi görevini tamamladı; toplansın ki
+  // asıl sonuç — yazı listesi — öne çıksın.
+  if (aciliyor) tagsExpanded = false;
+
   renderTags();
   renderList();
 
