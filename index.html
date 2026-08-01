@@ -118,6 +118,7 @@
   .search:focus { border-color: var(--accent); }
   .tag-filter { display: flex; flex-wrap: wrap; gap: .25rem; }
   .tfc {
+    display: inline-flex; align-items: center;
     padding: .2rem .5rem; border-radius: 99px;
     font-size: .67rem; cursor: pointer;
     background: var(--tag-bg); color: var(--tag-tx); opacity: .72;
@@ -153,6 +154,7 @@
   }
   .aitem-tags { display: flex; flex-wrap: wrap; gap: .18rem; margin-top: .28rem; }
   .tmini {
+    display: inline-flex; align-items: center;
     padding: .12rem .4rem; border-radius: 99px; font-size: .61rem;
     background: var(--tag-bg); color: var(--tag-tx); cursor: pointer;
     font-family: -apple-system, system-ui, sans-serif;
@@ -253,15 +255,15 @@
       padding: 1.8rem 1.15rem calc(4rem + env(safe-area-inset-bottom, 0px));
     }
 
-    /* dokunmatik hedefler */
+    /* Dokunmatik hedefler — parmakla rahat basılabilecek yükseklikte */
     .afoot { gap: .5rem; }
-    .afoot .tmini { font-size: .9rem; padding: .46rem 1rem; }
-    .tfc { font-size: .78rem; padding: .34rem .7rem; }
-    .tag-filter { gap: .35rem; }
-    .aitem-tags { gap: .28rem; margin-top: .38rem; }
-    .aitem .tmini { font-size: .7rem; padding: .2rem .55rem; }
-    .htag { font-size: .84rem; padding: .38rem .85rem; }
-    .home-tags { gap: .4rem; }
+    .afoot .tmini { font-size: .88rem; padding: 0 1rem; min-height: 42px; }
+    .tfc { font-size: .78rem; padding: 0 .8rem; min-height: 36px; }
+    .tag-filter { gap: .4rem; }
+    .aitem-tags { gap: .3rem; margin-top: .4rem; }
+    .aitem .tmini { font-size: .7rem; padding: .22rem .6rem; }
+    .htag { font-size: .84rem; padding: 0 .95rem; min-height: 40px; }
+    .home-tags { gap: .45rem; }
     .home { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
     .prose { font-size: 1.02rem; line-height: 1.85; }
     .atitle { font-size: 1.4rem; }
@@ -309,6 +311,7 @@
 
   .home-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
   .htag {
+    display: inline-flex; align-items: center;
     padding: .26rem .6rem; border-radius: 99px; font-size: .74rem; cursor: pointer;
     background: var(--tag-bg); color: var(--tag-tx);
     font-family: -apple-system, system-ui, sans-serif;
