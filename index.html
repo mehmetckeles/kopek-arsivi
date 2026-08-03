@@ -24,6 +24,8 @@
     --tag-tx:    #355228;
     --tag-sp-bg: #f5e0a0;
     --tag-sp-tx: #6b4800;
+    --tag-pl-bg: #cfdce8;
+    --tag-pl-tx: #2f4a5e;
     --r: 7px;
   }
 
@@ -140,9 +142,11 @@
     transition: opacity .12s, border-color .12s;
   }
   .tfc.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
+  .tfc.pl { background: var(--tag-pl-bg); color: var(--tag-pl-tx); }
   .tfc:hover { opacity: 1; }
   .tfc.on { opacity: 1; font-weight: 600; border-color: #9dc47f; }
   .tfc.sp.on { border-color: #d4a830; }
+  .tfc.pl.on { border-color: #8fb0c9; }
   .tfc.more {
     background: transparent; color: var(--muted);
     border: 1px dashed var(--border); opacity: 1;
@@ -200,6 +204,7 @@
     font-family: -apple-system, system-ui, sans-serif;
   }
   .tmini.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
+  .tmini.pl { background: var(--tag-pl-bg); color: var(--tag-pl-tx); }
   .empty-list { padding: 1.1rem; font-size: .78rem; color: var(--muted); text-align: center; }
 
   /* ─ READER ────────────────────────────────────── */
@@ -246,6 +251,7 @@
   }
   .afoot .tmini:hover { border-color: #9dc47f; }
   .afoot .tmini.sp:hover { border-color: #d4a830; }
+  .afoot .tmini.pl:hover { border-color: #8fb0c9; }
   .afoot .tmini:active { transform: scale(.96); }
 
   .nav-pair { display: flex; gap: .5rem; margin-top: 1.6rem; flex-wrap: wrap; }
@@ -387,6 +393,8 @@
   .htag:hover { border-color: #b8d4a0; }
   .htag.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
   .htag.sp:hover { border-color: #d4a830; }
+  .htag.pl { background: var(--tag-pl-bg); color: var(--tag-pl-tx); }
+  .htag.pl:hover { border-color: #8fb0c9; }
   .htag .n { opacity: .55; font-size: .68rem; margin-left: .15rem; }
 
   .home-foot {
@@ -472,9 +480,15 @@ let activeTag  = null;
 let query      = '';
 
 // ─── Helpers ─────────────────────────────────────────────────
+// Üç etiket ekseni:
+//   @ → özel isim (köpek, kişi, mitolojik varlık)  — altın
+//   # → yer (ülke, bölge, şehir)                    — mavi
+//   düz → tema/kategori                             — yeşil
 const isSpecific = t => t.startsWith('@');
-const displayTag = t => t.replace(/^@/, '');
-const tagCls = (base, t) => isSpecific(t) ? base + ' sp' : base;
+const isPlace    = t => t.startsWith('#');
+const displayTag = t => t.replace(/^[@#]/, '');
+const tagCls = (base, t) =>
+  isSpecific(t) ? base + ' sp' : isPlace(t) ? base + ' pl' : base;
 
 // Turkish needs transliteration *before* toLowerCase: "İ" lowercases to
 // "i" + a combining dot (U+0307), which would otherwise become a hyphen.
