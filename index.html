@@ -285,12 +285,12 @@
   .zone { cursor: pointer; }
   .zone:hover rect { stroke: #8fb0c9; }
 
-  .zone.on rect { fill: var(--accent); stroke: var(--accent-h); }
+  .zone.on rect { fill: var(--accent); stroke: var(--accent-h); fill-opacity: 1 !important; }
   .zone.on text { fill: #fff; }
   .zone.on .zc  { opacity: .8; }
 
   .zone.empty { cursor: default; }
-  .zone.empty rect { fill: var(--surface); stroke: var(--border); stroke-dasharray: 4 3; }
+  .zone.empty rect { fill: var(--surface); stroke: var(--border); stroke-dasharray: 4 3; fill-opacity: 1; }
   .zone.empty text { fill: var(--muted); }
   .zone.empty:hover rect { stroke: var(--border); }
 
@@ -677,29 +677,29 @@ function excerpt(md, n) {
 // (#roma bir imparatorluk, #anadolu bir yarımada). Bloklar kabaca gerçek
 // coğrafi yerleşime oturuyor; amaç kesinlik değil, yön duygusu.
 const BOLGE = {
-  'Kuzey Amerika': { x: 15, y: 28, w: 118, h: 68, ad: ['Kuzey', 'Amerika'],
+  'Kuzey Amerika': { x: 18, y: 20, w: 122, h: 64, ad: ['Kuzey', 'Amerika'],
     tags: ['#abd','#alaska','#kanada'] },
-  'Orta ve Güney Amerika': { x: 48, y: 118, w: 100, h: 100, ad: ['Orta ve', 'Güney Amerika'],
+  'Orta ve Güney Amerika': { x: 52, y: 150, w: 98, h: 104, ad: ['Orta ve', 'Güney Amerika'],
     tags: ['#meksika','#amerika','#peru','#and','#karayipler','#brezilya',
            '#guatemala','#kuba','#haiti','#arjantin'] },
-  'Avrupa': { x: 182, y: 22, w: 96, h: 58, ad: ['Avrupa'],
+  'Avrupa': { x: 186, y: 20, w: 92, h: 64, ad: ['Avrupa'],
     tags: ['#ingiltere','#fransa','#almanya','#avrupa','#ispanya','#isviçre','#italya',
            '#hollanda','#iskandinavya','#norveç','#isveç','#danimarka','#finlandiya',
            '#polonya','#macaristan','#balkanlar','#ukrayna','#avusturya','#belçika','#izlanda'] },
-  'Akdeniz': { x: 182, y: 92, w: 96, h: 48, ad: ['Akdeniz'],
+  'Akdeniz': { x: 186, y: 96, w: 92, h: 58, ad: ['Akdeniz'],
     tags: ['#roma','#yunanistan','#kartaca'] },
-  'Afrika': { x: 188, y: 152, w: 104, h: 108, ad: ['Afrika'],
+  'Afrika': { x: 192, y: 170, w: 104, h: 88, ad: ['Afrika'],
     tags: ['#mısır','#namibya','#magrip','#etiyopya','#kongo','#nijerya',
            '#güneyafrika','#tanzanya'] },
-  'Anadolu ve Yakın Doğu': { x: 292, y: 92, w: 112, h: 48, ad: ['Anadolu ve', 'Yakın Doğu'],
+  'Anadolu ve Yakın Doğu': { x: 292, y: 96, w: 118, h: 58, ad: ['Anadolu ve', 'Yakın Doğu'],
     tags: ['#anadolu','#istanbul','#ortadoğu','#iran','#mezopotamya','#suriye','#arabistan'] },
-  'Orta Asya ve Sibirya': { x: 292, y: 22, w: 164, h: 58, ad: ['Orta Asya ve', 'Sibirya'],
+  'Orta Asya ve Sibirya': { x: 292, y: 20, w: 172, h: 64, ad: ['Orta Asya ve', 'Sibirya'],
     tags: ['#ortaasya','#rusya','#sibirya','#kazakistan','#moğolistan','#tibet',
            '#özbekistan','#afganistan','#grönland'] },
-  'Doğu ve Güney Asya': { x: 418, y: 92, w: 112, h: 92, ad: ['Doğu ve', 'Güney Asya'],
+  'Doğu ve Güney Asya': { x: 424, y: 96, w: 118, h: 104, ad: ['Doğu ve', 'Güney Asya'],
     tags: ['#çin','#japonya','#kore','#tayvan','#hindistan','#nepal','#srilanka',
            '#pakistan','#vietnam','#tayland','#endonezya','#filipinler','#malezya'] },
-  'Okyanusya ve Kutuplar': { x: 448, y: 198, w: 118, h: 62, ad: ['Okyanusya', 've Kutuplar'],
+  'Okyanusya ve Kutuplar': { x: 452, y: 214, w: 118, h: 58, ad: ['Okyanusya', 've Kutuplar'],
     tags: ['#avustralya','#polinezya','#yenizelanda','#hawaii','#pasifik',
            '#antarktika','#kutup'] },
 };
@@ -712,27 +712,40 @@ function regionCount(ad) {
 }
 
 function renderMap() {
-  const parcalar = Object.keys(BOLGE).map(ad => {
+  const adlar = Object.keys(BOLGE);
+  const sayilar = {};
+  adlar.forEach(a => sayilar[a] = regionCount(a));
+  const enCok = Math.max(1, ...Object.values(sayilar));
+
+  const parcalar = adlar.map(ad => {
     const b = BOLGE[ad];
-    const n = regionCount(ad);
-    const sinif = 'zone' + (activeRegion === ad ? ' on' : '') + (n ? '' : ' empty');
+    const n = sayilar[ad];
+    const secili = activeRegion === ad;
+    const sinif = 'zone' + (secili ? ' on' : '') + (n ? '' : ' empty');
+
+    // Yoğunluk: blok boyutu coğrafyadan geliyor, ton içerikten.
+    // Böylece göz "büyük kutu = çok yazı" yanılgısına düşmüyor.
+    const ton = n ? (0.30 + 0.70 * (n / enCok)).toFixed(2) : 1;
+
     const cx = b.x + b.w / 2;
-    // iki satırlı adlarda metni dikeyde ortala
-    const ust = b.y + b.h / 2 - (b.ad.length > 1 ? 8 : 1);
+    // metin bloğunu dikeyde ortala: satırlar + sayı
+    const yuk = b.ad.length * 15 + 16;
+    const bas = b.y + (b.h - yuk) / 2 + 12;
     const satir = b.ad.map((p, i) =>
       '<tspan x="' + cx + '" dy="' + (i ? 15 : 0) + '">' + esc(p) + '</tspan>').join('');
+
     return '<g class="' + sinif + '"' + (n ? ' data-region="' + esc(ad) + '"' : '') +
              ' role="button" tabindex="0"><title>' + esc(ad) + ' — ' +
              (n ? n + ' yazı' : 'henüz yazı yok') + '</title>' +
              '<rect x="' + b.x + '" y="' + b.y + '" width="' + b.w + '" height="' + b.h +
-                  '" rx="10"></rect>' +
-             '<text class="zn" x="' + cx + '" y="' + ust + '" text-anchor="middle">' + satir + '</text>' +
-             '<text class="zc" x="' + cx + '" y="' + (b.y + b.h - 12) + '" text-anchor="middle">' +
-                  (n || '·') + '</text>' +
+                  '" rx="10" fill-opacity="' + ton + '"></rect>' +
+             '<text class="zn" x="' + cx + '" y="' + bas + '" text-anchor="middle">' + satir + '</text>' +
+             '<text class="zc" x="' + cx + '" y="' + (bas + b.ad.length * 15 + 1) +
+                  '" text-anchor="middle">' + (n || '·') + '</text>' +
            '</g>';
   }).join('');
 
-  return '<svg class="worldmap" viewBox="0 0 580 275" role="group" ' +
+  return '<svg class="worldmap" viewBox="0 0 580 282" role="group" ' +
          'aria-label="Bölgeye göre yazılar">' + parcalar + '</svg>';
 }
 
