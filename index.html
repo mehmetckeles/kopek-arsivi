@@ -306,6 +306,38 @@
   .zone.empty text { fill: #9a8b74; }
   .zone.empty:hover polygon { stroke: #bcae93; stroke-width: 1.4; }
 
+  /* ─ ZAMAN ÇİZELGESİ ───────────────────────────── */
+  .tl-wrap {
+    width: 100%;
+    border: 1px solid #c8b99a;
+    border-radius: var(--r);
+    background: #f3ecdc;
+    overflow: hidden;
+  }
+  .timeline { width: 100%; height: auto; display: block; user-select: none; }
+
+  .tl-axis { stroke: #9c8259; stroke-width: 1.2; }
+  .tl-tick { stroke: #b8a684; stroke-width: 1; }
+
+  .era { cursor: pointer; }
+  .era rect {
+    stroke: #9c8259; stroke-width: 1.2;
+    transition: fill .15s, stroke .15s;
+  }
+  .era text { font-family: Georgia, 'Times New Roman', serif; pointer-events: none; }
+  .era .ea { fill: #4a3b28; font-size: 11.5px; font-weight: 700; }
+  .era .er { fill: #8c7a5e; font-size: 9.5px; }
+  .era .ec { fill: #4a3b28; font-size: 11px; opacity: .65; }
+
+  .era:hover rect { stroke: var(--accent); stroke-width: 2; }
+  .era.on rect { fill: var(--accent) !important; stroke: var(--accent-h); stroke-width: 2; }
+  .era.on .ea, .era.on .ec { fill: var(--accent-h); }
+
+  .era.empty { cursor: default; }
+  .era.empty rect { fill: #e4dcc9; stroke: #bcae93; stroke-dasharray: 3 3; }
+  .era.empty .ea, .era.empty .ec { fill: #9a8b74; }
+  .era.empty:hover rect { stroke: #bcae93; stroke-width: 1.2; }
+
   /* ─ YAZI SONU DAVETİ ──────────────────────────── */
   .endnote {
     margin-top: 1.8rem; padding-top: 1.5rem;
@@ -602,6 +634,7 @@ function filtered() {
     const ts = BOLGE[activeRegion].tags;
     list = list.filter(a => (a.tags || []).some(t => ts.includes(t)));
   }
+  if (activeEra) list = list.filter(a => a.donem === activeEra);
   if (activeTag) list = list.filter(a => (a.tags || []).includes(activeTag));
   if (query) {
     const q = query.toLowerCase();
@@ -622,8 +655,13 @@ const tagLimit = () => (darEkran() ? 10 : 16);
 
 function renderTags() {
   const tags = allTags();
-  const clear = (activeTag || activeRegion)
+  const clear = (activeTag || activeRegion || activeEra)
     ? '<span class="tfc clear" data-clear="1">× Tümü</span>' : '';
+  const donemCip = activeEra
+    ? '<span class="tfc on" style="background:#e6d6bb;color:#4a3b28;border-color:#c8b99a"' +
+      ' data-era="' + activeEra + '">◵ ' +
+      esc((DONEM.find(d => d.id === activeEra) || {}).ad || '') + '</span>'
+    : '';
   const bolgeCip = activeRegion
     ? '<span class="tfc pl on" data-region="' + esc(activeRegion) + '">◷ ' +
       esc(activeRegion) + '</span>'
@@ -649,7 +687,8 @@ function renderTags() {
       (tagsExpanded ? '− daha az' : '+ ' + hidden + ' etiket') + '</span>'
     : '';
 
-  document.getElementById('tag-filter').innerHTML = clear + bolgeCip + chips + toggle;
+  document.getElementById('tag-filter').innerHTML =
+    clear + bolgeCip + donemCip + chips + toggle;
 }
 
 function renderList() {
@@ -747,6 +786,78 @@ const BOLGE = {
 };
 
 let activeRegion = null;
+let activeEra = null;
+
+// Dönem kuşakları. Gerçek orantılı bir eksen yerine kuşak seçtik:
+// tarihlerin çoğu yaklaşık ("yaklaşık on dört bin yıl önce") ve doğrusal
+// bir eksende yazıların çoğu son iki yüzyıla yığılırdı.
+const DONEM = [
+  { id: 'tarihoncesi', ad: 'Tarihöncesi',  ara: 'MÖ 3000 öncesi' },
+  { id: 'antikite',    ad: 'Antikite',     ara: 'MÖ 3000 – MS 500' },
+  { id: 'ortacag',     ad: 'Ortaçağ',      ara: '500 – 1500' },
+  { id: 'erkenmodern', ad: 'Erken Modern', ara: '1500 – 1800' },
+  { id: 'on9',         ad: '19. yüzyıl',   ara: '1800 – 1900' },
+  { id: 'on20',        ad: '20. yüzyıl',   ara: '1900 sonrası' },
+];
+
+function eraCount(id) {
+  return ARTICLES.filter(a => a.donem === id).length;
+}
+
+function renderTimeline() {
+  const sayilar = DONEM.map(d => eraCount(d.id));
+  const enCok = Math.max(1, ...sayilar);
+
+  const G = 86, BOSLUK = 12, X0 = 2;   // sütun genişliği, aralık, başlangıç
+  const TABAN = 82, ENYUKSEK = 54;
+
+  let tikler = '';
+  DONEM.forEach((d, i) => {
+    const x = X0 + i * (G + BOSLUK) + G / 2;
+    tikler += '<line class="tl-tick" x1="' + x + '" y1="' + TABAN +
+              '" x2="' + x + '" y2="' + (TABAN + 5) + '"/>';
+  });
+
+  const sutunlar = DONEM.map((d, i) => {
+    const n = sayilar[i];
+    const x = X0 + i * (G + BOSLUK);
+    const h = n ? Math.max(14, Math.round(ENYUKSEK * n / enCok)) : 5;
+    const y = TABAN - h;
+    const sinif = 'era' + (activeEra === d.id ? ' on' : '') + (n ? '' : ' empty');
+    const renk = n ? karaTonu(n / enCok) : '';
+
+    return '<g class="' + sinif + '"' + (n ? ' data-era="' + d.id + '"' : '') +
+             ' role="button" tabindex="0"><title>' + esc(d.ad) + ' (' + esc(d.ara) + ') — ' +
+             (n ? n + ' yazı' : 'henüz yazı yok') + '</title>' +
+             '<rect x="' + x + '" y="' + y + '" width="' + G + '" height="' + h +
+                  '" rx="3"' + (renk ? ' fill="' + renk + '"' : '') + '/>' +
+             (n ? '<text class="ec" x="' + (x + G / 2) + '" y="' + (y - 5) +
+                  '" text-anchor="middle">' + n + '</text>' : '') +
+             '<text class="ea" x="' + (x + G / 2) + '" y="' + (TABAN + 20) +
+                  '" text-anchor="middle">' + esc(d.ad) + '</text>' +
+             '<text class="er" x="' + (x + G / 2) + '" y="' + (TABAN + 33) +
+                  '" text-anchor="middle">' + esc(d.ara) + '</text>' +
+           '</g>';
+  }).join('');
+
+  return '<svg class="timeline" viewBox="0 0 580 118" role="group" ' +
+         'aria-label="Döneme göre yazılar">' +
+         '<line class="tl-axis" x1="0" y1="' + TABAN + '" x2="580" y2="' + TABAN + '"/>' +
+         tikler + sutunlar + '</svg>';
+}
+
+function setEra(id) {
+  const aciliyor = activeEra !== id;
+  activeEra = aciliyor ? id : null;
+  renderTags();
+  renderList();
+  if (!activeSlug) renderIntro();
+  if (aciliyor && darEkran()) {
+    openSidebar();
+    const l = document.getElementById('alist');
+    if (l) l.scrollTop = 0;
+  }
+}
 
 function regionCount(ad) {
   const ts = BOLGE[ad].tags;
@@ -856,6 +967,11 @@ function renderIntro() {
       '<div class="home-sec">' +
         '<div class="sec-lbl">Bölgeye göre</div>' +
         '<div class="map-wrap">' + renderMap() + '</div>' +
+      '</div>' +
+
+      '<div class="home-sec">' +
+        '<div class="sec-lbl">Döneme göre</div>' +
+        '<div class="tl-wrap">' + renderTimeline() + '</div>' +
       '</div>' +
 
       (topTags.length ? '<div class="home-sec">' +
@@ -1041,6 +1157,7 @@ function setTag(t) {
 function clearTag() {
   activeTag = null;
   activeRegion = null;
+  activeEra = null;
   renderTags();
   renderList();
   if (!activeSlug) renderIntro();
@@ -1072,6 +1189,9 @@ function handleHash() {
 // ─── Events (delegated) ──────────────────────────────────────
 document.addEventListener('click', e => {
   if (e.target.closest('[data-home]')) { goHome(); return; }
+
+  const donem = e.target.closest('[data-era]');
+  if (donem) { e.stopPropagation(); setEra(donem.getAttribute('data-era')); return; }
 
   const bolge = e.target.closest('[data-region]');
   if (bolge) { e.stopPropagation(); setRegion(bolge.dataset.region ||

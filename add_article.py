@@ -32,12 +32,23 @@ def slugify(s, limit=70):
         cut = cut.rsplit('-', 1)[0]
     return cut.strip('-')
 
-TAG_RE = re.compile(r'^\s*\**Etiket önerileri:\**\s*(.+)$', re.M | re.I)
+TAG_RE   = re.compile(r'^\s*\**Etiket önerileri:\**\s*(.+)$', re.M | re.I)
+DONEM_RE = re.compile(r'^\s*\**Dönem:\**\s*(\S+)\s*$', re.M | re.I)
+
+GECERLI_DONEM = {'tarihoncesi','antikite','ortacag','erkenmodern','on9','on20'}
 
 def parse(md):
     # Drive'ın kaçışlı biçimini temizle (\# , \*\* , \--- gibi)
     md = re.sub(r'\\([#*\-_`>\[\]()~+.!])', r'\1', md)
     md = re.sub(r'[ \t]+$', '', md, flags=re.M)
+
+    donem = None
+    d = DONEM_RE.search(md)
+    if d:
+        aday = d.group(1).strip().lower()
+        if aday in GECERLI_DONEM:
+            donem = aday
+        md = md[:d.start()] + md[d.end():]
 
     tags = []
     m = TAG_RE.search(md)
@@ -49,7 +60,7 @@ def parse(md):
 
     t = re.search(r'^#\s+(.+)$', md, re.M)
     title = t.group(1).strip() if t else None
-    return title, md.strip(), tags
+    return title, md.strip(), tags, donem
 
 def main():
     if len(sys.argv) < 2:
@@ -58,7 +69,7 @@ def main():
     raw = open(sys.argv[1], encoding='utf-8').read()
     date = sys.argv[2] if len(sys.argv) > 2 else datetime.now(timezone.utc).isoformat()
 
-    title, body, tags = parse(raw)
+    title, body, tags, donem = parse(raw)
     if not title:
         sys.exit('HATA: başlık (# ...) bulunamadı')
     if len(body) < 400:
@@ -76,8 +87,10 @@ def main():
     while slug in taken:
         slug = f'{base}-{n}'; n += 1
 
-    articles.append({'slug': slug, 'title': title, 'date': date,
-                     'tags': tags, 'content': body})
+    kayit = {'slug': slug, 'title': title, 'date': date, 'tags': tags, 'content': body}
+    if donem:
+        kayit['donem'] = donem
+    articles.append(kayit)
     articles.sort(key=lambda a: a['date'], reverse=True)
 
     with open(JSON, 'w', encoding='utf-8') as f:
@@ -86,6 +99,7 @@ def main():
     print(f'eklendi: {title}')
     print(f'  slug   : {slug}')
     print(f'  etiket : {", ".join(tags) if tags else "(yok)"}')
+    print(f'  dönem  : {donem or "(BELİRTİLMEMİŞ — çizelgede görünmez)"}')
     print(f'  toplam : {len(articles)} makale')
 
 if __name__ == '__main__':
