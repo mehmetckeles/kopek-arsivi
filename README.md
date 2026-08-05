@@ -13,6 +13,7 @@ Yayında: https://mehmetckeles.github.io/kopek-arsivi/
 | `add_article.py` | Bir markdown yazısını `articles.json`'a ekler. |
 | `publish.sh` | Değişiklikleri işleyip gönderir. |
 | `build.py` | Markdown klasöründen `articles.json` üretir (toplu kurulum için). |
+| `bolgeler.py` | Arşivin coğrafi kapsamını raporlar; hangi bölgelere bakılmadığını gösterir. |
 | `.nojekyll` | GitHub Pages'in Jekyll işlemesini atlaması için. |
 | `netlify.toml` | Netlify ayarları (yedek yayın kanalı). |
 
