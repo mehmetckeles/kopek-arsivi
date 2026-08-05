@@ -270,29 +270,41 @@
   .navbtn .ttl { display: block; font-size: .8rem; font-weight: 600; line-height: 1.3; }
 
   /* ─ DÜNYA HARİTASI ────────────────────────────── */
-  .map-wrap { width: 100%; }
+  .map-wrap {
+    width: 100%;
+    border: 1px solid #c8b99a;
+    border-radius: var(--r);
+    overflow: hidden;
+    box-shadow: inset 0 1px 4px rgba(90,70,45,.08);
+  }
   .worldmap { width: 100%; height: auto; display: block; user-select: none; }
 
-  .zone rect {
-    fill: var(--tag-pl-bg);
-    stroke: transparent; stroke-width: 2;
-    transition: fill .12s, stroke .12s;
-  }
-  .zone text { fill: var(--tag-pl-tx); font-family: -apple-system, system-ui, sans-serif; }
-  .zone .zn  { font-size: 13px; font-weight: 600; }
-  .zone .zc  { font-size: 12px; opacity: .55; }
+  .sea      { fill: #dce7ee; }
+  .grat     { stroke: #b9cbd8; stroke-width: .6; opacity: .55; }
+  .grat-eq  { stroke: #a8bfcf; stroke-width: 1; opacity: .7; stroke-dasharray: 5 4; }
 
   .zone { cursor: pointer; }
-  .zone:hover rect { stroke: #8fb0c9; }
+  .zone polygon {
+    stroke: #9c8259; stroke-width: 1.4; stroke-linejoin: round;
+    transition: fill .15s, stroke .15s;
+  }
+  .zone text {
+    fill: #4a3b28; font-family: Georgia, 'Times New Roman', serif;
+    pointer-events: none;
+  }
+  .zone .zn { font-size: 12.5px; font-weight: 700; }
+  .zone .zc { font-size: 11px; opacity: .6; }
 
-  .zone.on rect { fill: var(--accent); stroke: var(--accent-h); fill-opacity: 1 !important; }
+  .zone:hover polygon { stroke: var(--accent); stroke-width: 2.2; }
+
+  .zone.on polygon { fill: var(--accent) !important; stroke: var(--accent-h); stroke-width: 2.2; }
   .zone.on text { fill: #fff; }
-  .zone.on .zc  { opacity: .8; }
+  .zone.on .zc  { opacity: .85; }
 
   .zone.empty { cursor: default; }
-  .zone.empty rect { fill: var(--surface); stroke: var(--border); stroke-dasharray: 4 3; fill-opacity: 1; }
-  .zone.empty text { fill: var(--muted); }
-  .zone.empty:hover rect { stroke: var(--border); }
+  .zone.empty polygon { fill: #e4dcc9; stroke: #bcae93; stroke-dasharray: 4 3; }
+  .zone.empty text { fill: #9a8b74; }
+  .zone.empty:hover polygon { stroke: #bcae93; stroke-width: 1.4; }
 
   /* ─ YAZI SONU DAVETİ ──────────────────────────── */
   .endnote {
@@ -676,30 +688,60 @@ function excerpt(md, n) {
 // Kaba dünya bölgeleri. Ülke sınırı değil — etiketlerimiz zaten ülke değil
 // (#roma bir imparatorluk, #anadolu bir yarımada). Bloklar kabaca gerçek
 // coğrafi yerleşime oturuyor; amaç kesinlik değil, yön duygusu.
+// Kaba kara parçaları. Ülke sınırı değil — etiketlerimiz zaten ülke değil
+// (#roma bir imparatorluk, #anadolu bir yarımada). Çokgenler gerçek
+// coğrafyanın kabaca yerini ve biçimini andırıyor; amaç kesinlik değil,
+// bir atlas sayfasına bakma duygusu.
 const BOLGE = {
-  'Kuzey Amerika': { x: 18, y: 20, w: 122, h: 64, ad: ['Kuzey', 'Amerika'],
+  'Kuzey Amerika': {
+    p: '26,30 112,21 142,42 132,68 100,88 66,84 40,62 20,44',
+    cx: 80, cy: 50, ad: ['Kuzey', 'Amerika'],
     tags: ['#abd','#alaska','#kanada'] },
-  'Orta ve Güney Amerika': { x: 52, y: 150, w: 98, h: 104, ad: ['Orta ve', 'Güney Amerika'],
+
+  'Orta ve Güney Amerika': {
+    p: '90,112 132,106 152,134 144,184 120,238 98,252 84,224 94,178 80,142',
+    cx: 116, cy: 172, ad: ['Orta ve', 'Güney Amerika'],
     tags: ['#meksika','#amerika','#peru','#and','#karayipler','#brezilya',
            '#guatemala','#kuba','#haiti','#arjantin'] },
-  'Avrupa': { x: 186, y: 20, w: 92, h: 64, ad: ['Avrupa'],
+
+  'Avrupa': {
+    p: '192,27 252,20 276,37 270,63 234,77 200,69 184,47',
+    cx: 230, cy: 47, ad: ['Avrupa'],
     tags: ['#ingiltere','#fransa','#almanya','#avrupa','#ispanya','#isviçre','#italya',
            '#hollanda','#iskandinavya','#norveç','#isveç','#danimarka','#finlandiya',
            '#polonya','#macaristan','#balkanlar','#ukrayna','#avusturya','#belçika','#izlanda'] },
-  'Akdeniz': { x: 186, y: 96, w: 92, h: 58, ad: ['Akdeniz'],
+
+  'Akdeniz': {
+    p: '188,97 270,91 286,111 276,135 220,143 192,129 180,111',
+    cx: 232, cy: 116, ad: ['Akdeniz'],
     tags: ['#roma','#yunanistan','#kartaca'] },
-  'Afrika': { x: 192, y: 170, w: 104, h: 88, ad: ['Afrika'],
+
+  'Afrika': {
+    p: '194,167 270,161 298,187 290,223 264,257 234,269 212,243 198,207',
+    cx: 246, cy: 210, ad: ['Afrika'],
     tags: ['#mısır','#namibya','#magrip','#etiyopya','#kongo','#nijerya',
            '#güneyafrika','#tanzanya'] },
-  'Anadolu ve Yakın Doğu': { x: 292, y: 96, w: 118, h: 58, ad: ['Anadolu ve', 'Yakın Doğu'],
+
+  'Anadolu ve Yakın Doğu': {
+    p: '302,95 402,89 420,111 408,139 342,147 308,129',
+    cx: 360, cy: 117, ad: ['Anadolu ve', 'Yakın Doğu'],
     tags: ['#anadolu','#istanbul','#ortadoğu','#iran','#mezopotamya','#suriye','#arabistan'] },
-  'Orta Asya ve Sibirya': { x: 292, y: 20, w: 172, h: 64, ad: ['Orta Asya ve', 'Sibirya'],
+
+  'Orta Asya ve Sibirya': {
+    p: '302,25 454,18 472,41 460,69 382,81 316,73 294,49',
+    cx: 384, cy: 48, ad: ['Orta Asya ve', 'Sibirya'],
     tags: ['#ortaasya','#rusya','#sibirya','#kazakistan','#moğolistan','#tibet',
            '#özbekistan','#afganistan','#grönland'] },
-  'Doğu ve Güney Asya': { x: 424, y: 96, w: 118, h: 104, ad: ['Doğu ve', 'Güney Asya'],
+
+  'Doğu ve Güney Asya': {
+    p: '430,97 530,91 550,119 540,159 502,193 472,187 454,151 436,125',
+    cx: 494, cy: 138, ad: ['Doğu ve', 'Güney Asya'],
     tags: ['#çin','#japonya','#kore','#tayvan','#hindistan','#nepal','#srilanka',
            '#pakistan','#vietnam','#tayland','#endonezya','#filipinler','#malezya'] },
-  'Okyanusya ve Kutuplar': { x: 452, y: 214, w: 118, h: 58, ad: ['Okyanusya', 've Kutuplar'],
+
+  'Okyanusya ve Kutuplar': {
+    p: '472,213 554,207 572,233 558,267 504,273 478,251',
+    cx: 522, cy: 240, ad: ['Okyanusya', 've Kutuplar'],
     tags: ['#avustralya','#polinezya','#yenizelanda','#hawaii','#pasifik',
            '#antarktika','#kutup'] },
 };
@@ -711,42 +753,53 @@ function regionCount(ad) {
   return ARTICLES.filter(a => (a.tags || []).some(t => ts.includes(t))).length;
 }
 
+// Yazı sayısını parşömen tonuna çevirir: az yazı açık, çok yazı koyu.
+function karaTonu(oran) {
+  const a = [0xf2, 0xe8, 0xd6];   // açık parşömen
+  const b = [0xc9, 0xa9, 0x77];   // koyu, yıpranmış
+  const c = a.map((v, i) => Math.round(v + (b[i] - v) * oran));
+  return '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
+}
+
 function renderMap() {
   const adlar = Object.keys(BOLGE);
   const sayilar = {};
   adlar.forEach(a => sayilar[a] = regionCount(a));
   const enCok = Math.max(1, ...Object.values(sayilar));
 
-  const parcalar = adlar.map(ad => {
+  // enlem–boylam ağı
+  let ag = '';
+  for (let y = 45; y < 290; y += 45)
+    ag += '<line class="grat" x1="0" y1="' + y + '" x2="580" y2="' + y + '"/>';
+  for (let x = 58; x < 580; x += 58)
+    ag += '<line class="grat" x1="' + x + '" y1="0" x2="' + x + '" y2="290"/>';
+  ag += '<line class="grat-eq" x1="0" y1="157" x2="580" y2="157"/>';
+
+  const kara = adlar.map(ad => {
     const b = BOLGE[ad];
     const n = sayilar[ad];
-    const secili = activeRegion === ad;
-    const sinif = 'zone' + (secili ? ' on' : '') + (n ? '' : ' empty');
+    const sinif = 'zone' + (activeRegion === ad ? ' on' : '') + (n ? '' : ' empty');
+    const renk = n ? karaTonu(n / enCok) : '';
 
-    // Yoğunluk: blok boyutu coğrafyadan geliyor, ton içerikten.
-    // Böylece göz "büyük kutu = çok yazı" yanılgısına düşmüyor.
-    const ton = n ? (0.30 + 0.70 * (n / enCok)).toFixed(2) : 1;
-
-    const cx = b.x + b.w / 2;
-    // metin bloğunu dikeyde ortala: satırlar + sayı
-    const yuk = b.ad.length * 15 + 16;
-    const bas = b.y + (b.h - yuk) / 2 + 12;
+    const yuk = b.ad.length * 15 + 15;
+    const bas = b.cy - yuk / 2 + 12;
     const satir = b.ad.map((p, i) =>
-      '<tspan x="' + cx + '" dy="' + (i ? 15 : 0) + '">' + esc(p) + '</tspan>').join('');
+      '<tspan x="' + b.cx + '" dy="' + (i ? 15 : 0) + '">' + esc(p) + '</tspan>').join('');
 
     return '<g class="' + sinif + '"' + (n ? ' data-region="' + esc(ad) + '"' : '') +
              ' role="button" tabindex="0"><title>' + esc(ad) + ' — ' +
              (n ? n + ' yazı' : 'henüz yazı yok') + '</title>' +
-             '<rect x="' + b.x + '" y="' + b.y + '" width="' + b.w + '" height="' + b.h +
-                  '" rx="10" fill-opacity="' + ton + '"></rect>' +
-             '<text class="zn" x="' + cx + '" y="' + bas + '" text-anchor="middle">' + satir + '</text>' +
-             '<text class="zc" x="' + cx + '" y="' + (bas + b.ad.length * 15 + 1) +
+             '<polygon points="' + b.p + '"' + (renk ? ' fill="' + renk + '"' : '') + '/>' +
+             '<text class="zn" x="' + b.cx + '" y="' + bas + '" text-anchor="middle">' + satir + '</text>' +
+             '<text class="zc" x="' + b.cx + '" y="' + (bas + b.ad.length * 15) +
                   '" text-anchor="middle">' + (n || '·') + '</text>' +
            '</g>';
   }).join('');
 
-  return '<svg class="worldmap" viewBox="0 0 580 282" role="group" ' +
-         'aria-label="Bölgeye göre yazılar">' + parcalar + '</svg>';
+  return '<svg class="worldmap" viewBox="0 0 580 290" role="group" ' +
+         'aria-label="Bölgeye göre yazılar">' +
+         '<rect class="sea" x="0" y="0" width="580" height="290"/>' +
+         ag + kara + '</svg>';
 }
 
 function setRegion(ad) {
