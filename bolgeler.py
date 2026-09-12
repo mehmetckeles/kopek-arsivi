@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # eşlenmeyenler raporun sonunda ayrıca listelenir.
 BOLGE = {
  'Doğu Asya':            ['#çin', '#japonya', '#kore', '#tayvan', '#moğolistan'],
- 'Güneydoğu Asya':       ['#vietnam', '#tayland', '#endonezya', '#filipinler', '#malezya'],
+ 'Güneydoğu Asya':       ['#vietnam', '#tayland', '#endonezya', '#bali', '#filipinler', '#malezya'],
  'Güney Asya':           ['#hindistan', '#nepal', '#srilanka', '#pakistan', '#tibet'],
  'Orta Asya':            ['#ortaasya', '#kazakistan', '#özbekistan', '#afganistan'],
  'Sibirya ve Kuzey':     ['#sibirya', '#rusya', '#grönland', '#izlanda'],
