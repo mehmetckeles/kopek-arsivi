@@ -2,603 +2,393 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tarihten Köpekler — Köpek ve insanlık tarihi üzerine yazılar</title>
-<meta name="description" content="Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine düzenli yayımlanan Türkçe yazılar. Evcilleştirmeden mitolojiye, savaşlardan bilime — tarihin içinden köpekler.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tarihten Köpekler</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine Türkçe yazılar. Evcilleştirmeden mitolojiye, savaştan bilime; her sabah yeni bir yazı.">
 <meta property="og:title" content="Tarihten Köpekler">
-<meta property="og:description" content="Köpek ve insanlık tarihi üzerine Türkçe yazılar.">
+<meta property="og:description" content="Köpek ve insanlık tarihi üzerine Türkçe yazılar. Her sabah yeni bir yazı.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+<meta property="og:url" content="https://tarihten.mehmetcihatkeles.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231A1814'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='38' font-style='italic' fill='%23D6A65E'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
 <style>
-  :root {
-    color-scheme: light;
-    --bg:        #e8e2d5;
-    --surface:   #ede7d8;
-    --surface2:  #f5f0e6;
-    --border:    #cac3ae;
-    --text:      #2a2520;
-    --muted:     #8c8272;
-    --accent:    #c4613f;
-    --accent-l:  #f5e8e0;
-    --tag-bg:    #d5e6c5;
-    --tag-tx:    #355228;
-    --tag-sp-bg: #f5e0a0;
-    --tag-sp-tx: #6b4800;
-    --tag-pl-bg: #cfdce8;
-    --tag-pl-tx: #2f4a5e;
-    --r: 7px;
+/* Düzen: önce okuma. Ana sayfa bir gazetenin ön sayfası gibi: bugünün yazısı ve birkaç son yazı.
+   Harita, dönemler ve etiketler ayrı bir Keşfet sayfasında. Tek yazı ailesi; etiketler küçük büyük harf. */
+:root {
+  --bg:        #F1EDE5;
+  --surface:   #E8E2D6;
+  --fg:        #24211C;
+  --muted:     #6F685C;
+  --rule:      #DAD3C5;
+  --accent:    #8A581C;
+  --sea:       #DFE2DE;
+  --grat:      #CDD2CE;
+  --land-lo:   #ECE3D0;
+  --land-hi:   #B98A4B;
+  --land-line: #A38D68;
+  --t-konu:    #4C6A47;
+  --t-yer:     #3D5E7E;
+  --t-isim:    #87620F;
+  --serif: 'EB Garamond', Garamond, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --measure: 35rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1814; --surface: #23201B; --fg: #E8E2D5; --muted: #A1998B; --rule: #332F28; --accent: #D6A65E;
+    --sea: #1E2227; --grat: #2A2F35; --land-lo: #3A342A; --land-hi: #C99A55; --land-line: #5C523F;
+    --t-konu: #9EBC93; --t-yer: #94B4D2; --t-isim: #E1BF6B;
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1814; --surface: #23201B; --fg: #E8E2D5; --muted: #A1998B; --rule: #332F28; --accent: #D6A65E;
+  --sea: #1E2227; --grat: #2A2F35; --land-lo: #3A342A; --land-hi: #C99A55; --land-line: #5C523F;
+  --t-konu: #9EBC93; --t-yer: #94B4D2; --t-isim: #E1BF6B;
+  color-scheme: dark;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--serif); font-size: 1.2rem; line-height: 1.6;
+  font-feature-settings: "kern", "liga", "onum";
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.lbl { font-variant-caps: all-small-caps; letter-spacing: .09em; font-size: 1.02rem; color: var(--accent); line-height: 1.3; }
+.meta { font-style: italic; color: var(--muted); font-size: 1rem; line-height: 1.4; }
+.meta .new { font-style: normal; font-variant-caps: all-small-caps; letter-spacing: .08em; color: var(--accent); }
 
-  /* Belge kendisi asla kaymamalı; kaydırma yalnızca iç panellerde olur.
-     Aksi halde başlık ekranın dışına çıkabiliyor. */
-  html { height: 100%; overflow: hidden; }
+/* ── üst çubuk ── */
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.bar-in { max-width: 62rem; margin: 0 auto; height: 3.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.mark { text-decoration: none; font-size: 1.22rem; font-weight: 600; white-space: nowrap; display: flex; gap: .55rem; align-items: baseline; }
+.mark .sep { color: var(--rule); font-weight: 400; }
+.mark .brand em { font-style: normal; color: var(--accent); }
+.nav { display: flex; gap: 1.25rem; align-items: baseline; font-size: 1.02rem; color: var(--muted); }
+.nav a { text-decoration: none; }
+.nav a:hover, .nav button:hover, .nav .on { color: var(--fg); }
+#progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+@media (max-width: 640px) { .mark .author, .mark .sep { display: none; } .nav { gap: .95rem; font-size: .98rem; } .mark { font-size: 1.12rem; } }
 
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;   /* eski tarayıcılar için */
-    height: 100dvh;  /* mobilde adres çubuğu açılıp kapandıkça uyum sağlar */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+main {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 4.5rem;
+}
+.col { max-width: var(--measure); margin: 0 auto; }
+.col.wide { max-width: 42rem; }
 
-  /* ─ HEADER ────────────────────────────────────── */
-  header {
-    background: #2a2520;
-    color: #efe9dc;
-    padding: .55rem 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-    flex-shrink: 0;
-    border-bottom: 1px solid rgba(0,0,0,.25);
-    box-shadow: 0 1px 6px rgba(0,0,0,.12);
-  }
+/* ── ana sayfa ── */
+.intro { padding: 3.4rem 0 2.6rem; border-bottom: 1px solid var(--rule); }
+.intro h1 { font-weight: 500; font-size: clamp(2.05rem, 5.6vw, 2.75rem); line-height: 1.08; letter-spacing: -.01em; margin: 0 0 .8rem; text-wrap: balance; }
+.intro h1 em { color: var(--accent); }
+.intro p { margin: 0; color: var(--muted); font-size: 1.18rem; }
+/* ── okura not: sayfaya sarkan bir kitap ayracı. Sitenin okurla konuştuğu her yer bu kartla görünür. ── */
+.nudge {
+  position: relative; margin: 1.8rem 0 0; padding: 1.1rem 1.3rem 1.2rem 3.15rem;
+  background: color-mix(in oklab, var(--accent) 9%, var(--bg));
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  border-radius: 10px; max-width: 40rem;
+}
+.nudge .ribbon {
+  position: absolute; left: 1.15rem; top: -1px; width: 1rem; height: 2.7rem; background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%); transform-origin: top center;
+  animation: ayrac .8s cubic-bezier(.2, .8, .3, 1.2) .25s both;
+}
+@keyframes ayrac { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+.nudge .nk { font-variant-caps: all-small-caps; letter-spacing: .1em; color: var(--accent); font-size: 1rem; line-height: 1.2; }
+.nudge p, .xhead .nudge p { margin: .3rem 0 0; font-size: 1.14rem; line-height: 1.45; color: var(--fg); }
+.nudge p em { font-style: italic; }
+.nudge-go {
+  display: grid; grid-template-columns: 1fr auto; gap: .1rem 1rem; align-items: center;
+  margin-top: .85rem; padding: .7rem .95rem; background: var(--bg); border: 1px solid var(--rule); border-radius: 8px;
+  text-decoration: none; transition: border-color .15s, transform .15s;
+}
+.nudge-go span { grid-column: 1; font-variant-caps: all-small-caps; letter-spacing: .08em; color: var(--muted); font-size: .92rem; line-height: 1.2; }
+.nudge-go b { grid-column: 1; font-weight: 500; font-size: 1.12rem; line-height: 1.28; }
+.nudge-go i { grid-column: 2; grid-row: 1 / span 2; font-style: normal; color: var(--accent); font-size: 1.25rem; }
+.nudge-go:hover { border-color: var(--accent); transform: translateX(2px); }
+.nudge-go:hover b { color: var(--accent); }
+button.nudge-go { width: 100%; text-align: left; font: inherit; color: inherit; }
+@media (max-width: 520px) { .nudge { padding-left: 2.75rem; } .nudge .ribbon { left: .95rem; width: .85rem; } }
+@media (prefers-reduced-motion: reduce) { .nudge .ribbon { animation: none; } .nudge-go { transition: none; } }
 
-  /* marka = ana sayfa bağlantısı */
-  .brand {
-    display: flex; align-items: baseline; gap: .5rem;
-    min-width: 0; background: none; border: 0; padding: .15rem .3rem;
-    margin-left: -.3rem; border-radius: var(--r);
-    color: inherit; cursor: pointer; font-family: Georgia, serif;
-    transition: background .12s;
-  }
-  .brand:hover { background: rgba(255,255,255,.07); }
-  .brand:active { background: rgba(255,255,255,.12); }
-  .brand .paw { font-size: .95rem; line-height: 1; }
-  .brand .bname { font-size: 1rem; font-weight: 700; white-space: nowrap; letter-spacing: .01em; }
-  .brand .sub {
-    font-size: .68rem; opacity: .5; white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis;
-    font-family: -apple-system, system-ui, sans-serif;
-    padding-left: .3rem; border-left: 1px solid rgba(255,255,255,.18);
-  }
+.lead { padding: 2.6rem 0 2.8rem; border-bottom: 1px solid var(--rule); }
+.lead h2 { font-weight: 500; font-size: clamp(1.75rem, 4.6vw, 2.25rem); line-height: 1.14; margin: .5rem 0 .9rem; text-wrap: balance; }
+.lead h2 a, .card h3 a, .next h3 a { text-decoration: none; }
+.lead h2 a:hover, .card h3 a:hover, .next h3 a:hover { color: var(--accent); }
+.lead p { margin: 0 0 1rem; font-size: 1.2rem; }
+.go { color: var(--accent); text-decoration: none; font-style: italic; }
+.go:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-  .hactions { margin-left: auto; display: flex; align-items: center; gap: .4rem; }
-  .count {
-    font-size: .68rem; opacity: .45; white-space: nowrap; margin-right: .2rem;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
+.stream { padding-top: 2.2rem; }
+.card { padding: 1.4rem 0 1.5rem; border-bottom: 1px solid var(--rule); }
+.card .lbl { font-size: .95rem; }
+.card h3 { font-weight: 500; font-size: 1.42rem; line-height: 1.2; margin: .3rem 0 .45rem; text-wrap: balance; }
+.card p { margin: 0 0 .5rem; color: var(--muted); font-size: 1.08rem; line-height: 1.5; }
+.card.isread h3 a { color: var(--muted); }
+.more-row { padding-top: 1.8rem; display: flex; justify-content: center; }
+.btn { font-size: 1.05rem; padding: .55rem 1.25rem; border: 1px solid var(--rule); border-radius: 999px; color: var(--fg); text-decoration: none; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.doors { margin-top: 3.2rem; padding: 1.8rem 0 0; border-top: 1px solid var(--rule); display: grid; gap: .5rem; }
+.doors p { margin: 0; color: var(--muted); font-size: 1.1rem; }
 
-  .hbtn {
-    display: inline-flex; align-items: center; gap: .35rem;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.14);
-    color: #efe9dc; border-radius: var(--r);
-    padding: .32rem .6rem; font-size: .85rem; line-height: 1;
-    cursor: pointer; white-space: nowrap;
-    transition: background .12s, border-color .12s;
-  }
-  .hbtn:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.24); }
-  .hbtn .hlbl { font-family: -apple-system, system-ui, sans-serif; font-size: .72rem; }
-  .hbtn.menu-btn { display: none; }
-  #home-btn { display: none; }
-  #home-btn.show { display: inline-flex; }
+/* ── yazı ── */
+.rhead { padding: 3rem 0 2rem; }
+.rhead .lbl a { text-decoration: none; }
+.rhead .lbl a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.rhead h1 { font-weight: 500; font-size: clamp(1.95rem, 5.2vw, 2.7rem); line-height: 1.1; letter-spacing: -.01em; margin: .55rem 0 .9rem; text-wrap: balance; }
+.prose { font-size: 1.24rem; line-height: 1.68; }
+.prose p { margin: 0 0 1.05em; text-wrap: pretty; }
+.prose > p:first-child { font-size: 1.1em; line-height: 1.6; }
+.prose h2 { font-size: 1.45rem; font-weight: 600; line-height: 1.22; margin: 2.1em 0 .55em; text-wrap: balance; }
+.prose h3 { font-size: 1.22rem; font-weight: 600; margin: 1.8em 0 .45em; }
+.prose hr { border: 0; text-align: center; margin: 2.2em 0; }
+.prose hr::after { content: "⁂"; color: var(--muted); }
+.prose strong { font-weight: 600; }
+.fin { text-align: center; color: var(--muted); margin: 2.4rem 0 0; letter-spacing: .4em; }
 
-  /* ─ LAYOUT ────────────────────────────────────── */
-  .body { flex: 1; display: flex; overflow: hidden; position: relative; }
+.next { margin-top: 3rem; padding: 1.8rem 0 2rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.next h3 { font-weight: 500; font-size: clamp(1.55rem, 4vw, 1.9rem); line-height: 1.15; margin: .45rem 0 .7rem; text-wrap: balance; }
+.next p { margin: 0 0 .8rem; font-size: 1.12rem; color: var(--muted); }
+.why { font-style: italic; color: var(--muted); font-size: 1rem; }
+.also { margin-top: 2rem; }
+.also ul { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .9rem; }
+.also a { text-decoration: none; font-size: 1.16rem; line-height: 1.3; }
+.also a:hover { color: var(--accent); }
+.also .why { display: block; margin-top: .1rem; }
+.traces { margin-top: 2.6rem; font-size: 1.04rem; color: var(--muted); line-height: 1.9; }
+.traces .lbl { margin-right: .5rem; }
+.endlinks { margin-top: 1.6rem; display: flex; gap: 1.6rem; flex-wrap: wrap; font-size: 1.05rem; }
+.endlinks a, .endlinks button { color: var(--muted); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; }
+.endlinks a:hover, .endlinks button:hover { color: var(--fg); }
 
-  /* ─ SIDEBAR ───────────────────────────────────── */
-  .sidebar {
-    width: 280px; flex-shrink: 0;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; overflow: hidden;
-  }
-  .sidebar-top {
-    flex-shrink: 0;
-    max-height: 60%;
-    padding: .7rem .65rem .75rem;
-    background: var(--surface2);
-    border-bottom: 1px solid #bdb49c;
-    box-shadow: 0 2px 5px rgba(42,37,32,.07);
-    position: relative; z-index: 2;
-    display: flex; flex-direction: column; gap: .45rem;
-  }
-  .search {
-    width: 100%; padding: .4rem .65rem;
-    border: 1px solid var(--border); border-radius: var(--r);
-    background: #fbf8f0; font-size: .82rem;
-    color: var(--text); font-family: Georgia, serif; outline: none;
-  }
-  .search:focus { border-color: var(--accent); }
-  .tag-filter {
-    display: flex; flex-wrap: wrap; gap: .25rem;
-    max-height: 42vh; overflow-y: auto;
-    -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
-  }
-  .tfc {
-    display: inline-flex; align-items: center;
-    padding: .2rem .5rem; border-radius: 99px;
-    font-size: .67rem; cursor: pointer;
-    background: var(--tag-bg); color: var(--tag-tx); opacity: .72;
-    font-family: -apple-system, system-ui, sans-serif;
-    border: 1px solid transparent; user-select: none;
-    transition: opacity .12s, border-color .12s;
-  }
-  .tfc.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
-  .tfc.pl { background: var(--tag-pl-bg); color: var(--tag-pl-tx); }
-  .tfc:hover { opacity: 1; }
-  .tfc.on { opacity: 1; font-weight: 600; border-color: #9dc47f; }
-  .tfc.sp.on { border-color: #d4a830; }
-  .tfc.pl.on { border-color: #8fb0c9; }
-  .tfc.more {
-    background: transparent; color: var(--muted);
-    border: 1px dashed var(--border); opacity: 1;
-  }
-  .tfc.more:hover { border-color: var(--accent); color: var(--accent); }
-  .tfc.clear { background: var(--accent-l); color: var(--accent); border-color: #e0b898; }
+/* ── etiket: renkli nokta + metin ── */
+.t { text-decoration: none; display: inline-flex; align-items: baseline; gap: .38em; margin-right: .95em; white-space: nowrap; cursor: pointer; color: var(--fg); font-size: inherit; }
+.t::before { content: ""; width: .48em; height: .48em; border-radius: 50%; background: var(--c); align-self: center; flex: none; }
+.t.konu { --c: var(--t-konu); } .t.yer { --c: var(--t-yer); } .t.isim { --c: var(--t-isim); }
+.t:hover span:first-child { text-decoration: underline; text-decoration-color: var(--c); text-underline-offset: 3px; }
+.t.on span:first-child { color: var(--c); text-decoration: underline; text-underline-offset: 3px; }
+.t .n { color: var(--muted); font-size: .85em; }
 
-  .alist {
-    flex: 1; min-height: 0;
-    overflow-y: auto; -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    background: var(--surface);
-  }
-  .aitem {
-    padding: .62rem .8rem; cursor: pointer;
-    border-left: 3px solid transparent;
-    border-bottom: 1px solid var(--border);
-    transition: background .12s;
-  }
-  .aitem:last-child { border-bottom: none; }
-  .aitem:hover { background: var(--bg); }
+/* ── keşfet: bir vitrin. Koleksiyonlar, çağ odaları, dünya, isimler; her kapı kendi sayfasına açılır ── */
+.col.wide { max-width: 60rem; }
+.xhead p, .xhead .search { max-width: 40rem; }
+.xhead { padding: 3rem 0 0; }
+.xhead h1 { font-weight: 500; font-size: clamp(2.05rem, 5.4vw, 2.75rem); margin: .35rem 0 .6rem; line-height: 1.08; text-wrap: balance; }
+.xhead p { margin: 0; color: var(--muted); font-size: 1.14rem; }
+.search { position: relative; margin: 1.5rem 0 0; }
+.search input { width: 100%; font: inherit; font-size: 1.12rem; color: var(--fg); background: transparent; border: 0; border-bottom: 1px solid var(--rule); padding: .45rem 0 .45rem 1.7rem; border-radius: 0; }
+.search input::placeholder { color: var(--muted); font-style: italic; }
+.search input:focus { outline: none; border-bottom-color: var(--accent); }
+.search svg { position: absolute; left: 0; top: .8rem; width: 1.05rem; height: 1.05rem; stroke: var(--muted); fill: none; stroke-width: 1.6; }
+.xsec { padding-top: 3rem; }
+.xsec-h { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.xsec-h h2 { margin: 0; font-weight: 500; font-size: 1.6rem; line-height: 1.15; }
+.xsec-h a { color: var(--muted); font-style: italic; text-decoration: none; font-size: 1.02rem; }
+.xsec-h a:hover { color: var(--accent); }
 
-  /* Okunmakta olan yazı — renge değil, yazıya dayalı ayrım */
-  .aitem.on {
-    border-left-width: 4px;
-    border-left-color: var(--accent);
-    background: var(--accent-l);
-  }
-  .aitem.on .aitem-title { color: var(--accent-h); }
-  .aitem.on .aitem-meta  { color: #a3765e; }
+.colls { display: grid; grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr)); gap: 1rem; }
+@media (max-width: 640px) {
+  .colls { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: .8rem; margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); padding-right: 16px; }
+  .coll { flex: 0 0 82%; scroll-snap-align: start; }
+}
+.coll { background: var(--surface); border-radius: 6px; padding: 1.25rem 1.3rem 1.2rem; display: flex; flex-direction: column; gap: .35rem; min-width: 0; }
+.coll h3 { margin: .1rem 0 0; font-weight: 500; font-size: 1.42rem; line-height: 1.15; }
+.coll h3 a { text-decoration: none; }
+.coll h3 a:hover { color: var(--accent); }
+.coll .note { margin: 0; font-style: italic; color: var(--muted); font-size: 1.02rem; line-height: 1.42; }
+.coll ul { list-style: none; margin: .6rem 0 .2rem; padding: 0; display: grid; gap: .1rem; }
+.coll li { border-top: 1px solid var(--rule); }
+.coll li a { display: block; padding: .45rem 0; text-decoration: none; font-size: 1.02rem; line-height: 1.3; }
+.coll li a:hover { color: var(--accent); }
+.coll li.isread a { color: var(--muted); }
+.coll .go { margin-top: auto; padding-top: .3rem; font-size: 1.02rem; }
 
-  .nowlbl { display: none; }
-  .aitem.on .nowlbl {
-    display: flex; align-items: center; gap: .3rem;
-    font-size: .58rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: .09em;
-    color: var(--accent); margin-bottom: .3rem;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  .nowlbl::before {
-    content: ''; width: 5px; height: 5px; border-radius: 50%;
-    background: var(--accent); flex-shrink: 0;
-  }
+.rooms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 1.4rem; }
+.room { border-top: 1px solid var(--rule); padding: .9rem 0 1.4rem; display: grid; gap: .15rem; align-content: start; }
+.room .rn { font-style: italic; color: var(--accent); font-size: 1.25rem; line-height: 1; }
+.room h3 { margin: .25rem 0 0; font-weight: 500; font-size: 1.3rem; line-height: 1.15; }
+.room h3 a { text-decoration: none; }
+.room h3 a:hover { color: var(--accent); }
+.room .meta { font-size: .95rem; }
+.room .bar { height: 3px; background: var(--rule); border-radius: 2px; margin: .45rem 0 .5rem; overflow: hidden; }
+.room .bar i { display: block; height: 100%; background: var(--accent); opacity: .75; }
+.room .pick { font-size: 1rem; line-height: 1.3; }
+.room .pick a { text-decoration: none; }
+.room .pick a:hover { color: var(--accent); }
+.room .pick span { display: block; font-variant-caps: all-small-caps; letter-spacing: .07em; color: var(--muted); font-size: .9rem; }
+@media (max-width: 640px) {
+  .rooms { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); padding-right: 16px; }
+  .room { flex: 0 0 72%; scroll-snap-align: start; }
+}
 
-  .aitem-title { font-size: .82rem; font-weight: 600; line-height: 1.35; }
-  .aitem-meta {
-    font-size: .67rem; color: var(--muted); margin-top: .2rem;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  .aitem-tags { display: flex; flex-wrap: wrap; gap: .18rem; margin-top: .28rem; }
-  .tmini {
-    display: inline-flex; align-items: center;
-    padding: .12rem .4rem; border-radius: 99px; font-size: .61rem;
-    background: var(--tag-bg); color: var(--tag-tx); cursor: pointer;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  .tmini.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
-  .tmini.pl { background: var(--tag-pl-bg); color: var(--tag-pl-tx); }
-  .empty-list { padding: 1.1rem; font-size: .78rem; color: var(--muted); text-align: center; }
+.world { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 0 1.4rem; }
+.world a { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding: .6rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; font-size: 1.12rem; }
+.world a:hover { color: var(--accent); }
+.world a span { font-style: italic; color: var(--muted); font-size: .98rem; }
 
-  /* ─ READER ────────────────────────────────────── */
-  .reader {
-    flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-  }
-  .rcontent { max-width: 700px; margin: 0 auto; padding: 3rem 2rem 4rem; width: 100%; }
+.names { font-size: 1.3rem; line-height: 1.75; }
+.names a { text-decoration: none; margin-right: .9em; white-space: nowrap; }
+.names a::before { content: ""; display: inline-block; width: .32em; height: .32em; border-radius: 50%; background: var(--c); margin-right: .38em; vertical-align: .2em; }
+.names a.isim { --c: var(--t-isim); } .names a.yer { --c: var(--t-yer); }
+.names a:hover { color: var(--accent); }
+.lucky { margin-top: 3.4rem; }
 
-  .atitle { font-size: 1.7rem; font-weight: 700; line-height: 1.25; margin-bottom: .55rem; }
-  .ameta {
-    font-size: .72rem; color: var(--muted); margin-bottom: 1.4rem;
-    font-family: -apple-system, system-ui, sans-serif;
-    display: flex; flex-wrap: wrap; gap: .3rem; align-items: center;
-  }
-  .ameta .dot { opacity: .5; }
+/* liste sayfası: koleksiyon, çağ, bölge, isim */
+.back { display: inline-block; margin-top: 2.2rem; color: var(--muted); text-decoration: none; font-size: 1.02rem; }
+.back:hover { color: var(--fg); }
+.lhead { padding: 1.4rem 0 1.2rem; border-bottom: 1px solid var(--rule); }
+.lhead h1 { font-weight: 500; font-size: clamp(2rem, 5.2vw, 2.6rem); line-height: 1.1; margin: .35rem 0 .55rem; text-wrap: balance; }
+.lhead p { margin: 0 0 .6rem; color: var(--muted); font-size: 1.14rem; font-style: italic; }
+.others { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }
+.others .lbl { display: block; margin-bottom: .4rem; }
+.others nav { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font-size: 1.08rem; }
+.others a { text-decoration: none; }
+.others a:hover { color: var(--accent); }
 
-  .prose { line-height: 1.9; font-size: 1.06rem; }
-  .prose h2 { font-size: 1.14rem; font-weight: 700; margin-top: 2rem; margin-bottom: .5rem; }
-  .prose h3 { font-size: .99rem; font-weight: 700; margin-top: 1.3rem; margin-bottom: .35rem; }
-  .prose p { margin-bottom: 1.05rem; }
-  .prose p:last-child { margin-bottom: 0; }
-  .prose hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
-  .prose em { font-style: italic; }
-  .prose strong { font-weight: 700; }
+/* dizin */
+.letters { display: flex; flex-wrap: wrap; gap: .1rem .75rem; margin-top: 1.3rem; font-size: 1.08rem; }
+.letters button { color: var(--fg); min-width: 1.1rem; }
+.letters button:hover { color: var(--accent); }
+.konular { margin-top: 1.6rem; font-size: 1.04rem; line-height: 1.95; }
+.konular .lbl { display: block; margin-bottom: .2rem; }
+.ixl { padding-top: 2rem; scroll-margin-top: 4rem; }
+.ixl > h3 { margin: 0 0 .4rem; font-weight: 500; font-style: italic; font-size: 1.7rem; color: var(--accent); line-height: 1; }
+.ix { display: grid; grid-template-columns: minmax(8rem, 13rem) 1fr; gap: .2rem 1.2rem; padding: .6rem 0; border-top: 1px solid var(--rule); scroll-margin-top: 4.5rem; }
+.ix dt { font-size: 1.12rem; line-height: 1.3; }
+.ix dt a { text-decoration: none; }
+.ix dt a:hover { color: var(--accent); }
+.ix dt::before { content: ""; display: inline-block; width: .45em; height: .45em; border-radius: 50%; background: var(--c); margin-right: .45em; vertical-align: .12em; }
+.ix.yer { --c: var(--t-yer); } .ix.isim { --c: var(--t-isim); }
+.ix dt small { font-style: italic; color: var(--muted); font-size: .85rem; }
+.ix dd { margin: 0; display: grid; gap: .2rem; }
+.ix dd a { text-decoration: none; font-size: 1.04rem; line-height: 1.3; color: var(--muted); }
+.ix dd a:hover { color: var(--accent); }
+@media (max-width: 520px) { .ix { grid-template-columns: 1fr; } }
+.empty { color: var(--muted); font-style: italic; padding: 1.4rem 0; }
 
-  .afoot {
-    margin-top: 2.6rem; padding-top: 1.3rem;
-    border-top: 1px solid var(--border);
-    display: flex; flex-wrap: wrap; gap: .45rem; align-items: center;
-  }
-  .afoot .lbl {
-    font-size: .72rem; color: var(--muted); margin-right: .25rem;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  /* Yazı sonundaki etiketler arşive giriş kapısı — rahat basılabilir olmalı */
-  .afoot .tmini {
-    font-size: .84rem;
-    padding: .36rem .85rem;
-    line-height: 1.25;
-    border: 1px solid transparent;
-    transition: border-color .12s, transform .08s;
-  }
-  .afoot .tmini:hover { border-color: #9dc47f; }
-  .afoot .tmini.sp:hover { border-color: #d4a830; }
-  .afoot .tmini.pl:hover { border-color: #8fb0c9; }
-  .afoot .tmini:active { transform: scale(.96); }
-
-  .nav-pair { display: flex; gap: .5rem; margin-top: 1.6rem; flex-wrap: wrap; }
-  .navbtn {
-    flex: 1; min-width: 180px;
-    border: 1px solid var(--border); border-radius: var(--r);
-    background: var(--surface2); padding: .6rem .8rem;
-    cursor: pointer; text-align: left; font-family: Georgia, serif;
-    color: var(--text); transition: background .12s;
-  }
-  .navbtn:hover { background: var(--surface); }
-  .navbtn .dir {
-    display: block; font-size: .65rem; color: var(--muted);
-    font-family: -apple-system, system-ui, sans-serif; margin-bottom: .15rem;
-  }
-  .navbtn .ttl { display: block; font-size: .8rem; font-weight: 600; line-height: 1.3; }
-
-  /* ─ DÜNYA HARİTASI ────────────────────────────── */
-  .map-wrap {
-    width: 100%;
-    border: 1px solid #c8b99a;
-    border-radius: var(--r);
-    overflow: hidden;
-    box-shadow: inset 0 1px 4px rgba(90,70,45,.08);
-  }
-  .worldmap { width: 100%; height: auto; display: block; user-select: none; }
-
-  .sea      { fill: #dce7ee; }
-  .grat     { stroke: #b9cbd8; stroke-width: .6; opacity: .55; }
-  .grat-eq  { stroke: #a8bfcf; stroke-width: 1; opacity: .7; stroke-dasharray: 5 4; }
-
-  .zone { cursor: pointer; }
-  .zone polygon {
-    stroke: #9c8259; stroke-width: 1.4; stroke-linejoin: round;
-    transition: fill .15s, stroke .15s;
-  }
-  .zone text {
-    fill: #4a3b28; font-family: Georgia, 'Times New Roman', serif;
-    pointer-events: none;
-  }
-  .zone .zn { font-size: 12.5px; font-weight: 700; }
-  .zone .zc { font-size: 11px; opacity: .6; }
-
-  .zone:hover polygon { stroke: var(--accent); stroke-width: 2.2; }
-
-  .zone.on polygon { fill: var(--accent) !important; stroke: var(--accent-h); stroke-width: 2.2; }
-  .zone.on text { fill: #fff; }
-  .zone.on .zc  { opacity: .85; }
-
-  .zone.empty { cursor: default; }
-  .zone.empty polygon { fill: #e4dcc9; stroke: #bcae93; stroke-dasharray: 4 3; }
-  .zone.empty text { fill: #9a8b74; }
-  .zone.empty:hover polygon { stroke: #bcae93; stroke-width: 1.4; }
-
-  /* ─ ZAMAN ÇİZELGESİ ───────────────────────────── */
-  .tl-wrap {
-    width: 100%;
-    border: 1px solid #c8b99a;
-    border-radius: var(--r);
-    background: #f3ecdc;
-    overflow: hidden;
-  }
-  .timeline { width: 100%; height: auto; display: block; user-select: none; }
-
-  .tl-axis { stroke: #9c8259; stroke-width: 1.2; }
-  .tl-tick { stroke: #b8a684; stroke-width: 1; }
-
-  .era { cursor: pointer; }
-  .era rect {
-    stroke: #9c8259; stroke-width: 1.2;
-    transition: fill .15s, stroke .15s;
-  }
-  .era text { font-family: Georgia, 'Times New Roman', serif; pointer-events: none; }
-  .era .ea { fill: #4a3b28; font-size: 11.5px; font-weight: 700; }
-  .era .er { fill: #8c7a5e; font-size: 9.5px; }
-  .era .ec { fill: #4a3b28; font-size: 11px; opacity: .65; }
-
-  .era:hover rect { stroke: var(--accent); stroke-width: 2; }
-  .era.on rect { fill: var(--accent) !important; stroke: var(--accent-h); stroke-width: 2; }
-  .era.on .ea, .era.on .ec { fill: var(--accent-h); }
-
-  .era.empty { cursor: default; }
-  .era.empty rect { fill: #e4dcc9; stroke: #bcae93; stroke-dasharray: 3 3; }
-  .era.empty .ea, .era.empty .ec { fill: #9a8b74; }
-  .era.empty:hover rect { stroke: #bcae93; stroke-width: 1.2; }
-
-  /* ─ YAZI SONU DAVETİ ──────────────────────────── */
-  .endnote {
-    margin-top: 1.8rem; padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    align-items: center; gap: .5rem;
-  }
-  .morebtn {
-    display: inline-flex; align-items: center; gap: .5rem;
-    background: var(--accent-l); border: 1px solid #e0b898;
-    color: var(--accent); border-radius: 99px;
-    padding: .55rem 1.4rem; min-height: 44px;
-    font-size: .88rem; cursor: pointer;
-    font-family: -apple-system, system-ui, sans-serif;
-    transition: background .12s, transform .08s;
-  }
-  .morebtn:hover { background: #f0dbcf; }
-  .morebtn:active { transform: scale(.97); }
-  .endnote .hint {
-    font-size: .68rem; color: var(--muted);
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  @media (max-width: 780px) { .endnote .hint { display: none; } }
-
-  /* ─ INTRO / EMPTY ─────────────────────────────── */
-  .intro {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 1rem; padding: 2rem; text-align: center;
-  }
-  .intro .emo { font-size: 3.4rem; }
-  .intro h2 { font-size: 1.2rem; }
-  .intro p { font-size: .9rem; line-height: 1.75; color: var(--muted); max-width: 380px; }
-
-  /* ─ MOBILE ────────────────────────────────────── */
-  .scrim { display: none; position: absolute; inset: 0; background: rgba(30,24,18,.45); z-index: 40; }
-  .scrim.show { display: block; }
-
-  @media (max-width: 780px) {
-    .hbtn.menu-btn { display: inline-flex; }
-    .brand .sub { display: none; }
-    .count { display: none; }
-    .hbtn .hlbl { display: none; }
-    header { padding: .55rem .8rem; gap: .45rem; }
-    .sidebar {
-      position: absolute; inset: 0 auto 0 0; z-index: 50;
-      width: 84%; max-width: 320px;
-      transform: translateX(-102%);
-      transition: transform .22s ease;
-      box-shadow: 4px 0 24px rgba(0,0,0,.18);
-    }
-    .sidebar.open { transform: translateX(0); }
-    .rcontent {
-      padding: 1.8rem 1.15rem calc(4rem + env(safe-area-inset-bottom, 0px));
-    }
-
-    .sidebar-top { max-height: 48%; }
-    .tag-filter { max-height: 32vh; }
-
-    /* Dokunmatik hedefler — parmakla rahat basılabilecek yükseklikte */
-    .afoot { gap: .5rem; }
-    .afoot .tmini { font-size: .88rem; padding: 0 1rem; min-height: 42px; }
-    .tfc { font-size: .78rem; padding: 0 .8rem; min-height: 36px; }
-    .tag-filter { gap: .4rem; }
-    .aitem-tags { gap: .3rem; margin-top: .4rem; }
-    .aitem .tmini { font-size: .7rem; padding: .22rem .6rem; }
-    .htag { font-size: .84rem; padding: 0 .95rem; min-height: 40px; }
-    .home-tags { gap: .45rem; }
-    .home { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
-    .prose { font-size: 1.02rem; line-height: 1.85; }
-    .atitle { font-size: 1.4rem; }
-  }
-
-  /* ─ OKUMA İLERLEMESİ ──────────────────────────── */
-  .progress {
-    position: sticky; top: 0; left: 0; height: 2px; width: 100%;
-    background: transparent; z-index: 30; flex-shrink: 0;
-  }
-  .progress span {
-    display: block; height: 100%; width: 0;
-    background: var(--accent); transition: width .1s linear;
-  }
-
-  /* ─ GİRİŞ EKRANI ──────────────────────────────── */
-  .home { max-width: 640px; margin: 0 auto; padding: 3rem 2rem 4rem; width: 100%; }
-  .home-head { text-align: center; margin-bottom: 2.4rem; }
-  .home-head .emo { font-size: 3rem; display: block; margin-bottom: .5rem; }
-  .home-head h2 { font-size: 1.35rem; margin-bottom: .5rem; }
-  .home-head p { font-size: .9rem; line-height: 1.75; color: var(--muted); }
-
-  .sec-lbl {
-    font-size: .68rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: .07em; color: var(--muted); margin-bottom: .6rem;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  .home-sec { margin-bottom: 2rem; }
-
-  .feat {
-    display: block; width: 100%; text-align: left; cursor: pointer;
-    background: var(--surface2); border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: var(--r); padding: 1rem 1.15rem;
-    font-family: Georgia, serif; color: var(--text);
-    transition: background .12s;
-  }
-  .feat:hover { background: var(--surface); }
-  .feat .ft { display: block; font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin-bottom: .35rem; }
-  .feat .fm {
-    display: block; font-size: .68rem; color: var(--muted); margin-bottom: .5rem;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  .feat .fx { display: block; font-size: .85rem; line-height: 1.6; color: var(--muted); }
-
-  .home-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
-  .htag {
-    display: inline-flex; align-items: center;
-    padding: .26rem .6rem; border-radius: 99px; font-size: .74rem; cursor: pointer;
-    background: var(--tag-bg); color: var(--tag-tx);
-    font-family: -apple-system, system-ui, sans-serif;
-    border: 1px solid transparent; transition: all .12s;
-  }
-  .htag:hover { border-color: #b8d4a0; }
-  .htag.sp { background: var(--tag-sp-bg); color: var(--tag-sp-tx); }
-  .htag.sp:hover { border-color: #d4a830; }
-  .htag.pl { background: var(--tag-pl-bg); color: var(--tag-pl-tx); }
-  .htag.pl:hover { border-color: #8fb0c9; }
-  .htag .n { opacity: .55; font-size: .68rem; margin-left: .15rem; }
-
-  .home-foot {
-    display: flex; gap: .5rem; flex-wrap: wrap;
-    padding-top: 1.4rem; border-top: 1px solid var(--border);
-  }
-  .lbtn {
-    padding: .45rem .9rem; border-radius: var(--r);
-    border: 1px solid var(--border); background: var(--surface2);
-    color: var(--text); font-size: .8rem; cursor: pointer;
-    font-family: -apple-system, system-ui, sans-serif; transition: background .12s;
-  }
-  .lbtn:hover { background: var(--surface); }
-
-  /* ─ İLGİLİ YAZILAR ────────────────────────────── */
-  .rel { margin-top: 2.2rem; }
-  .rel-list { display: flex; flex-direction: column; gap: .4rem; }
-  .relbtn {
-    text-align: left; cursor: pointer; width: 100%;
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: var(--r); padding: .55rem .8rem;
-    font-family: Georgia, serif; color: var(--text); transition: background .12s;
-  }
-  .relbtn:hover { background: var(--surface); }
-  .relbtn .rt { display: block; font-size: .84rem; font-weight: 600; line-height: 1.35; }
-  .relbtn .rw {
-    display: block; font-size: .66rem; color: var(--muted); margin-top: .25rem;
-    font-family: -apple-system, system-ui, sans-serif;
-  }
-  .rel-list { gap: .45rem; }
-  .relbtn { padding: .6rem .85rem; }
-
-  @media (max-width: 780px) {
-    .home { padding: 2rem 1.15rem 3rem; }
-  }
-  #reader-body { flex: 1; display: flex; flex-direction: column; }
+footer {
+  border-top: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 1.6rem 2.4rem;
+}
+.foot-in { max-width: var(--measure); margin: 0 auto; display: grid; gap: .3rem; font-size: 1rem; color: var(--muted); }
+.foot-in a { text-decoration: none; color: var(--fg); }
+.foot-in a:hover { color: var(--accent); }
+.foot-in em { font-style: normal; color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
-
-<header>
-  <button class="hbtn menu-btn" id="menu-btn" aria-label="Menü">☰</button>
-
-  <button class="brand" data-home="1" title="Ana sayfaya dön">
-    <span class="paw">🐾</span>
-    <span class="bname">Tarihten Köpekler</span>
-    <span class="sub">köpek ve insanlık tarihi üzerine yazılar</span>
-  </button>
-
-  <div class="hactions">
-    <span class="count" id="count"></span>
-    <button class="hbtn" id="home-btn" data-home="1" title="Ana sayfaya dön">
-      <span aria-hidden="true">←</span><span class="hlbl">Ana sayfa</span>
-    </button>
-    <button class="hbtn" id="rnd-btn" title="Rastgele bir yazı aç (R)">
-      <span aria-hidden="true">✦</span><span class="hlbl">Rastgele</span>
-    </button>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="#" data-home="1"><span class="author">Mehmet Cihat Keleş</span><span class="sep">|</span><span class="brand">Tarihten <em>Köpekler</em></span></a>
+    <nav class="nav" aria-label="Site">
+      <a href="#/kesfet" id="nav-kesfet">Keşfet</a>
+      <button type="button" data-random="1" title="Rastgele bir yazı (R)">Rastgele</button>
+      <button type="button" id="theme-btn">Gece</button>
+    </nav>
   </div>
+  <div id="progress"></div>
 </header>
 
-<div class="body">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <input class="search" id="search" type="text" placeholder="Yazılarda ara…" autocomplete="off">
-      <div class="tag-filter" id="tag-filter"></div>
-    </div>
-    <div class="alist" id="alist"></div>
-  </aside>
+<main id="app"><div class="col"><p class="meta" style="padding-top:3rem">Yazılar yükleniyor…</p></div></main>
 
-  <div class="scrim" id="scrim"></div>
-
-  <main class="reader" id="reader">
-    <div class="progress"><span id="progress-bar"></span></div>
-    <div id="reader-body"></div>
-  </main>
-</div>
+<footer>
+  <div class="foot-in">
+    <span>Tarihten <em>Köpekler</em> · arşivi tutan Mehmet Cihat Keleş</span>
+    <span>Kardeş okullar: <a href="https://okula.mehmetcihatkeles.com/">Köpeksel Bilgiler Okulası</a> · <a href="https://finansal.mehmetcihatkeles.com/">Finansal Bilgiler Okulası</a></span>
+  </div>
+</footer>
 
 <script>
-// ─── State ───────────────────────────────────────────────────
-let ARTICLES   = [];
-let activeSlug = null;
-let activeTag  = null;
-let query      = '';
+// ─── Durum ───────────────────────────────────────────────────
+let ARTICLES = [];
+let view = 'home', activeSlug = null;
+let query = '';
+let shown = 6, homeScroll = 0, resumeTo = null;
+const SITE = 'Tarihten Köpekler';
 
-// ─── Helpers ─────────────────────────────────────────────────
-// Üç etiket ekseni:
-//   @ → özel isim (köpek, kişi, mitolojik varlık)  — altın
-//   # → yer (ülke, bölge, şehir)                    — mavi
-//   düz → tema/kategori                             — yeşil
-const isSpecific = t => t.startsWith('@');
-const isPlace    = t => t.startsWith('#');
-const displayTag = t => t.replace(/^[@#]/, '');
-const tagCls = (base, t) =>
-  isSpecific(t) ? base + ' sp' : isPlace(t) ? base + ' pl' : base;
+// ─── Etiketin üç ekseni ──────────────────────────────────────
+//   @ → özel isim (köpek, kişi, mitolojik varlık) — altın
+//   # → yer (ülke, bölge, şehir)                   — mavi
+//   düz → konu                                      — yeşil
+const isIsim = t => t.startsWith('@');
+const isYer  = t => t.startsWith('#');
+const eksen  = t => isIsim(t) ? 'isim' : isYer(t) ? 'yer' : 'konu';
+const showTag = t => t.replace(/^[@#]/, '');
 
-// Turkish needs transliteration *before* toLowerCase: "İ" lowercases to
-// "i" + a combining dot (U+0307), which would otherwise become a hyphen.
-const TR_MAP = {
-  'ç':'c','Ç':'c','ğ':'g','Ğ':'g','ı':'i','İ':'i',
-  'ö':'o','Ö':'o','ş':'s','Ş':'s','ü':'u','Ü':'u',
-  'â':'a','Â':'a','î':'i','Î':'i','û':'u','Û':'u'
+// ─── Bölgeler ────────────────────────────────────────────────
+// Kaba kara parçaları; ülke sınırı değil, bir atlas sayfasına bakma duygusu.
+// Yeni bir yer etiketi geldiğinde buraya eklenmeli; eklenmeyenler konsolda listelenir.
+const BOLGE = {
+  'Kuzey Amerika': { p: '26,30 112,21 142,42 132,68 100,88 66,84 40,62 20,44', cx: 80, cy: 50, ad: ['Kuzey', 'Amerika'],
+    tags: ['#abd','#alaska','#kanada'] },
+  'Orta ve Güney Amerika': { p: '90,112 132,106 152,134 144,184 120,238 98,252 84,224 94,178 80,142', cx: 116, cy: 172, ad: ['Orta ve', 'Güney Amerika'],
+    tags: ['#meksika','#amerika','#peru','#and','#karayipler','#brezilya','#guatemala','#kuba','#küba','#haiti','#arjantin','#mezoamerika'] },
+  'Avrupa': { p: '192,27 252,20 276,37 270,63 234,77 200,69 184,47', cx: 230, cy: 47, ad: ['Avrupa'],
+    tags: ['#ingiltere','#fransa','#almanya','#avrupa','#ispanya','#isviçre','#italya','#hollanda','#iskandinavya','#norveç','#isveç',
+           '#danimarka','#finlandiya','#polonya','#macaristan','#balkanlar','#ukrayna','#avusturya','#belçika','#izlanda','#bulgaristan','#hırvatistan'] },
+  'Akdeniz': { p: '188,97 270,91 286,111 276,135 220,143 192,129 180,111', cx: 232, cy: 116, ad: ['Akdeniz'],
+    tags: ['#roma','#yunanistan','#kartaca','#malta'] },
+  'Afrika': { p: '194,167 270,161 298,187 290,223 264,257 234,269 212,243 198,207', cx: 246, cy: 210, ad: ['Afrika'],
+    tags: ['#mısır','#namibya','#magrip','#etiyopya','#kongo','#nijerya','#güneyafrika','#tanzanya','#kanaryaadaları'] },
+  'Anadolu ve Yakın Doğu': { p: '302,95 402,89 420,111 408,139 342,147 308,129', cx: 360, cy: 117, ad: ['Anadolu ve', 'Yakın Doğu'],
+    tags: ['#anadolu','#istanbul','#ortadoğu','#iran','#mezopotamya','#suriye','#arabistan'] },
+  'Orta Asya ve Sibirya': { p: '302,25 454,18 472,41 460,69 382,81 316,73 294,49', cx: 384, cy: 48, ad: ['Orta Asya ve', 'Sibirya'],
+    tags: ['#ortaasya','#rusya','#sibirya','#kazakistan','#moğolistan','#tibet','#özbekistan','#afganistan','#grönland','#türkmenistan'] },
+  'Doğu ve Güney Asya': { p: '430,97 530,91 550,119 540,159 502,193 472,187 454,151 436,125', cx: 494, cy: 138, ad: ['Doğu ve', 'Güney Asya'],
+    tags: ['#çin','#japonya','#kore','#tayvan','#hindistan','#nepal','#srilanka','#pakistan','#vietnam','#tayland','#endonezya',
+           '#filipinler','#malezya','#bali','#keşmir'] },
+  'Okyanusya ve Kutuplar': { p: '472,213 554,207 572,233 558,267 504,273 478,251', cx: 522, cy: 240, ad: ['Okyanusya', 've Kutuplar'],
+    tags: ['#avustralya','#polinezya','#yenizelanda','#hawaii','#pasifik','#antarktika','#kutup','#tazmanya','#yenigine'] },
 };
-function slugify(s) {
-  const full = String(s)
-    .replace(/[çÇğĞıİöÖşŞüÜâÂîÎûÛ]/g, c => TR_MAP[c] || c)
-    .toLowerCase()
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')   // drop leftover accents
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+const regionsOf = a => Object.keys(BOLGE).filter(r => (a.tags || []).some(t => BOLGE[r].tags.includes(t)));
 
+// Dönem kuşakları: yazının "Dönem:" satırından gelir.
+const DONEM = [
+  { id: 'tarihoncesi', ad: 'Tarihöncesi',  ara: 'MÖ 3000 öncesi' },
+  { id: 'antikite',    ad: 'Antikite',     ara: 'MÖ 3000 – MS 500' },
+  { id: 'ortacag',     ad: 'Ortaçağ',      ara: '500 – 1500' },
+  { id: 'erkenmodern', ad: 'Erken Modern', ara: '1500 – 1800' },
+  { id: 'on9',         ad: '19. yüzyıl',   ara: '1800 – 1900' },
+  { id: 'on20',        ad: '20. yüzyıl',   ara: '1900 sonrası' },
+];
+const eraName = id => (DONEM.find(d => d.id === id) || {}).ad || '';
+const placeLine = a => [eraName(a.donem), regionsOf(a)[0]].filter(Boolean).join(' · ');
+
+// ─── Yardımcılar ─────────────────────────────────────────────
+const TR_MAP = { 'ç':'c','Ç':'c','ğ':'g','Ğ':'g','ı':'i','İ':'i','ö':'o','Ö':'o','ş':'s','Ş':'s','ü':'u','Ü':'u','â':'a','Â':'a','î':'i','Î':'i','û':'u','Û':'u' };
+function slugify(s) {
+  const full = String(s).replace(/[çÇğĞıİöÖşŞüÜâÂîÎûÛ]/g, c => TR_MAP[c] || c).toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   if (full.length <= 70) return full;
-  // trim to 70 chars, but drop a half-word if the cut landed inside one
   const cut = full.slice(0, 70);
   return (full[70] === '-' ? cut : cut.replace(/-[^-]*$/, '')).replace(/-+$/, '');
 }
-
-function esc(s) {
-  return String(s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-function fmtDate(iso) {
-  const d = new Date(iso);
-  if (isNaN(d)) return '';
-  return d.toLocaleDateString('tr-TR', { day:'numeric', month:'long', year:'numeric' });
-}
-
-function readMin(md) { return Math.max(1, Math.ceil(md.split(/\s+/).length / 200)); }
-
-// ─── Markdown ────────────────────────────────────────────────
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fmtDate = (iso, yil = true) => { const d = new Date(iso); if (isNaN(d)) return '';
+  return d.toLocaleDateString('tr-TR', yil ? { day: 'numeric', month: 'long', year: 'numeric' } : { day: 'numeric', month: 'long' }); };
+const monthKey = iso => new Date(iso).toLocaleDateString('tr-TR', { month: 'long', year: 'numeric' });
+const readMin = md => Math.max(1, Math.ceil(md.split(/\s+/).length / 200));
+const lower = s => s.toLocaleLowerCase('tr-TR');
+const bodyWithoutTitle = md => md.replace(/^#\s+.+\n?/, '').trimStart();
 function mdToHtml(md) {
-  const span = s => esc(s)
-    .replace(/\*\*(.+?)\*\*/g, (_,t) => '<strong>' + t + '</strong>')
-    .replace(/\*(.+?)\*/g,     (_,t) => '<em>' + t + '</em>');
+  const span = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
   const out = []; let para = [];
   const flush = () => { if (para.length) { out.push('<p>' + span(para.join(' ')) + '</p>'); para = []; } };
   for (const raw of md.split('\n')) {
@@ -613,653 +403,466 @@ function mdToHtml(md) {
   flush();
   return out.join('\n');
 }
-
-// Body without the leading H1 — the title is rendered separately
-function bodyWithoutTitle(md) {
-  return md.replace(/^#\s+.+\n?/, '').trimStart();
-}
-
-// ─── Data ────────────────────────────────────────────────────
-function allTags() {
-  const counts = new Map();
-  ARTICLES.forEach(a => (a.tags || []).forEach(t => counts.set(t, (counts.get(t) || 0) + 1)));
-  return [...counts.entries()]
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr'))
-    .map(e => e[0]);
-}
-
-function filtered() {
-  let list = ARTICLES;
-  if (activeRegion) {
-    const ts = BOLGE[activeRegion].tags;
-    list = list.filter(a => (a.tags || []).some(t => ts.includes(t)));
-  }
-  if (activeEra) list = list.filter(a => a.donem === activeEra);
-  if (activeTag) list = list.filter(a => (a.tags || []).includes(activeTag));
-  if (query) {
-    const q = query.toLowerCase();
-    list = list.filter(a =>
-      a.title.toLowerCase().includes(q) || a.content.toLowerCase().includes(q));
-  }
-  return list;
-}
-
-// ─── Render: sidebar ─────────────────────────────────────────
-// Dar ekran ölçütü — hem etiket sayısı hem çekmece davranışı için
-const darEkran = () => window.matchMedia('(max-width: 780px)').matches;
-
-let tagsExpanded = false;
-
-// Dar ekranda panel yeri kısıtlı; daha az etiketle başla.
-const tagLimit = () => (darEkran() ? 10 : 16);
-
-function renderTags() {
-  const tags = allTags();
-  const clear = (activeTag || activeRegion || activeEra)
-    ? '<span class="tfc clear" data-clear="1">× Tümü</span>' : '';
-  const donemCip = activeEra
-    ? '<span class="tfc on" style="background:#e6d6bb;color:#4a3b28;border-color:#c8b99a"' +
-      ' data-era="' + activeEra + '">◵ ' +
-      esc((DONEM.find(d => d.id === activeEra) || {}).ad || '') + '</span>'
-    : '';
-  const bolgeCip = activeRegion
-    ? '<span class="tfc pl on" data-region="' + esc(activeRegion) + '">◷ ' +
-      esc(activeRegion) + '</span>'
-    : '';
-  const TAG_LIMIT = tagLimit();
-
-  // Seçili etiket kısaltılmış listede yoksa yine de görünsün
-  let shown = tags;
-  let hidden = 0;
-  if (!tagsExpanded && tags.length > TAG_LIMIT) {
-    shown = tags.slice(0, TAG_LIMIT);
-    if (activeTag && !shown.includes(activeTag)) shown = shown.concat(activeTag);
-    hidden = tags.length - shown.length;
-  }
-
-  const chips = shown.map(t =>
-    '<span class="' + tagCls('tfc', t) + (activeTag === t ? ' on' : '') +
-    '" data-tag="' + esc(t) + '">' + esc(displayTag(t)) + '</span>'
-  ).join('');
-
-  const toggle = tags.length > TAG_LIMIT || tagsExpanded
-    ? '<span class="tfc more" data-tagtoggle="1">' +
-      (tagsExpanded ? '− daha az' : '+ ' + hidden + ' etiket') + '</span>'
-    : '';
-
-  document.getElementById('tag-filter').innerHTML =
-    clear + bolgeCip + donemCip + chips + toggle;
-}
-
-function renderList() {
-  const list = filtered();
-  const el = document.getElementById('alist');
-  if (!list.length) {
-    el.innerHTML = '<div class="empty-list">Yazı bulunamadı.</div>';
-    return;
-  }
-  el.innerHTML = list.map(a =>
-    '<article class="aitem' + (activeSlug === a.slug ? ' on' : '') + '" data-slug="' + esc(a.slug) + '">' +
-      '<span class="nowlbl">Şu an okuyorsun</span>' +
-      '<div class="aitem-title">' + esc(a.title) + '</div>' +
-      '<div class="aitem-meta">' + fmtDate(a.date) + ' · ' + readMin(a.content) + ' dk okuma</div>' +
-      ((a.tags || []).length
-        ? '<div class="aitem-tags">' + a.tags.map(t =>
-            '<span class="' + tagCls('tmini', t) + '" data-tag="' + esc(t) + '">' +
-            esc(displayTag(t)) + '</span>').join('') + '</div>'
-        : '') +
-    '</article>').join('');
-}
-
-function renderCount() {
-  document.getElementById('count').textContent =
-    ARTICLES.length ? ARTICLES.length + ' yazı' : '';
-}
-
-// ─── Render: reader ──────────────────────────────────────────
 function excerpt(md, n) {
-  const t = bodyWithoutTitle(md)
-    .split('\n').filter(l => l.trim() && !l.startsWith('#') && !/^---+$/.test(l))
-    .join(' ').replace(/[*_`]/g, '');
+  const t = bodyWithoutTitle(md).split('\n').filter(l => l.trim() && !l.startsWith('#') && !/^---+$/.test(l)).join(' ').replace(/[*_`]/g, '');
   return t.length > n ? t.slice(0, n).replace(/\s+\S*$/, '') + '…' : t;
 }
-
-// Kaba dünya bölgeleri. Ülke sınırı değil — etiketlerimiz zaten ülke değil
-// (#roma bir imparatorluk, #anadolu bir yarımada). Bloklar kabaca gerçek
-// coğrafi yerleşime oturuyor; amaç kesinlik değil, yön duygusu.
-// Kaba kara parçaları. Ülke sınırı değil — etiketlerimiz zaten ülke değil
-// (#roma bir imparatorluk, #anadolu bir yarımada). Çokgenler gerçek
-// coğrafyanın kabaca yerini ve biçimini andırıyor; amaç kesinlik değil,
-// bir atlas sayfasına bakma duygusu.
-const BOLGE = {
-  'Kuzey Amerika': {
-    p: '26,30 112,21 142,42 132,68 100,88 66,84 40,62 20,44',
-    cx: 80, cy: 50, ad: ['Kuzey', 'Amerika'],
-    tags: ['#abd','#alaska','#kanada'] },
-
-  'Orta ve Güney Amerika': {
-    p: '90,112 132,106 152,134 144,184 120,238 98,252 84,224 94,178 80,142',
-    cx: 116, cy: 172, ad: ['Orta ve', 'Güney Amerika'],
-    tags: ['#meksika','#amerika','#peru','#and','#karayipler','#brezilya',
-           '#guatemala','#kuba','#haiti','#arjantin'] },
-
-  'Avrupa': {
-    p: '192,27 252,20 276,37 270,63 234,77 200,69 184,47',
-    cx: 230, cy: 47, ad: ['Avrupa'],
-    tags: ['#ingiltere','#fransa','#almanya','#avrupa','#ispanya','#isviçre','#italya',
-           '#hollanda','#iskandinavya','#norveç','#isveç','#danimarka','#finlandiya',
-           '#polonya','#macaristan','#balkanlar','#ukrayna','#avusturya','#belçika','#izlanda'] },
-
-  'Akdeniz': {
-    p: '188,97 270,91 286,111 276,135 220,143 192,129 180,111',
-    cx: 232, cy: 116, ad: ['Akdeniz'],
-    tags: ['#roma','#yunanistan','#kartaca'] },
-
-  'Afrika': {
-    p: '194,167 270,161 298,187 290,223 264,257 234,269 212,243 198,207',
-    cx: 246, cy: 210, ad: ['Afrika'],
-    tags: ['#mısır','#namibya','#magrip','#etiyopya','#kongo','#nijerya',
-           '#güneyafrika','#tanzanya'] },
-
-  'Anadolu ve Yakın Doğu': {
-    p: '302,95 402,89 420,111 408,139 342,147 308,129',
-    cx: 360, cy: 117, ad: ['Anadolu ve', 'Yakın Doğu'],
-    tags: ['#anadolu','#istanbul','#ortadoğu','#iran','#mezopotamya','#suriye','#arabistan'] },
-
-  'Orta Asya ve Sibirya': {
-    p: '302,25 454,18 472,41 460,69 382,81 316,73 294,49',
-    cx: 384, cy: 48, ad: ['Orta Asya ve', 'Sibirya'],
-    tags: ['#ortaasya','#rusya','#sibirya','#kazakistan','#moğolistan','#tibet',
-           '#özbekistan','#afganistan','#grönland'] },
-
-  'Doğu ve Güney Asya': {
-    p: '430,97 530,91 550,119 540,159 502,193 472,187 454,151 436,125',
-    cx: 494, cy: 138, ad: ['Doğu ve', 'Güney Asya'],
-    tags: ['#çin','#japonya','#kore','#tayvan','#hindistan','#nepal','#srilanka',
-           '#pakistan','#vietnam','#tayland','#endonezya','#filipinler','#malezya'] },
-
-  'Okyanusya ve Kutuplar': {
-    p: '472,213 554,207 572,233 558,267 504,273 478,251',
-    cx: 522, cy: 240, ad: ['Okyanusya', 've Kutuplar'],
-    tags: ['#avustralya','#polinezya','#yenizelanda','#hawaii','#pasifik',
-           '#antarktika','#kutup'] },
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
 
-let activeRegion = null;
-let activeEra = null;
-
-// Dönem kuşakları. Gerçek orantılı bir eksen yerine kuşak seçtik:
-// tarihlerin çoğu yaklaşık ("yaklaşık on dört bin yıl önce") ve doğrusal
-// bir eksende yazıların çoğu son iki yüzyıla yığılırdı.
-const DONEM = [
-  { id: 'tarihoncesi', ad: 'Tarihöncesi',  ara: 'MÖ 3000 öncesi' },
-  { id: 'antikite',    ad: 'Antikite',     ara: 'MÖ 3000 – MS 500' },
-  { id: 'ortacag',     ad: 'Ortaçağ',      ara: '500 – 1500' },
-  { id: 'erkenmodern', ad: 'Erken Modern', ara: '1500 – 1800' },
-  { id: 'on9',         ad: '19. yüzyıl',   ara: '1800 – 1900' },
-  { id: 'on20',        ad: '20. yüzyıl',   ara: '1900 sonrası' },
-];
-
-function eraCount(id) {
-  return ARTICLES.filter(a => a.donem === id).length;
+// ─── Okur hafızası (yalnızca bu tarayıcıda) ──────────────────
+let OKUNDU = new Set(store.get('tk-okundu', []));
+let YARIM = store.get('tk-yarim', {});            // slug → okunan oran
+const ONCEKI = store.get('tk-son', null);          // bir önceki gelişin zamanı
+store.set('tk-son', Date.now());
+const isNew = a => ONCEKI && new Date(a.date).getTime() > ONCEKI && !OKUNDU.has(a.slug);
+function saveProgress(slug, r) {
+  if (r >= .92) { if (!OKUNDU.has(slug)) { OKUNDU.add(slug); store.set('tk-okundu', [...OKUNDU]); }
+    if (YARIM[slug] != null) { delete YARIM[slug]; store.set('tk-yarim', YARIM); } return; }
+  if (r > .12 && !OKUNDU.has(slug) && Math.abs((YARIM[slug] || 0) - r) > .03) { YARIM[slug] = r; store.set('tk-yarim', YARIM); }
 }
 
-function renderTimeline() {
-  const sayilar = DONEM.map(d => eraCount(d.id));
-  const enCok = Math.max(1, ...sayilar);
-
-  const G = 86, BOSLUK = 12, X0 = 2;   // sütun genişliği, aralık, başlangıç
-  const TABAN = 82, ENYUKSEK = 54;
-
-  let tikler = '';
-  DONEM.forEach((d, i) => {
-    const x = X0 + i * (G + BOSLUK) + G / 2;
-    tikler += '<line class="tl-tick" x1="' + x + '" y1="' + TABAN +
-              '" x2="' + x + '" y2="' + (TABAN + 5) + '"/>';
-  });
-
-  const sutunlar = DONEM.map((d, i) => {
-    const n = sayilar[i];
-    const x = X0 + i * (G + BOSLUK);
-    const h = n ? Math.max(14, Math.round(ENYUKSEK * n / enCok)) : 5;
-    const y = TABAN - h;
-    const sinif = 'era' + (activeEra === d.id ? ' on' : '') + (n ? '' : ' empty');
-    const renk = n ? karaTonu(n / enCok) : '';
-
-    return '<g class="' + sinif + '"' + (n ? ' data-era="' + d.id + '"' : '') +
-             ' role="button" tabindex="0"><title>' + esc(d.ad) + ' (' + esc(d.ara) + ') — ' +
-             (n ? n + ' yazı' : 'henüz yazı yok') + '</title>' +
-             '<rect x="' + x + '" y="' + y + '" width="' + G + '" height="' + h +
-                  '" rx="3"' + (renk ? ' fill="' + renk + '"' : '') + '/>' +
-             (n ? '<text class="ec" x="' + (x + G / 2) + '" y="' + (y - 5) +
-                  '" text-anchor="middle">' + n + '</text>' : '') +
-             '<text class="ea" x="' + (x + G / 2) + '" y="' + (TABAN + 20) +
-                  '" text-anchor="middle">' + esc(d.ad) + '</text>' +
-             '<text class="er" x="' + (x + G / 2) + '" y="' + (TABAN + 33) +
-                  '" text-anchor="middle">' + esc(d.ara) + '</text>' +
-           '</g>';
-  }).join('');
-
-  return '<svg class="timeline" viewBox="0 0 580 118" role="group" ' +
-         'aria-label="Döneme göre yazılar">' +
-         '<line class="tl-axis" x1="0" y1="' + TABAN + '" x2="580" y2="' + TABAN + '"/>' +
-         tikler + sutunlar + '</svg>';
+// ─── Veri ────────────────────────────────────────────────────
+function tagCounts() {
+  const m = new Map();
+  ARTICLES.forEach(a => (a.tags || []).forEach(t => m.set(t, (m.get(t) || 0) + 1)));
+  return [...m.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr'));
 }
+const regionCount = r => ARTICLES.filter(a => (a.tags || []).some(t => BOLGE[r].tags.includes(t))).length;
+const eraCount = id => ARTICLES.filter(a => a.donem === id).length;
 
-function setEra(id) {
-  const aciliyor = activeEra !== id;
-  activeEra = aciliyor ? id : null;
-  renderTags();
-  renderList();
-  if (!activeSlug) renderIntro();
-  if (aciliyor && darEkran()) {
-    openSidebar();
-    const l = document.getElementById('alist');
-    if (l) l.scrollTop = 0;
-  }
-}
-
-function regionCount(ad) {
-  const ts = BOLGE[ad].tags;
-  return ARTICLES.filter(a => (a.tags || []).some(t => ts.includes(t))).length;
-}
-
-// Yazı sayısını parşömen tonuna çevirir: az yazı açık, çok yazı koyu.
-function karaTonu(oran) {
-  const a = [0xf2, 0xe8, 0xd6];   // açık parşömen
-  const b = [0xc9, 0xa9, 0x77];   // koyu, yıpranmış
-  const c = a.map((v, i) => Math.round(v + (b[i] - v) * oran));
-  return '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
-}
-
-function renderMap() {
-  const adlar = Object.keys(BOLGE);
-  const sayilar = {};
-  adlar.forEach(a => sayilar[a] = regionCount(a));
-  const enCok = Math.max(1, ...Object.values(sayilar));
-
-  // enlem–boylam ağı
-  let ag = '';
-  for (let y = 45; y < 290; y += 45)
-    ag += '<line class="grat" x1="0" y1="' + y + '" x2="580" y2="' + y + '"/>';
-  for (let x = 58; x < 580; x += 58)
-    ag += '<line class="grat" x1="' + x + '" y1="0" x2="' + x + '" y2="290"/>';
-  ag += '<line class="grat-eq" x1="0" y1="157" x2="580" y2="157"/>';
-
-  const kara = adlar.map(ad => {
-    const b = BOLGE[ad];
-    const n = sayilar[ad];
-    const sinif = 'zone' + (activeRegion === ad ? ' on' : '') + (n ? '' : ' empty');
-    const renk = n ? karaTonu(n / enCok) : '';
-
-    const yuk = b.ad.length * 15 + 15;
-    const bas = b.cy - yuk / 2 + 12;
-    const satir = b.ad.map((p, i) =>
-      '<tspan x="' + b.cx + '" dy="' + (i ? 15 : 0) + '">' + esc(p) + '</tspan>').join('');
-
-    return '<g class="' + sinif + '"' + (n ? ' data-region="' + esc(ad) + '"' : '') +
-             ' role="button" tabindex="0"><title>' + esc(ad) + ' — ' +
-             (n ? n + ' yazı' : 'henüz yazı yok') + '</title>' +
-             '<polygon points="' + b.p + '"' + (renk ? ' fill="' + renk + '"' : '') + '/>' +
-             '<text class="zn" x="' + b.cx + '" y="' + bas + '" text-anchor="middle">' + satir + '</text>' +
-             '<text class="zc" x="' + b.cx + '" y="' + (bas + b.ad.length * 15) +
-                  '" text-anchor="middle">' + (n || '·') + '</text>' +
-           '</g>';
-  }).join('');
-
-  return '<svg class="worldmap" viewBox="0 0 580 290" role="group" ' +
-         'aria-label="Bölgeye göre yazılar">' +
-         '<rect class="sea" x="0" y="0" width="580" height="290"/>' +
-         ag + kara + '</svg>';
-}
-
-function setRegion(ad) {
-  const aciliyor = activeRegion !== ad;
-  activeRegion = aciliyor ? ad : null;
-  renderTags();
-  renderList();
-  if (!activeSlug) renderIntro();
-  if (aciliyor && darEkran()) {
-    openSidebar();
-    const l = document.getElementById('alist');
-    if (l) l.scrollTop = 0;
-  }
-}
-
-function renderIntro() {
-  const kaydiran = document.getElementById('reader');
-  if (kaydiran) kaydiran.scrollTop = 0;
-  const body = document.getElementById('reader-body');
-  if (!ARTICLES.length) {
-    body.innerHTML =
-      '<div class="intro"><div class="emo">🐕</div>' +
-      '<h2>Arşiv hazırlanıyor</h2>' +
-      '<p>Henüz yayımlanmış bir yazı yok. Kısa süre içinde burada olacaklar.</p></div>';
-    return;
-  }
-
-  const latest = ARTICLES[0];
-  const counts = new Map();
-  ARTICLES.forEach(a => (a.tags || []).forEach(t => counts.set(t, (counts.get(t) || 0) + 1)));
-  const topTags = [...counts.entries()]
-    .filter(e => e[1] > 1)
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr'))
-    .slice(0, 12);
-
-  body.innerHTML =
-    '<div class="home">' +
-      '<div class="home-head">' +
-        '<span class="emo">🐾</span>' +
-        '<h2>Tarihten Köpekler</h2>' +
-        '<p>Köpeklerin ve köpek-insan ilişkisinin tarihi üzerine yazılar. ' +
-        'Evcilleştirmeden mitolojiye, savaşlardan bilime — her sabah bir yenisi ekleniyor.</p>' +
-      '</div>' +
-
-      '<div class="home-sec">' +
-        '<div class="sec-lbl">En son yazı</div>' +
-        '<button class="feat" data-slug="' + esc(latest.slug) + '">' +
-          '<span class="ft">' + esc(latest.title) + '</span>' +
-          '<span class="fm">' + fmtDate(latest.date) + ' · ' + readMin(latest.content) + ' dk okuma</span>' +
-          '<span class="fx">' + esc(excerpt(latest.content, 180)) + '</span>' +
-        '</button>' +
-      '</div>' +
-
-      '<div class="home-sec">' +
-        '<div class="sec-lbl">Bölgeye göre</div>' +
-        '<div class="map-wrap">' + renderMap() + '</div>' +
-      '</div>' +
-
-      '<div class="home-sec">' +
-        '<div class="sec-lbl">Döneme göre</div>' +
-        '<div class="tl-wrap">' + renderTimeline() + '</div>' +
-      '</div>' +
-
-      (topTags.length ? '<div class="home-sec">' +
-        '<div class="sec-lbl">Konuya göre</div>' +
-        '<div class="home-tags">' + topTags.map(([t, n]) =>
-          '<span class="' + tagCls('htag', t) + '" data-tag="' + esc(t) + '">' +
-          esc(displayTag(t)) + '<span class="n">' + n + '</span></span>').join('') +
-        '</div></div>' : '') +
-
-      '<div class="home-foot">' +
-        '<button class="lbtn" data-random="1">✦ Rastgele bir yazı</button>' +
-        '<button class="lbtn" data-slug="' + esc(ARTICLES[ARTICLES.length - 1].slug) + '">↓ En eski yazı</button>' +
-      '</div>' +
-    '</div>';
-}
-
-// Ortak etikete göre ilgili yazılar; özel isim (@) eşleşmesi daha ağır sayılır
-function related(a, n) {
+// Ortak etikete göre ilgili yazılar; özel isim (@) eşleşmesi üç kat ağır sayılır.
+function related(a, n, haric) {
   const mine = new Set(a.tags || []);
   if (!mine.size) return [];
-  return ARTICLES
-    .filter(x => x.slug !== a.slug)
-    .map(x => {
-      let score = 0;
-      (x.tags || []).forEach(t => { if (mine.has(t)) score += isSpecific(t) ? 3 : 1; });
-      return { x, score };
-    })
-    .filter(r => r.score > 0)
-    .sort((p, q) => q.score - p.score || new Date(q.x.date) - new Date(p.x.date))
-    .slice(0, n)
-    .map(r => r.x);
+  return ARTICLES.filter(x => x.slug !== a.slug && !haric.has(x.slug))
+    .map(x => { let s = 0; (x.tags || []).forEach(t => { if (mine.has(t)) s += isIsim(t) ? 3 : 1; }); return { x, s }; })
+    .filter(r => r.s > 0)
+    .sort((p, q) => q.s - p.s || new Date(q.x.date) - new Date(p.x.date))
+    .slice(0, n).map(r => r.x);
+}
+// Bir yazının ardından önerilecek yazılar: önce okunmamışlar.
+function nextReads(a) {
+  const sayac = new Map(tagCounts());
+  const agirlik = t => (isIsim(t) ? 0 : isYer(t) ? 1000 : 2000) + (sayac.get(t) || 0);
+  const why = x => {
+    const ortak = (x.tags || []).filter(t => (a.tags || []).includes(t)).sort((p, q) => agirlik(p) - agirlik(q));
+    const t = ortak[0];
+    if (!t) return '';
+    if (isIsim(t)) return 'Burada da ' + showTag(t) + ' var.';
+    if (isYer(t)) return 'Yine ' + showTag(t) + ' üzerine.';
+    return 'Ortak konu: ' + ortak.filter(k => !isIsim(k) && !isYer(k)).slice(0, 2).map(showTag).join(', ') + '.';
+  };
+  const okunmamis = x => !OKUNDU.has(x.slug);
+  const out = [], al = new Set([a.slug]);
+  const ekle = (x, w) => { if (x && !al.has(x.slug)) { al.add(x.slug); out.push({ x, why: w }); } };
+  const ilgili = related(a, 12, new Set());
+  ilgili.filter(okunmamis).concat(ilgili).forEach(x => out.length < 2 && ekle(x, why(x)));
+  const rg = regionsOf(a)[0];
+  if (rg) { const ts = BOLGE[rg].tags;
+    const c = ARTICLES.filter(x => !al.has(x.slug) && (x.tags || []).some(t => ts.includes(t)));
+    ekle(c.find(okunmamis) || c[0], 'Aynı bölgeden: ' + rg + '.'); }
+  if (a.donem) { const c = ARTICLES.filter(x => !al.has(x.slug) && x.donem === a.donem);
+    ekle(c.find(okunmamis) || c[0], 'Aynı çağdan: ' + eraName(a.donem) + '.'); }
+  return out.slice(0, 4);
 }
 
-function renderArticle(slug) {
-  const a = ARTICLES.find(x => x.slug === slug);
-  const reader = document.getElementById('reader-body');
-  if (!a) { renderIntro(); return; }
-
-  const list = filtered();
-  const i    = list.findIndex(x => x.slug === slug);
-  const prev = i > 0 ? list[i - 1] : null;                            // newer
-  const next = (i >= 0 && i < list.length - 1) ? list[i + 1] : null;  // older
-
-  reader.innerHTML =
-    '<div class="rcontent">' +
-      '<h1 class="atitle">' + esc(a.title) + '</h1>' +
-      '<div class="ameta"><span>' + fmtDate(a.date) + '</span>' +
-        '<span class="dot">·</span><span>' + readMin(a.content) + ' dakika okuma</span></div>' +
-      '<div class="prose">' + mdToHtml(bodyWithoutTitle(a.content)) + '</div>' +
-      ((a.tags || []).length
-        ? '<div class="afoot"><span class="lbl">Etiketler:</span>' +
-          a.tags.map(t => '<span class="' + tagCls('tmini', t) + '" data-tag="' + esc(t) + '">' +
-            esc(displayTag(t)) + '</span>').join('') + '</div>'
-        : '') +
-      (function(){
-        const r = related(a, 3);
-        return r.length
-          ? '<div class="rel"><div class="sec-lbl">İlgili yazılar</div><div class="rel-list">' +
-            r.map(x => '<button class="relbtn" data-slug="' + esc(x.slug) + '">' +
-              '<span class="rt">' + esc(x.title) + '</span>' +
-              '<span class="rw">' + fmtDate(x.date) + ' · ' + readMin(x.content) + ' dk</span>' +
-              '</button>').join('') + '</div></div>'
-          : '';
-      })() +
-      ((prev || next)
-        ? '<div class="nav-pair">' +
-          (prev ? '<button class="navbtn" data-slug="' + esc(prev.slug) + '">' +
-            '<span class="dir">← Daha yeni</span><span class="ttl">' + esc(prev.title) + '</span></button>' : '') +
-          (next ? '<button class="navbtn" data-slug="' + esc(next.slug) + '">' +
-            '<span class="dir">Daha eski →</span><span class="ttl">' + esc(next.title) + '</span></button>' : '') +
-          '</div>'
-        : '') +
-      '<div class="endnote">' +
-        '<button class="morebtn" data-random="1">✦ ' +
-          (rastgeleGeldi ? 'Bir tane daha' : 'Rastgele bir yazı') +
-        '</button>' +
-        '<span class="hint">ya da R tuşu</span>' +
-      '</div>' +
-    '</div>';
-
-  // Kaydıran öğe #reader; #reader-body yalnızca içerik kabı.
-  const kaydiran = document.getElementById('reader');
-  if (kaydiran) kaydiran.scrollTop = 0;
-  setProgress(0);
-  document.title = a.title + ' — Tarihten Köpekler';
+// ─── Okura not ───────────────────────────────────────────────
+// baslik: ayracın üstündeki kısa ad; metin: okura söylenen; git: önerilen yazıya giden kart.
+function nudge(baslik, metin, git, sinif) {
+  return '<aside class="nudge' + (sinif ? ' ' + sinif : '') + '" role="note"><span class="ribbon" aria-hidden="true"></span>' +
+    '<div class="nk">' + baslik + '</div><p>' + metin + '</p>' + (git || '') + '</aside>';
 }
+const nudgeGo = (a, ust, extra) => '<a class="nudge-go" href="#/' + esc(a.slug) + '"' + (extra || '') + '><span>' + ust + '</span><b>' + esc(a.title) + '</b><i aria-hidden="true">→</i></a>';
 
-// ─── Navigation ──────────────────────────────────────────────
-let rastgeleGeldi = false;
-
-function openArticle(slug, push, rastgele) {
-  rastgeleGeldi = !!rastgele;
-  activeSlug = slug;
-  if (push !== false) location.hash = slug ? '/' + slug : '';
-  renderList();
-  renderArticle(slug);
-  closeSidebar();
-  setProgress(0);
-  updateHeader();
-  revealActive();
+// ─── Ana sayfa ───────────────────────────────────────────────
+function cardHtml(a) {
+  const r = OKUNDU.has(a.slug);
+  return '<article class="card' + (r ? ' isread' : '') + '">' +
+    (placeLine(a) ? '<div class="lbl">' + esc(placeLine(a)) + '</div>' : '') +
+    '<h3><a href="#/' + esc(a.slug) + '">' + esc(a.title) + '</a></h3>' +
+    '<p>' + esc(excerpt(a.content, 175)) + '</p>' +
+    '<div class="meta">' + fmtDate(a.date, false) + ' · ' + readMin(a.content) + ' dakikalık okuma' +
+      (isNew(a) ? ' · <span class="new">yeni</span>' : r ? ' · okundu' : '') + '</div></article>';
 }
+function renderHome() {
+  view = 'home'; activeSlug = null;
+  const lead = ARTICLES[0];
+  const bugun = new Date().toDateString() === new Date(lead.date).toDateString();
+  const yeniler = ARTICLES.filter(isNew).length;
+  const yarimSlug = Object.keys(YARIM).filter(s => ARTICLES.some(a => a.slug === s) && !OKUNDU.has(s))[0];
+  const yarim = yarimSlug && ARTICLES.find(a => a.slug === yarimSlug);
+  const rest = ARTICLES.slice(1, 1 + shown);
 
-function goHome() {
-  activeSlug = null;
-  location.hash = '';
-  renderList();
-  renderIntro();
-  updateHeader();
-  setProgress(0);
-  const r = document.getElementById('reader');
-  if (r) r.scrollTop = 0;
-  document.title = 'Tarihten Köpekler — Köpek ve insanlık tarihi üzerine yazılar';
-  closeSidebar();
-}
-
-// "Ana sayfa" düğmesi yalnızca bir yazı açıkken görünür
-function updateHeader() {
-  const b = document.getElementById('home-btn');
-  if (b) b.classList[activeSlug ? 'add' : 'remove']('show');
-}
-
-// Seçili yazıyı listede görünür kılar.
-// scrollIntoView kullanılmaz: mobilde kenar çubuğu ekran dışındayken
-// tarayıcı sayfanın tamamını kaydırıp başlığı görünmez yapıyordu.
-function revealActive() {
-  const list = document.getElementById('alist');
-  const on   = list && list.querySelector('.aitem.on');
-  if (!list || !on) return;
-  const ust  = on.offsetTop;
-  const alt  = ust + on.offsetHeight;
-  if (ust < list.scrollTop) list.scrollTop = ust;
-  else if (alt > list.scrollTop + list.clientHeight) list.scrollTop = alt - list.clientHeight;
-}
-
-function randomArticle() {
-  const list = filtered().filter(a => a.slug !== activeSlug);
-  const pool = list.length ? list : ARTICLES;
-  if (!pool.length) return;
-  openArticle(pool[Math.floor(Math.random() * pool.length)].slug, true, true);
-}
-
-// ── okuma ilerlemesi ────────────────────────────────────────
-function setProgress(v) {
-  const b = document.getElementById('progress-bar');
-  if (b) b.style.width = (v * 100) + '%';
-}
-
-function updateProgress() {
-  const r = document.getElementById('reader');
-  if (!r) return;
-  if (!activeSlug) { setProgress(0); return; }
-  const max = r.scrollHeight - r.clientHeight;
-  setProgress(max > 40 ? Math.min(1, r.scrollTop / max) : 0);
-}
-
-// ── komşu yazıya geç ────────────────────────────────────────
-function step(dir) {
-  const list = filtered();
-  const i = list.findIndex(x => x.slug === activeSlug);
-  if (i < 0) { if (list.length) openArticle(list[0].slug); return; }
-  const j = i + dir;
-  if (j >= 0 && j < list.length) openArticle(list[j].slug);
-}
-
-function setTag(t) {
-  const aciliyor = activeTag !== t;      // aynı etikete tekrar basmak filtreyi kaldırır
-  activeTag = aciliyor ? t : null;
-
-  // Seçim yapıldıysa etiket listesi görevini tamamladı; toplansın ki
-  // asıl sonuç — yazı listesi — öne çıksın.
-  if (aciliyor) tagsExpanded = false;
-
-  renderTags();
-  renderList();
-
-  if (aciliyor && darEkran()) {
-    openSidebar();
-    const list = document.getElementById('alist');
-    if (list) list.scrollTop = 0;
+  let notice = '';
+  if (yarim) notice = nudge('Kaldığınız yer', 'Yarıda bıraktığınız bir yazı var. Kaldığınız satırdan açılır.',
+    nudgeGo(yarim, 'Okuduğunuz kısım: yaklaşık %' + Math.round(YARIM[yarim.slug] * 100), ' data-resume="' + esc(yarim.slug) + '"'));
+  else if (yeniler > 1) {
+    const ilkYeni = ARTICLES.filter(isNew).pop();   // en eskisinden başlamak sırayı korur
+    notice = nudge('Siz yokken', 'Son gelişinizden beri ' + yeniler + ' yeni yazı eklendi. Aşağıda <em>yeni</em> işaretiyle duruyorlar.',
+      nudgeGo(ilkYeni, 'En eskisinden başlayın'));
   }
+
+  document.getElementById('app').innerHTML =
+    '<div class="col">' +
+    '<section class="intro"><h1>Tarihin neresinde bir <em>köpek</em> vardı?</h1>' +
+      '<p>Köpeklerin ve insanlarla ortak geçmişlerinin hikâyeleri. Her sabah bir yenisi ekleniyor.</p>' + notice + '</section>' +
+    '<section class="lead">' +
+      '<div class="lbl">' + (bugun ? 'Bugünün yazısı' : 'Son yazı') + (placeLine(lead) ? ' · ' + esc(placeLine(lead)) : '') + '</div>' +
+      '<h2><a href="#/' + esc(lead.slug) + '">' + esc(lead.title) + '</a></h2>' +
+      '<p>' + esc(excerpt(lead.content, 330)) + '</p>' +
+      '<div class="meta">' + fmtDate(lead.date, false) + ' · ' + readMin(lead.content) + ' dakikalık okuma' +
+        (OKUNDU.has(lead.slug) ? ' · okundu' : '') + '</div>' +
+      '<p style="margin:1.1rem 0 0"><a class="go" href="#/' + esc(lead.slug) + '">Okumaya başla →</a></p>' +
+    '</section>' +
+    '<section class="stream"><div class="lbl">Son yazılar</div>' + rest.map(cardHtml).join('') +
+      (ARTICLES.length > 1 + shown ? '<div class="more-row"><button type="button" class="btn" data-more="1">Daha eski yazılar</button></div>' : '') +
+    '</section>' +
+    '<section class="doors">' +
+      '<p>Arşivdeki ' + ARTICLES.length + ' yazı koleksiyonlar, çağlar, bölgeler ve isimler hâlinde de dizili. Aklınızda bir konu, bir çağ ya da bir isim varsa oradan girin.</p>' +
+      '<p><a class="go" href="#/kesfet">Keşfet sayfasına git →</a></p>' +
+    '</section>' +
+    '</div>';
+  document.title = SITE;
 }
 
-function clearTag() {
-  activeTag = null;
-  activeRegion = null;
-  activeEra = null;
-  renderTags();
-  renderList();
-  if (!activeSlug) renderIntro();
+// ─── Yazı ────────────────────────────────────────────────────
+function tagLink(t, n) {
+  return '<a class="t ' + eksen(t) + '" href="' + tagHref(t) + '" title="' + ({ konu: 'Konu', yer: 'Yer', isim: 'Özel isim' })[eksen(t)] + '">' +
+    '<span>' + esc(nice(t)) + '</span>' + (n ? '<span class="n">' + n + '</span>' : '') + '</a>';
+}
+function renderArticle(a) {
+  view = 'article'; activeSlug = a.slug;
+  const rg = regionsOf(a);
+  const ust = [];
+  if (a.donem) ust.push('<a href="#/kesfet/cag/' + a.donem + '">' + esc(eraName(a.donem)) + '</a>');
+  rg.forEach(r => ust.push('<a href="#/kesfet/yer/' + slugify(r) + '">' + esc(r) + '</a>'));
+  const nx = nextReads(a);
+  const ilk = nx[0], diger = nx.slice(1);
+  const sira = t => ({ isim: 0, yer: 1, konu: 2 })[eksen(t)];
+  const izler = (a.tags || []).slice().sort((p, q) => sira(p) - sira(q));
+
+  document.getElementById('app').innerHTML =
+    '<article class="col">' +
+      '<header class="rhead">' +
+        (ust.length ? '<div class="lbl">' + ust.join(' · ') + '</div>' : '') +
+        '<h1>' + esc(a.title) + '</h1>' +
+        '<div class="meta">' + fmtDate(a.date) + ' · ' + readMin(a.content) + ' dakikalık okuma</div>' +
+      '</header>' +
+      '<div class="prose" id="prose">' + mdToHtml(bodyWithoutTitle(a.content)) + '</div>' +
+      '<div class="fin" aria-hidden="true">⁂</div>' +
+      (ilk ? '<section class="next"><div class="lbl">Sıradaki yazı</div>' +
+        '<h3><a href="#/' + esc(ilk.x.slug) + '">' + esc(ilk.x.title) + '</a></h3>' +
+        '<p>' + esc(excerpt(ilk.x.content, 200)) + '</p>' +
+        '<div class="why">' + esc(ilk.why) + ' ' + readMin(ilk.x.content) + ' dakikalık okuma.</div>' +
+        '<p style="margin:.9rem 0 0"><a class="go" href="#/' + esc(ilk.x.slug) + '">Okumaya devam et →</a></p></section>' : '') +
+      (diger.length ? '<section class="also"><div class="lbl">Ya da bunlardan biri</div><ul>' +
+        diger.map(f => '<li><a href="#/' + esc(f.x.slug) + '">' + esc(f.x.title) + '</a><span class="why">' + esc(f.why) + '</span></li>').join('') +
+        '</ul></section>' : '') +
+      (izler.length ? '<div class="traces"><span class="lbl">Bu yazının izleri</span>' + izler.map(t => tagLink(t)).join('') + '</div>' : '') +
+      '<div class="endlinks"><a href="#" data-home="1">Ana sayfa</a><button type="button" data-random="1">Rastgele bir yazı</button><a href="#/kesfet">Keşfet</a></div>' +
+    '</article>';
+  document.title = a.title + ' · ' + SITE;
 }
 
-function openSidebar() {
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('scrim').classList.add('show');
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('scrim').classList.remove('show');
+// ─── Koleksiyonlar ───────────────────────────────────────────
+// Konu etiketlerinden kendiliğinden oluşur; yeni bir yazı etiketine göre yerine düşer.
+const KOLEKSIYON = [
+  { id: 'kurttan-kopege', ad: 'Kurttan köpeğe', not: 'Köpek ne zaman, nerede ve nasıl köpek oldu? Kemikler, mezarlar ve ilk ortaklıklar.', tags: ['evcilleştirme', 'arkeoloji'] },
+  { id: 'inanclar', ad: 'Tanrılar, ölüler, inançlar', not: 'Ölüleri uğurlayan, tapınakta beslenen, kimi zaman da kirli sayılan köpekler.', tags: ['din', 'mitoloji', 'ölü gömme'] },
+  { id: 'irkin-icadi', ad: 'Irkın icadı', not: 'Soyağaçları, sergiler, yetiştiriciler: "saf" köpek fikri nereden çıktı?', tags: ['ırk', 'genetik'] },
+  { id: 'kanunun-onunde', ad: 'Kanunun önünde', not: 'Vergiler, yasaklar, davalar: insanların köpekler hakkında yazdığı kurallar.', tags: ['hukuk', 'adalet'] },
+  { id: 'savasta-seferde', ad: 'Savaşta ve seferde', not: 'Cephelerde, gemilerde ve buzların üstünde insanın yanında yürüyen köpekler.', tags: ['savaş', 'keşif'] },
+  { id: 'bilimin-kopekleri', ad: 'Bilimin köpekleri', not: 'Salgınlar, deneyler ve köpeğin bedeni hakkında bilimin öğrendikleri.', tags: ['bilim', 'biyoloji', 'salgın', 'terapi'] },
+  { id: 'is-goren-kopekler', ad: 'İş gören köpekler', not: 'Çoban, kızak, av ve bekçi köpekleri: emeğin ve davranışın tarihi.', tags: ['işlevsel köpekler', 'davranış'] },
+  { id: 'sehirde-sokakta', ad: 'Şehirde ve sokakta', not: 'Kentler büyürken sokağın köpeklerine ne oldu?', tags: ['şehir', 'toplum'] },
+  { id: 'resimde-kitapta', ad: 'Resimde ve kitapta', not: 'Ressamların, yazarların ve hikâye anlatıcılarının köpekleri.', tags: ['sanat', 'edebiyat', 'viktorya dönemi'] },
+];
+const inColl = (k, a) => (a.tags || []).some(t => k.tags.includes(t));
+const collArts = k => ARTICLES.filter(a => inColl(k, a));
+const regionArts = r => ARTICLES.filter(a => (a.tags || []).some(t => BOLGE[r].tags.includes(t)));
+const regionBySlug = s => Object.keys(BOLGE).find(r => slugify(r) === s);
+const YONELME = { tarihoncesi: "Tarihöncesi'ne", antikite: "Antikite'ye", ortacag: "Ortaçağ'a", erkenmodern: 'Erken Modern döneme', on9: '19. yüzyıla', on20: '20. yüzyıla' };
+const ROMA = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+const unreadFirst = list => list.filter(a => !OKUNDU.has(a.slug)).concat(list.filter(a => OKUNDU.has(a.slug)));
+const tagHref = t => '#/kesfet/e/' + encodeURIComponent(t);
+
+// ─── Okunur adlar ────────────────────────────────────────────
+// Etiketler sıkıştırılmış yazılır (@dorothygoodale, #kanaryaadaları). Düzgün görünsünler diye
+// ad, o etiketi taşıyan yazıların metninde aranıp bulunur: "Dorothy Goodale", "Kanarya Adaları".
+const _ad = new Map();
+const normAd = s => s.toLocaleLowerCase('tr-TR').replace(/ı/g, 'i').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[-'’.]/g, '');
+const capTr = s => s.charAt(0).toLocaleUpperCase('tr-TR') + s.slice(1);
+function nice(t) {
+  if (eksen(t) === 'konu') return t;
+  if (_ad.has(t)) return _ad.get(t);
+  const base = showTag(t), hedef = normAd(base);
+  let bulunan = null, yakin = null;
+  for (const a of ARTICLES) {
+    if (bulunan || !(a.tags || []).includes(t)) continue;
+    const tok = a.content.match(/[\p{L}][\p{L}\-'’.]*/gu) || [];
+    for (let i = 0; i < tok.length && !bulunan; i++) {
+      if (!/^\p{Lu}/u.test(tok[i])) continue;
+      let bir = '';
+      for (let k = 0; k < 4 && i + k < tok.length; k++) {
+        const kok = tok[i + k].replace(/['’].*$/, '').replace(/[.\-]+$/, '');
+        bir += normAd(kok);
+        if (bir === hedef) { bulunan = tok.slice(i, i + k).concat(kok).join(' '); break; }
+        if (!yakin && k > 0 && bir.startsWith(hedef) && bir.length - hedef.length <= 3)
+          yakin = tok.slice(i, i + k).concat(kok.slice(0, kok.length - (bir.length - hedef.length))).join(' ');
+        if (!hedef.startsWith(bir)) break;
+      }
+    }
+  }
+  const ad = bulunan || yakin || capTr(base);
+  _ad.set(t, ad);
+  return ad;
 }
 
-function handleHash() {
-  const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
-  if (!h) {
-    activeSlug = null;
-    renderList();
-    renderIntro();
-    updateHeader();
-    setProgress(0);
-    document.title = 'Tarihten Köpekler — Köpek ve insanlık tarihi üzerine yazılar';
+// ─── Keşfet: vitrin ──────────────────────────────────────────
+function journeyNote() {
+  const n = ARTICLES.filter(a => OKUNDU.has(a.slug)).length;
+  if (!n) return '';
+  const bos = DONEM.find(d => eraCount(d.id) && !ARTICLES.some(a => a.donem === d.id && OKUNDU.has(a.slug)));
+  if (!bos) return nudge('Sizin için bir not', 'Şimdiye kadar ' + n + ' yazı okudunuz ve her çağdan en az birine uğradınız. Bir koleksiyonu baştan sona okumaya ne dersiniz?');
+  const oneri = unreadFirst(ARTICLES.filter(a => a.donem === bos.id))[0];
+  return nudge('Sizin için bir not', 'Şimdiye kadar ' + n + ' yazı okudunuz. ' + YONELME[bos.id] + ' henüz hiç uğramadınız.',
+    nudgeGo(oneri, 'Oradan bir başlangıç · ' + readMin(oneri.content) + ' dakikalık okuma'));
+}
+
+function renderExplore() {
+  view = 'explore'; activeSlug = null;
+  document.getElementById('app').innerHTML =
+    '<div class="col wide">' +
+    '<header class="xhead"><div class="lbl">Keşfet</div><h1>Nereden başlamak istersiniz?</h1>' +
+      '<p>Arşivde ' + ARTICLES.length + ' yazı var. Bir konudan, bir çağdan, dünyanın bir köşesinden ya da bir isimden girin.</p>' +
+      '<div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>' +
+      '<input id="q" type="search" placeholder="Ya da aradığınızı yazın: bir isim, bir yer, bir kelime" aria-label="Arşivde ara" value="' + esc(query) + '"></div>' +
+      journeyNote() +
+    '</header><div id="xbody"></div></div>';
+  document.getElementById('q').addEventListener('input', e => { query = e.target.value.trim(); exploreBody(); });
+  exploreBody();
+  document.title = 'Keşfet · ' + SITE;
+}
+
+function exploreBody() {
+  const el = document.getElementById('xbody');
+  if (query) {
+    const q = lower(query);
+    const list = ARTICLES.filter(a => lower(a.title).includes(q) || lower(a.content).includes(q) ||
+      (a.tags || []).some(t => lower(nice(t)).includes(q)));
+    el.innerHTML = '<section class="xsec" style="padding-top:1.6rem"><div class="meta">' + (list.length ? list.length + ' yazı bulundu' : 'Bu aramayla eşleşen yazı yok.') + '</div>' +
+      list.slice(0, 40).map(cardHtml).join('') + '</section>';
     return;
   }
-  openArticle(h, false);
+  // Koleksiyonlar
+  const kol = KOLEKSIYON.map(k => ({ k, arts: collArts(k) })).filter(x => x.arts.length >= 3);
+  const kullanildi = new Set();   // aynı yazı iki kartta birden görünmesin
+  const kolHtml = kol.map(({ k, arts }) => {
+    const ornek = unreadFirst(arts).filter(a => !kullanildi.has(a.slug)).slice(0, 3);
+    ornek.forEach(a => kullanildi.add(a.slug));
+    return '<article class="coll"><div class="lbl">' + arts.length + ' yazı</div>' +
+      '<h3><a href="#/kesfet/k/' + k.id + '">' + esc(k.ad) + '</a></h3><p class="note">' + esc(k.not) + '</p>' +
+      '<ul>' + ornek.map(a => '<li' + (OKUNDU.has(a.slug) ? ' class="isread"' : '') + '><a href="#/' + esc(a.slug) + '">' + esc(a.title) + '</a></li>').join('') + '</ul>' +
+      '<a class="go" href="#/kesfet/k/' + k.id + '">Koleksiyonun tamamı →</a></article>';
+  }).join('');
+  // Çağ odaları
+  const enCok = Math.max(1, ...DONEM.map(d => eraCount(d.id)));
+  const odalar = DONEM.map((d, i) => {
+    const arts = ARTICLES.filter(a => a.donem === d.id);
+    if (!arts.length) return '';
+    const sec = unreadFirst(arts)[0];
+    return '<div class="room"><div class="rn">' + ROMA[i] + '</div>' +
+      '<h3><a href="#/kesfet/cag/' + d.id + '">' + esc(d.ad) + '</a></h3>' +
+      '<div class="meta">' + esc(d.ara) + ' · ' + arts.length + ' yazı</div>' +
+      '<div class="bar" aria-hidden="true"><i style="width:' + Math.round(100 * arts.length / enCok) + '%"></i></div>' +
+      '<div class="pick"><span>Bu odadan</span><a href="#/' + esc(sec.slug) + '">' + esc(sec.title) + '</a></div></div>';
+  }).join('');
+  // Dünya
+  const dunya = Object.keys(BOLGE).map(r => ({ r, n: regionCount(r) })).filter(x => x.n).sort((x, y) => y.n - x.n)
+    .map(x => '<a href="#/kesfet/yer/' + slugify(x.r) + '">' + esc(x.r) + '<span>' + x.n + '</span></a>').join('');
+  // İsimler: her gelişte başka bir demet
+  const isimler = tagCounts().filter(([t]) => eksen(t) === 'isim').map(([t]) => t);
+  for (let i = isimler.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [isimler[i], isimler[j]] = [isimler[j], isimler[i]]; }
+  const demet = isimler.slice(0, 16).map(t => '<a class="isim" href="' + tagHref(t) + '">' + esc(nice(t)) + '</a>').join('');
+
+  el.innerHTML =
+    '<section class="xsec"><div class="xsec-h"><h2>Koleksiyonlar</h2><span class="meta">Konularına göre bir araya gelmiş yazılar</span></div><div class="colls">' + kolHtml + '</div></section>' +
+    '<section class="xsec"><div class="xsec-h"><h2>Çağdan çağa</h2></div><div class="rooms">' + odalar + '</div></section>' +
+    '<section class="xsec"><div class="xsec-h"><h2>Dünyanın dört bir yanı</h2></div><div class="world">' + dunya + '</div></section>' +
+    '<section class="xsec"><div class="xsec-h"><h2>Bu arşivde kimler var?</h2><a href="#/kesfet/dizin">Bütün isimler ve yerler →</a></div>' +
+      '<div class="names">' + demet + '</div></section>' +
+    nudge('Kararsız mısınız?', 'Bazen en iyi yazı aramadığınız yazıdır. Henüz okumadıklarınızdan birini sizin için seçelim.',
+      '<button type="button" class="nudge-go" data-random="1"><span>Rastgele</span><b>Şansıma bir yazı aç</b><i aria-hidden="true">→</i></button>', 'lucky');
 }
 
-// ─── Events (delegated) ──────────────────────────────────────
+// ─── Keşfet: liste sayfaları ─────────────────────────────────
+function renderList(kind, key) {
+  view = 'list'; activeSlug = null;
+  let lbl = '', baslik = '', not = '', list = [], digerleri = '';
+  if (kind === 'k') {
+    const k = KOLEKSIYON.find(x => x.id === key); if (!k) return false;
+    lbl = 'Koleksiyon'; baslik = k.ad; not = k.not; list = collArts(k);
+    digerleri = KOLEKSIYON.filter(x => x !== k && collArts(x).length >= 3).map(x => '<a href="#/kesfet/k/' + x.id + '">' + esc(x.ad) + '</a>').join('');
+  } else if (kind === 'cag') {
+    const d = DONEM.find(x => x.id === key); if (!d) return false;
+    lbl = 'Çağ · ' + d.ara; baslik = d.ad; list = ARTICLES.filter(a => a.donem === d.id);
+    digerleri = DONEM.filter(x => x !== d && eraCount(x.id)).map(x => '<a href="#/kesfet/cag/' + x.id + '">' + esc(x.ad) + '</a>').join('');
+  } else if (kind === 'yer') {
+    const r = regionBySlug(key); if (!r) return false;
+    lbl = 'Dünyanın bir köşesi'; baslik = r; list = regionArts(r);
+    digerleri = Object.keys(BOLGE).filter(x => x !== r && regionCount(x)).map(x => '<a href="#/kesfet/yer/' + slugify(x) + '">' + esc(x) + '</a>').join('');
+  } else if (kind === 'e') {
+    const t = key; list = ARTICLES.filter(a => (a.tags || []).includes(t)); if (!list.length) return false;
+    lbl = ({ konu: 'Konu', yer: 'Yer', isim: 'İsim' })[eksen(t)]; baslik = eksen(t) === 'konu' ? capTr(t) : nice(t);
+    const k = eksen(t) === 'konu' && KOLEKSIYON.find(x => x.tags.includes(t));
+    if (k) not = 'Bu konu "' + k.ad + '" koleksiyonunun bir parçası.';
+  } else return false;
+  const okunan = list.filter(a => OKUNDU.has(a.slug)).length;
+  document.getElementById('app').innerHTML =
+    '<div class="col">' +
+    '<a class="back" href="#/kesfet">← Keşfet</a>' +
+    '<header class="lhead"><div class="lbl">' + esc(lbl) + '</div><h1>' + esc(baslik) + '</h1>' + (not ? '<p>' + esc(not) + '</p>' : '') +
+      '<div class="meta">' + list.length + ' yazı' + (okunan ? ' · ' + okunan + ' tanesini okudunuz' : '') + '</div></header>' +
+    unreadFirst(list).map(cardHtml).join('') +
+    (digerleri ? '<div class="others"><span class="lbl">Başka bir kapı</span><nav>' + digerleri + '</nav></div>' : '') +
+    '</div>';
+  document.title = baslik + ' · ' + SITE;
+  return true;
+}
+
+// ─── Keşfet: dizin ───────────────────────────────────────────
+const harfOf = s => s.charAt(0).toLocaleUpperCase('tr-TR');
+function renderIndex() {
+  view = 'list'; activeSlug = null;
+  document.getElementById('app').innerHTML =
+    '<div class="col wide"><a class="back" href="#/kesfet">← Keşfet</a>' +
+    '<header class="lhead"><div class="lbl">Dizin</div><h1>İsimler ve yerler</h1>' +
+      '<p>Yazılarda geçen kişiler, köpekler, tanrılar ve yerler; her birinin yanında geçtiği yazılar.</p>' +
+      '<div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>' +
+      '<input id="iq" type="search" placeholder="Bir isim ya da yer ara" aria-label="Dizinde ara"></div></header>' +
+    '<div id="ixbody"></div></div>';
+  const fill = q => {
+    const counts = tagCounts();
+    const konular = counts.filter(([t]) => eksen(t) === 'konu').map(([t]) => t).sort((x, y) => x.localeCompare(y, 'tr'));
+    let e = counts.filter(([t]) => eksen(t) !== 'konu').map(([t]) => ({ t, ad: nice(t), arts: ARTICLES.filter(a => (a.tags || []).includes(t)) }));
+    if (q) { const n = normAd(q); e = e.filter(x => normAd(x.ad).includes(n)); }
+    e.sort((x, y) => x.ad.localeCompare(y.ad, 'tr'));
+    const g = [];
+    e.forEach(x => { const h = harfOf(x.ad), s = g[g.length - 1]; if (s && s.h === h) s.e.push(x); else g.push({ h, e: [x] }); });
+    document.getElementById('ixbody').innerHTML =
+      (q ? '' : '<div class="konular"><span class="lbl">Konular</span>' + konular.map(t => tagLink(t)).join('') + '</div>') +
+      (g.length > 1 ? '<div class="letters">' + g.map(s => '<button type="button" data-letter="' + esc(s.h) + '">' + esc(s.h) + '</button>').join('') + '</div>' : '') +
+      (g.length ? g.map(s => '<section class="ixl" id="ixl-' + esc(s.h) + '"><h3>' + esc(s.h) + '</h3><dl>' +
+        s.e.map(x => '<div class="ix ' + eksen(x.t) + '"><dt><a href="' + tagHref(x.t) + '">' + esc(x.ad) + '</a>' +
+          (eksen(x.t) === 'yer' ? ' <small>yer</small>' : '') + '</dt><dd>' +
+          x.arts.map(a => '<a href="#/' + esc(a.slug) + '">' + esc(a.title) + '</a>').join('') + '</dd></div>').join('') +
+        '</dl></section>').join('') : '<p class="empty">Bu adla eşleşen bir isim ya da yer yok.</p>');
+  };
+  document.getElementById('iq').addEventListener('input', ev => fill(ev.target.value.trim()));
+  fill('');
+  document.title = 'Dizin · ' + SITE;
+}
+
+// ─── Gezinme ─────────────────────────────────────────────────
+function route() {
+  const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  const from = view;
+  if (from === 'home') homeScroll = window.scrollY;
+  document.getElementById('nav-kesfet').classList.toggle('on', h.startsWith('kesfet'));
+  let ok = true;
+  if (h === 'kesfet') renderExplore();
+  else if (h === 'kesfet/dizin') renderIndex();
+  else if (h.startsWith('kesfet/')) { const m = h.match(/^kesfet\/(k|cag|yer|e)\/(.+)$/); ok = !!m && renderList(m[1], m[2]); }
+  else {
+    const a = h && ARTICLES.find(x => x.slug === h);
+    if (a) {
+      renderArticle(a);
+      if (resumeTo === a.slug && YARIM[a.slug]) {
+        const p = document.getElementById('prose');
+        window.scrollTo(0, Math.max(0, p.offsetTop + p.offsetHeight * YARIM[a.slug] - window.innerHeight * .6));
+      } else window.scrollTo(0, 0);
+      resumeTo = null; progress(); return;
+    }
+    ok = false;
+  }
+  if (!ok) { renderHome(); window.scrollTo(0, from === 'article' ? homeScroll : 0); }
+  else window.scrollTo(0, 0);
+  progress();
+}
+const go = h => { if (location.hash.replace(/^#/, '') === h) route(); else location.hash = h; };
+function randomArticle() {
+  const pool = ARTICLES.filter(a => a.slug !== activeSlug && !OKUNDU.has(a.slug));
+  const src = pool.length ? pool : ARTICLES.filter(a => a.slug !== activeSlug);
+  if (src.length) go('/' + src[Math.floor(Math.random() * src.length)].slug);
+}
+function step(dir) {
+  const i = ARTICLES.findIndex(x => x.slug === activeSlug), j = i + dir;
+  if (i >= 0 && j >= 0 && j < ARTICLES.length) go('/' + ARTICLES[j].slug);
+}
+let tick = 0;
+function progress() {
+  const bar = document.getElementById('progress');
+  if (view !== 'article') { bar.style.width = '0'; return; }
+  const p = document.getElementById('prose'); if (!p) return;
+  const r = Math.min(1, Math.max(0, (window.scrollY + window.innerHeight - p.offsetTop) / p.offsetHeight));
+  bar.style.width = (r * 100) + '%';
+  const now = Date.now(); if (now - tick > 600 || r >= .92) { tick = now; saveProgress(activeSlug, r); }
+}
+
+// ─── Tema ────────────────────────────────────────────────────
+const isDark = () => { const d = document.documentElement.getAttribute('data-theme');
+  return d ? d === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; };
+const themeLabel = () => { document.getElementById('theme-btn').textContent = isDark() ? 'Gündüz' : 'Gece'; };
+(function () { const t = store.get('tk-tema', null); if (t) document.documentElement.setAttribute('data-theme', t); })();
+document.getElementById('theme-btn').addEventListener('click', () => {
+  const t = isDark() ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', t); store.set('tk-tema', t); themeLabel(); });
+themeLabel();
+
+// ─── Olaylar ─────────────────────────────────────────────────
 document.addEventListener('click', e => {
-  if (e.target.closest('[data-home]')) { goHome(); return; }
-
-  const donem = e.target.closest('[data-era]');
-  if (donem) { e.stopPropagation(); setEra(donem.getAttribute('data-era')); return; }
-
-  const bolge = e.target.closest('[data-region]');
-  if (bolge) { e.stopPropagation(); setRegion(bolge.dataset.region ||
-    bolge.getAttribute('data-region')); return; }
-  if (e.target.closest('[data-tagtoggle]')) { tagsExpanded = !tagsExpanded; renderTags(); return; }
-  if (e.target.closest('[data-clear]')) { clearTag(); return; }
-
-  const tagEl = e.target.closest('[data-tag]');
-  if (tagEl) { e.stopPropagation(); setTag(tagEl.dataset.tag); return; }
-
-  const slugEl = e.target.closest('[data-slug]');
-  if (slugEl) { openArticle(slugEl.dataset.slug); return; }
+  const t = e.target;
+  const rs = t.closest('[data-resume]'); if (rs) { resumeTo = rs.dataset.resume; return; }
+  if (t.closest('[data-home]')) { e.preventDefault(); go(''); return; }
+  if (t.closest('[data-random]')) { randomArticle(); return; }
+  if (t.closest('[data-more]')) { shown += 8; const y = window.scrollY; renderHome(); window.scrollTo(0, y); return; }
+  const lt = t.closest('[data-letter]'); if (lt) { const el = document.getElementById('ixl-' + lt.dataset.letter); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
 });
-
-document.getElementById('search').addEventListener('input', e => {
-  query = e.target.value.trim();
-  renderList();
-});
-
-document.addEventListener('click', e => {
-  if (e.target.closest('[data-random]')) randomArticle();
-});
-
-document.getElementById('rnd-btn').addEventListener('click', randomArticle);
-document.getElementById('reader').addEventListener('scroll', updateProgress, { passive: true });
-
 document.addEventListener('keydown', e => {
-  if (e.target.matches('input, textarea')) return;
-  if (e.metaKey || e.ctrlKey || e.altKey) return;
-  if (e.key === 'ArrowRight')      { step(1);  e.preventDefault(); }
-  else if (e.key === 'ArrowLeft')  { step(-1); e.preventDefault(); }
-  else if (e.key === 'Escape')     { closeSidebar(); }
-  else if (e.key === 'r' || e.key === 'R') { randomArticle(); }
-  else if (e.key === 'h' || e.key === 'H') { goHome(); }
+  if (e.key === 'Enter' || e.key === ' ') {
+    const g = e.target.closest && e.target.closest('g[data-region], g[data-era]');
+    if (g) { e.preventDefault(); g.dispatchEvent(new MouseEvent('click', { bubbles: true })); return; }
+  }
+  if (e.target.matches('input, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === 'ArrowRight' && view === 'article') { step(1); e.preventDefault(); }
+  else if (e.key === 'ArrowLeft' && view === 'article') { step(-1); e.preventDefault(); }
+  else if (e.key === 'r' || e.key === 'R') randomArticle();
+  else if (e.key === 'h' || e.key === 'H') go('');
 });
+window.addEventListener('scroll', progress, { passive: true });
+window.addEventListener('hashchange', route);
 
-document.getElementById('menu-btn').addEventListener('click', openSidebar);
-document.getElementById('scrim').addEventListener('click', closeSidebar);
-window.addEventListener('hashchange', handleHash);
-
-// ─── Boot ────────────────────────────────────────────────────
-fetch('articles.json', { cache: 'no-cache' })
+// ─── Açılış ──────────────────────────────────────────────────
+function boot(data) {
+  ARTICLES = (Array.isArray(data) ? data : (data.articles || [])).filter(a => a && a.title && a.content)
+    .map(a => Object.assign({}, a, { slug: a.slug || slugify(a.title) }))
+    .sort((x, y) => new Date(y.date) - new Date(x.date));
+  const seen = new Set();
+  ARTICLES.forEach(a => { let b = a.slug || 'yazi', s = b, n = 2; while (seen.has(s)) s = b + '-' + n++; a.slug = s; seen.add(s); });
+  const bilinen = new Set(Object.values(BOLGE).flatMap(b => b.tags));
+  const eksik = [...new Set(ARTICLES.flatMap(a => (a.tags || []).filter(t => isYer(t) && !bilinen.has(t))))];
+  if (eksik.length) console.info('Haritada bölgesi tanımlanmamış yer etiketleri:', eksik.join(', '));
+  if (!ARTICLES.length) { document.getElementById('app').innerHTML = '<div class="col"><section class="intro"><h1>Arşiv hazırlanıyor</h1><p>Henüz yayımlanmış bir yazı yok.</p></section></div>'; return; }
+  route();
+}
+if (window.__ARTICLES__) boot(window.__ARTICLES__);
+else fetch('articles.json', { cache: 'no-cache' })
   .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
-  .then(data => {
-    ARTICLES = (Array.isArray(data) ? data : (data.articles || []))
-      .filter(a => a && a.title && a.content)
-      .map(a => Object.assign({}, a, { slug: a.slug || slugify(a.title) }))
-      .sort((x, y) => new Date(y.date) - new Date(x.date));
-
-    const seen = new Set();
-    ARTICLES.forEach(a => {
-      let base = a.slug || 'yazi', s = base, n = 2;
-      while (seen.has(s)) s = base + '-' + n++;
-      a.slug = s; seen.add(s);
-    });
-
-    renderCount();
-    renderTags();
-    renderList();
-    handleHash();
-  })
-  .catch(err => {
-    console.error(err);
-    document.getElementById('reader-body').innerHTML =
-      '<div class="intro"><div class="emo">🐕</div>' +
-      '<h2>Yazılar yüklenemedi</h2>' +
-      '<p>Arşiv dosyasına ulaşılamadı. Sayfayı yenilemeyi deneyebilirsin.</p></div>';
-  });
+  .then(boot)
+  .catch(err => { console.error(err);
+    document.getElementById('app').innerHTML = '<div class="col"><section class="intro"><h1>Yazılar yüklenemedi</h1><p>Arşiv dosyasına ulaşılamadı. Sayfayı yenilemeyi deneyin.</p></section></div>'; });
 </script>
 </body>
 </html>
