@@ -484,7 +484,7 @@ function cardHtml(a) {
     (placeLine(a) ? '<div class="lbl">' + esc(placeLine(a)) + '</div>' : '') +
     '<h3><a href="#/' + esc(a.slug) + '">' + esc(a.title) + '</a></h3>' +
     '<p>' + esc(excerpt(a.content, 175)) + '</p>' +
-    '<div class="meta">' + fmtDate(a.date, false) + ' · ' + readMin(a.content) + ' dakikalık okuma' +
+    '<div class="meta">' + fmtDate(a.date, false) + ' · ' + readMin(a.content) + ' dk' +
       (isNew(a) ? ' · <span class="new">yeni</span>' : r ? ' · okundu' : '') + '</div></article>';
 }
 function renderHome() {
@@ -513,7 +513,7 @@ function renderHome() {
       '<div class="lbl">' + (bugun ? 'Bugünün yazısı' : 'Son yazı') + (placeLine(lead) ? ' · ' + esc(placeLine(lead)) : '') + '</div>' +
       '<h2><a href="#/' + esc(lead.slug) + '">' + esc(lead.title) + '</a></h2>' +
       '<p>' + esc(excerpt(lead.content, 330)) + '</p>' +
-      '<div class="meta">' + fmtDate(lead.date, false) + ' · ' + readMin(lead.content) + ' dakikalık okuma' +
+      '<div class="meta">' + fmtDate(lead.date, false) + ' · ' + readMin(lead.content) + ' dk' +
         (OKUNDU.has(lead.slug) ? ' · okundu' : '') + '</div>' +
       '<p style="margin:1.1rem 0 0"><a class="go" href="#/' + esc(lead.slug) + '">Okumaya başla →</a></p>' +
     '</section>' +
@@ -549,14 +549,14 @@ function renderArticle(a) {
       '<header class="rhead">' +
         (ust.length ? '<div class="lbl">' + ust.join(' · ') + '</div>' : '') +
         '<h1>' + esc(a.title) + '</h1>' +
-        '<div class="meta">' + fmtDate(a.date) + ' · ' + readMin(a.content) + ' dakikalık okuma</div>' +
+        '<div class="meta">' + fmtDate(a.date) + ' · ' + readMin(a.content) + ' dk</div>' +
       '</header>' +
       '<div class="prose" id="prose">' + mdToHtml(bodyWithoutTitle(a.content)) + '</div>' +
       '<div class="fin" aria-hidden="true">⁂</div>' +
       (ilk ? '<section class="next"><div class="lbl">Sıradaki yazı</div>' +
         '<h3><a href="#/' + esc(ilk.x.slug) + '">' + esc(ilk.x.title) + '</a></h3>' +
         '<p>' + esc(excerpt(ilk.x.content, 200)) + '</p>' +
-        '<div class="why">' + esc(ilk.why) + ' ' + readMin(ilk.x.content) + ' dakikalık okuma.</div>' +
+        '<div class="why">' + esc(ilk.why) + ' · ' + readMin(ilk.x.content) + ' dk</div>' +
         '<p style="margin:.9rem 0 0"><a class="go" href="#/' + esc(ilk.x.slug) + '">Okumaya devam et →</a></p></section>' : '') +
       (diger.length ? '<section class="also"><div class="lbl">Ya da bunlardan biri</div><ul>' +
         diger.map(f => '<li><a href="#/' + esc(f.x.slug) + '">' + esc(f.x.title) + '</a><span class="why">' + esc(f.why) + '</span></li>').join('') +
@@ -629,7 +629,7 @@ function journeyNote() {
   if (!bos) return nudge('Sizin için bir not', 'Şimdiye kadar ' + n + ' yazı okudunuz ve her çağdan en az birine uğradınız. Bir koleksiyonu baştan sona okumaya ne dersiniz?');
   const oneri = unreadFirst(ARTICLES.filter(a => a.donem === bos.id))[0];
   return nudge('Sizin için bir not', 'Şimdiye kadar ' + n + ' yazı okudunuz. ' + YONELME[bos.id] + ' henüz hiç uğramadınız.',
-    nudgeGo(oneri, 'Oradan bir başlangıç · ' + readMin(oneri.content) + ' dakikalık okuma'));
+    nudgeGo(oneri, 'Oradan bir başlangıç · ' + readMin(oneri.content) + ' dk'));
 }
 
 function renderExplore() {
